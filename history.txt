@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-04-05 #1
+- Update db script #1
+  - TABLE: Operator
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2021-03-05 #2
 - Update nlib-express -> morgan use short format and set logger.stream.
 
