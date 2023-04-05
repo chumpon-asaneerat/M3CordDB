@@ -10,11 +10,11 @@ CREATE TABLE G4Yarn(
     RemainQty decimal(16, 3) NULL,
     ReceiveDate datetime NULL,
     ReceiveBy nvarchar(30) NULL,
-    FinishFlag nvarchar(1) NULL,
+    FinishFlag bit NULL,
     UpdateDate datetime NULL,
     PalletType nvarchar(30) NULL,
     Item400Code nvarchar(30) NULL,
-    UM nvarchar(20) NULL,
+    Unit nvarchar(20) NULL,
     Packing bit NULL,
     Clean bit NULL,
     Tearing bit NULL,
@@ -80,3 +80,4 @@ GO
 
 ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_AmountPallet  DEFAULT 0 FOR AmountPallet
 GO
+
