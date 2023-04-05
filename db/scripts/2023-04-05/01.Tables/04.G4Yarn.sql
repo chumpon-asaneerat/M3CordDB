@@ -15,14 +15,14 @@ CREATE TABLE G4Yarn(
     PalletType nvarchar(30) NULL,
     Item400Code nvarchar(30) NULL,
     UM nvarchar(20) NULL,
-    Packing nvarchar(1) NULL,
-    Clean nvarchar(1) NULL,
-    Tearing nvarchar(1) NULL,
-    Falldown nvarchar(1) NULL,
-    Certification nvarchar(1) NULL,
-    Invoice nvarchar(1) NULL,
-    IdentifyArea nvarchar(1) NULL,
-    AmountPallet nvarchar(1) NULL,
+    Packing bit NULL,
+    Clean bit NULL,
+    Tearing bit NULL,
+    Falldown bit NULL,
+    Certification bit NULL,
+    Invoice bit NULL,
+    IdentifyArea bit NULL,
+    AmountPallet bit NULL,
     Other nvarchar(1000) NULL,
     [Action] nvarchar(1000) NULL,
     MovementDate datetime NULL,
@@ -55,4 +55,28 @@ CREATE INDEX IX_G4Yarn_LotNo ON G4Yarn(LotNo ASC)
 GO
 
 CREATE INDEX IX_G4Yarn_TraceNo ON G4Yarn(TraceNo ASC)
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Packing DEFAULT 0 FOR Packing
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Clean  DEFAULT 0 FOR Clean
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Tearing  DEFAULT 0 FOR Tearing
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Falldown  DEFAULT 0 FOR Falldown
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Certification  DEFAULT 0 FOR Certification
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_Invoice  DEFAULT 0 FOR Invoice
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_IdentifyArea  DEFAULT 0 FOR IdentifyArea
+GO
+
+ALTER TABLE G4Yarn ADD  CONSTRAINT DF_G4Yarn_AmountPallet  DEFAULT 0 FOR AmountPallet
 GO
