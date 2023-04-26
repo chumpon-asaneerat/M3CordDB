@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-04-26 #6
+  - VIEW: UserInfoView Added
+  - SP: GetUser Added
+  - Add init users script.
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-04-26 #5
   - SP: GetItemCodes Added
   - SP: GetItemYarns Added
