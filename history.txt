@@ -1,5 +1,15 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-04-26 #3
+  - TABLE: UserRole Added
+  - TABLE: UserInfo Added
+  - TABLE: ItemCode Added
+  - TABLE: G4Yarn Updated
+  - FUNC: IsNullOrEmpty Added  
+  - SP: SaveG4Yarn Updated  
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-04-26 #2
   - SP: SaveG4Yarn Added
 

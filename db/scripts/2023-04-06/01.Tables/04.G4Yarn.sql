@@ -3,7 +3,7 @@ CREATE TABLE G4Yarn(
     EntryDate datetime NULL,
     ItemYarn nvarchar(30) NULL,
     PalletNo nvarchar(30) NULL,
-    YarnType nvarchar(20) NULL,
+    YarnType nvarchar(30) NULL,
     WeightQty decimal(16, 3) NULL,
     LotNo nvarchar(30) NULL,
     TraceNo nvarchar(30) NULL,
