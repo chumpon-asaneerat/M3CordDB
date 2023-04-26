@@ -1,4 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[GetMAges]    Script Date: 11/27/2022 9:58:05 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetG4Yarns]    Script Date: 11/27/2022 9:58:05 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
