@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-16 #5
+  - Update TABLE UserInfo
+  - Update TABLE G4Yarn
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-05-16 #4
   - Add SP GetItemCodes, SaveItemCode, GetItemYarns 
 

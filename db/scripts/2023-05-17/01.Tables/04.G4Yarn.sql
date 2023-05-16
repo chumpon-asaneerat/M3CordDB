@@ -8,18 +8,15 @@ CREATE TABLE G4Yarn(
     YarnType nvarchar(30) NULL, -- ประเภทการนำไปทอเป็นผ้า Warp, Warp
     PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' อาจจะย่อมาจาก Flat
     Item400 nvarchar(30) NULL, -- รหัส Item จาก AS 400
-
     ConeCH decimal(16, 3) NULL, -- จำนวน CH
     Unit nvarchar(20) NULL, -- Unit KG
     KgPerCH decimal(16, 3) NULL, -- น้ำหนักต่อ CH
     WeightQty decimal(16, 3) NULL, -- น้ำหนักรวมทั้ง Pallet
     RemainQty decimal(16, 3) NULL, -- น้ำหนักที่เหลือ กรณี ถูกเอาไปใช้แล้ว
-
     ReceiveDate datetime NULL,
-    ReceiveBy nvarchar(30) NULL,
+    ReceiveBy int NULL,
     UpdateDate datetime NULL,
     MovementDate datetime NULL,
-
     Verify bit NULL DEFAULT 0,
     Packing bit NULL DEFAULT 0,
     Clean bit NULL DEFAULT 0,

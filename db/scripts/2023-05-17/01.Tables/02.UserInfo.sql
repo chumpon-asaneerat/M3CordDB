@@ -11,7 +11,7 @@ CREATE TABLE UserInfo(
 )
 GO
 
-CREATE INDEX IX_UserInfo ON UserInfo(UserId ASC)
+CREATE INDEX IX_UserInfo_UserId ON UserInfo(UserId ASC)
 GO
 
 CREATE UNIQUE INDEX IX_UserInfo_FullName ON UserInfo(FullName ASC)
