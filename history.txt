@@ -1,5 +1,13 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-16 #1
+  - Add TABLE UserInfo, UserRole
+  - Add VIEW UserInfoView
+  - Add SP IsNullOrEmpty, GetUser
+  - Add Init Data script.
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-04-26 #8
   - SP: GetG4Yarns Added
 
