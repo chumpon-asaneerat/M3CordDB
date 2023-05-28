@@ -37,6 +37,7 @@ AS
 		 , A.Other
 		 , A.[Action]
 		 , A.FinishFlag
+		 , A.UpdateFlag
 		 , A.DeleteFlag
 		 , B.RoleId
 		 , B.RoleName

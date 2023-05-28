@@ -29,6 +29,7 @@ CREATE TABLE G4Yarn(
     Other nvarchar(1000) NULL,
     [Action] nvarchar(1000) NULL,
     FinishFlag bit NULL DEFAULT 0,
+    UpdateFlag bit NULL DEFAULT 0,
     DeleteFlag bit NULL DEFAULT 0,
 CONSTRAINT PK_G4Yarn PRIMARY KEY (PkId ASC)
 )

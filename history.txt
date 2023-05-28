@@ -1,5 +1,15 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-28 #1
+- Update TABLE G4Yarn
+  - Add Column UpdateFlag (for mark when update data back to AS400)
+- Update View G4YarnView
+  - Add Column UpdateFlag (for mark when update data back to AS400)
+- Update SP SaveG4Yarn
+  - Add Parameter @UpdateFlag
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-05-17 #1
   - Add SP GetUsers
 

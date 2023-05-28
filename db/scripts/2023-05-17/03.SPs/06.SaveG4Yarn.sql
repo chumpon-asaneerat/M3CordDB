@@ -45,6 +45,7 @@ CREATE PROCEDURE [dbo].[SaveG4Yarn] (
 , @Other nvarchar(1000)
 , @Action nvarchar(1000)
 , @FinishFlag bit
+, @UpdateFlag bit
 , @DeleteFlag bit
 , @PkId int = NULL out
 , @errNum as int = 0 out
@@ -84,6 +85,7 @@ BEGIN
                  , Other = @Other
                  , [Action] = @Action
                  , FinishFlag = @FinishFlag
+                 , UpdateFlag = @UpdateFlag
                  , DeleteFlag = @DeleteFlag
              WHERE PkId = @PkId
         END
@@ -120,6 +122,7 @@ BEGIN
                 , Other
                 , [Action]
                 , FinishFlag
+                , UpdateFlag
                 , DeleteFlag
 			)
 			VALUES
@@ -153,6 +156,7 @@ BEGIN
                 , @Other
                 , @Action
                 , @FinishFlag
+                , @UpdateFlag
                 , @DeleteFlag
 			);
 
