@@ -7,7 +7,7 @@ GO
 
 CREATE VIEW G4YarnView
 AS
-	SELECT A.PkId
+	SELECT A.G4YarnPkId
 	     , A.EntryDate
 	     , A.TraceNo
 	     , A.PalletNo
