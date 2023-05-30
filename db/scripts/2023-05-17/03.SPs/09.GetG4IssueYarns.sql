@@ -21,7 +21,7 @@ CREATE PROCEDURE [dbo].[GetG4IssueYarns]
 )
 AS
 BEGIN
-    SELECT I.PkId
+    SELECT I.G4IssueYarnPkId -- FROM G4IssueYarn
          , I.RequestNo
          , I.IssueDate
          , I.IssueBy
@@ -32,21 +32,13 @@ BEGIN
          , I.PalletType
          , I.DeleteFlag
          , I.[Remark]
+         , Y.G4YarnPkId -- FROM G4Yarn
          , Y.ItemYarn
          , Y.LotNo
          , Y.YarnType
          , Y.Item400
          , Y.EntryDate
-         , Y.Packing
-         , Y.Clean
-         , Y.Tearing
-         , Y.Falldown 
-         , Y.Falldown
-         , Y.Certification
-         , Y.Invoice
-         , Y.IdentifyArea
-         , Y.AmountPallet
-         , Y.Other
+         , Y.G4YarnPkId
       FROM G4IssueYarn I, G4Yarn Y
      WHERE UPPER(LTRIM(RTRIM(I.RequestNo))) = UPPER(LTRIM(RTRIM(COALESCE(@RequestNo, I.RequestNo))))
        AND I.PalletNo = Y.PalletNo
