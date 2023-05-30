@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-31 #4
+- Update SP SaveG4Yarn rename PkId parameter
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-05-31 #3
 - Update SP SaveItemCode rename PkId parameter
 

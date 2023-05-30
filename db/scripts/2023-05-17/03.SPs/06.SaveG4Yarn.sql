@@ -47,13 +47,13 @@ CREATE PROCEDURE [dbo].[SaveG4Yarn] (
 , @FinishFlag bit
 , @UpdateFlag bit
 , @DeleteFlag bit
-, @PkId int = NULL out
+, @G4YarnPkId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
 BEGIN
 	BEGIN TRY
-        IF EXISTS (SELECT TOP 1 * FROM G4Yarn WHERE PkId = @PkId)
+        IF EXISTS (SELECT TOP 1 * FROM G4Yarn WHERE G4YarnPkId = @G4YarnPkId)
         BEGIN
             UPDATE G4Yarn 
                SET EntryDate = @EntryDate
@@ -87,7 +87,7 @@ BEGIN
                  , FinishFlag = @FinishFlag
                  , UpdateFlag = @UpdateFlag
                  , DeleteFlag = @DeleteFlag
-             WHERE PkId = @PkId
+             WHERE G4YarnPkId = @G4YarnPkId
         END
         ELSE
         BEGIN
@@ -160,7 +160,7 @@ BEGIN
                 , @DeleteFlag
 			);
 
-			SET @PkId = @@IDENTITY;
+			SET @G4YarnPkId = @@IDENTITY;
         END
 
         -- Update Error Status/Message
