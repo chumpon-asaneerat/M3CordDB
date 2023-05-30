@@ -1,5 +1,5 @@
 CREATE TABLE G4Yarn(
-	PkId int IDENTITY(1,1) NOT NULL,
+	G4YarnPkId int IDENTITY(1,1) NOT NULL,
     EntryDate datetime NULL,
     TraceNo nvarchar(30) NULL, -- รหัสเส้นด้ายจาก supplier 2170330024
     PalletNo nvarchar(30) NULL, -- รหัส Pallet (แท่นวาง) S7G280004
@@ -31,7 +31,7 @@ CREATE TABLE G4Yarn(
     FinishFlag bit NULL DEFAULT 0,
     UpdateFlag bit NULL DEFAULT 0,
     DeleteFlag bit NULL DEFAULT 0,
-CONSTRAINT PK_G4Yarn PRIMARY KEY (PkId ASC)
+CONSTRAINT PK_G4Yarn PRIMARY KEY (G4YarnPkId ASC)
 )
 
 CREATE INDEX IX_G4Yarn_TraceNo ON G4Yarn(TraceNo ASC)

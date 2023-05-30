@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-31 #1
+- Update TABLE ItemCode rename PkId
+- Update TABLE G4Yarn rename PkId
+- Update TABLE G4IssueYarn rename PkId
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-05-30 #2
 - Add SP GetG4IssueYarns
 

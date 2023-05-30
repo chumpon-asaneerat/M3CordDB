@@ -1,5 +1,5 @@
 CREATE TABLE ItemCode(
-	PkId int IDENTITY(1,1) NOT NULL,
+	ItemPkId int IDENTITY(1,1) NOT NULL,
     ItemCode nvarchar(30) NOT NULL,
     ItemWeaving nvarchar(30) NOT NULL,
     ItemYarn nvarchar(30) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE ItemCode(
     FullWeight decimal(16, 3) NULL,
     WidthWeaving decimal(16, 3) NULL,
     WeaveType nvarchar(20) NULL,
- CONSTRAINT PK_ItemCode PRIMARY KEY (PkId ASC)
+ CONSTRAINT PK_ItemCode PRIMARY KEY (ItemPkId ASC)
 )
 
 CREATE INDEX IX_ItemCode_ItemCode ON ItemCode(ItemCode ASC)

@@ -1,5 +1,5 @@
 CREATE TABLE G4IssueYarn(
-	PkId int IDENTITY(1,1) NOT NULL,
+	G4IssueYarnPkId int IDENTITY(1,1) NOT NULL,
     RequestNo nvarchar(30) NULL,
     IssueDate datetime NULL,
     IssueBy int NULL,
@@ -10,7 +10,7 @@ CREATE TABLE G4IssueYarn(
     PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' อาจจะย่อมาจาก Flat
     DeleteFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
- CONSTRAINT PK_G4IssueYarn PRIMARY KEY (PkId ASC)
+ CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
 )
 
 CREATE INDEX IX_G4IssueYarn_RequestNo ON G4IssueYarn(RequestNo ASC)
