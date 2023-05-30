@@ -28,13 +28,13 @@ CREATE PROCEDURE [dbo].[SaveItemCode] (
 , @FullWeight decimal(16, 3) = 0.0
 , @WidthWeaving decimal(16, 3) = 0.0
 , @WeaveType nvarchar(20) = NULL
-, @PkId int = NULL out
+, @ItemPkId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
 BEGIN
 	BEGIN TRY
-        IF EXISTS (SELECT TOP 1 * FROM ItemCode WHERE PkId = @PkId)
+        IF EXISTS (SELECT TOP 1 * FROM ItemCode WHERE ItemPkId = @ItemPkId)
         BEGIN
             UPDATE ItemCode 
                SET ItemCode = @ItemCode
@@ -49,7 +49,7 @@ BEGIN
                  , FullWeight = @FullWeight
                  , WidthWeaving = @WidthWeaving
                  , WeaveType = @WeaveType
-             WHERE PkId = @PkId
+             WHERE ItemPkId = @ItemPkId
         END
         ELSE
         BEGIN
@@ -84,7 +84,7 @@ BEGIN
                  , @WeaveType
 			);
 
-			SET @PkId = @@IDENTITY;
+			SET @ItemPkId = @@IDENTITY;
         END
 
         -- Update Error Status/Message
