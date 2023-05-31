@@ -1,3 +1,4 @@
+/****** Object:  StoredProcedure [dbo].[G4InsertUpdateIssueYarn]    Script Date: 5/31/2023 10:43:25 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,6 +35,20 @@ DECLARE @RemainWeight decimal(16, 3)
 DECLARE @NewPalletType nvarchar(30)
 DECLARE @FinishFlag bit
     BEGIN TRY
+		IF (
+		       @PalletNo IS NULL 
+		    OR @TraceNo IS NULL 
+			OR @WeightQty IS NULL
+			OR @ConeCH IS NULL
+			OR @PalletType IS NULL
+		)
+		BEGIN
+			-- Update Error Status/Message
+			SET @errNum = 101;
+			SET @errMsg = 'Paramter(s) is null.';
+			RETURN;
+		END
+
         SELECT @cnt = COUNT(*) 
           FROM G4IssueYarn
          WHERE RequestNo = @RequestNo
