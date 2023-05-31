@@ -7,7 +7,9 @@ CREATE TABLE G4IssueYarn(
     PalletNo nvarchar(30) NULL, -- รหัส Pallet (แท่นวาง) S7G280004
     WeightQty decimal(16, 3) NULL,
     ConeCH decimal(16, 3) NULL, -- จำนวน Cheese
-    PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' อาจจะย่อมาจาก Flat
+    PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' or 'H'
+    EditDate datetime NULL,
+    EditBy int NULL,
     DeleteFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
  CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
