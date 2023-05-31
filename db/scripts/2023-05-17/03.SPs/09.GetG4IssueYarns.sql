@@ -33,12 +33,18 @@ BEGIN
          , I.DeleteFlag
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
-         , Y.ItemYarn
-         , Y.LotNo
-         , Y.YarnType
-         , Y.Item400
-         , Y.EntryDate
-         , Y.G4YarnPkId
+	     , Y.EntryDate
+		 , Y.LotNo
+		 , Y.ItemYarn
+		 , Y.YarnType
+		 , Y.Item400
+		 , Y.ReceiveDate
+		 , Y.ReceiveBy
+		 , Y.Verify
+		 --, Y.Packing
+		 --, Y.Clean
+		 --, Y.Tearing
+		 --, Y.Falldown
       FROM G4IssueYarn I, G4Yarn Y
      WHERE UPPER(LTRIM(RTRIM(I.RequestNo))) = UPPER(LTRIM(RTRIM(COALESCE(@RequestNo, I.RequestNo))))
        AND I.PalletNo = Y.PalletNo
