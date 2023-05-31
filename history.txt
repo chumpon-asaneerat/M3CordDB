@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-05-31 #10
+- Update SP G4InsertUpdateIssueYarn
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-05-31 #9
 - Update TABLE G4IssueYarn
 - Add SP G4InsertUpdateIssueYarn
