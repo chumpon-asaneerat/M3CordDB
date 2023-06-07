@@ -40,7 +40,7 @@ DECLARE @FinishFlag bit
 		    OR @TraceNo IS NULL 
 			OR @WeightQty IS NULL
 			OR @ConeCH IS NULL
-			OR @PalletType IS NULL
+			--OR @PalletType IS NULL
 		)
 		BEGIN
 			-- Update Error Status/Message
