@@ -35,7 +35,7 @@ BEGIN
                  , ProcessFlow = @ProcessFlow
                  , FinishFlag = @FinishFlag
                  , DeleteFlag = @DeleteFlag
-             WHERE @DoffSheetId = @DoffSheetId
+             WHERE DoffSheetId = @DoffSheetId
         END
         ELSE
         BEGIN
