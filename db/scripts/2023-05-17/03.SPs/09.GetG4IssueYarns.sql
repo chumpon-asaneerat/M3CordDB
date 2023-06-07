@@ -32,6 +32,7 @@ BEGIN
          , I.PalletType
          , I.DeleteFlag
          , I.FinishFlag
+         , I.WHReceiveFlag
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
 	     , Y.EntryDate
@@ -51,6 +52,7 @@ BEGIN
        AND I.PalletNo = Y.PalletNo
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
        AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+       AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
      ORDER BY I.IssueDate , I.PalletNo;
 
 END

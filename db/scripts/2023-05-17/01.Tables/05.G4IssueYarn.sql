@@ -12,6 +12,7 @@ CREATE TABLE G4IssueYarn(
     EditBy int NULL,
     DeleteFlag bit NULL DEFAULT 0,
     FinishFlag bit NULL DEFAULT 0,
+    WHReceiveFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
  CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
 )

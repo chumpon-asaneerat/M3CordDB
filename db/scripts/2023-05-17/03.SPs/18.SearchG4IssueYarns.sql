@@ -34,6 +34,7 @@ BEGIN
          , I.PalletType
          , I.DeleteFlag
          , I.FinishFlag
+         , I.WHReceiveFlag
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
 	     , Y.EntryDate
@@ -54,6 +55,7 @@ BEGIN
        AND UPPER(LTRIM(RTRIM(Y.Item400))) = UPPER(LTRIM(RTRIM(COALESCE(@Item400, Y.Item400))))
        AND I.PalletNo = Y.PalletNo
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
        AND (I.IssueDate IS NOT NULL)
      ORDER BY I.IssueDate , I.PalletNo;
 
