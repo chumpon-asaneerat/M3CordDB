@@ -146,6 +146,8 @@ CREATE TABLE G4IssueYarn(
     EditDate datetime NULL,
     EditBy int NULL,
     DeleteFlag bit NULL DEFAULT 0,
+    FinishFlag bit NULL DEFAULT 0,
+    WHReceiveFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
  CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
 )
@@ -909,6 +911,8 @@ BEGIN
          , I.ConeCH
          , I.PalletType
          , I.DeleteFlag
+         , I.FinishFlag
+         , I.WHReceiveFlag
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
 	     , Y.EntryDate
@@ -927,6 +931,8 @@ BEGIN
      WHERE UPPER(LTRIM(RTRIM(I.RequestNo))) = UPPER(LTRIM(RTRIM(COALESCE(@RequestNo, I.RequestNo))))
        AND I.PalletNo = Y.PalletNo
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+       AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
      ORDER BY I.IssueDate , I.PalletNo;
 
 END
@@ -1412,7 +1418,7 @@ BEGIN
                  , ProcessFlow = @ProcessFlow
                  , FinishFlag = @FinishFlag
                  , DeleteFlag = @DeleteFlag
-             WHERE @DoffSheetId = @DoffSheetId
+             WHERE DoffSheetId = @DoffSheetId
         END
         ELSE
         BEGIN
@@ -1455,6 +1461,119 @@ GO
 
 /*********** Script Update Date: 2023-05-17  ***********/
 --SaveDoffSheetItemSP
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[SearchG4IssueYarns]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SearchG4IssueYarns
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC SearchG4IssueYarns NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[SearchG4IssueYarns]
+(
+  @IssueDate datetime = NULL
+, @ItemYarn nvarchar(30) = NULL
+, @Item400 nvarchar(30) = NULL
+)
+AS
+BEGIN
+    SELECT I.G4IssueYarnPkId -- FROM G4IssueYarn
+         , I.RequestNo
+         , I.IssueDate
+         , I.IssueBy
+         , I.TraceNo
+         , I.PalletNo
+         , I.WeightQty
+         , I.ConeCH
+         , I.PalletType
+         , I.DeleteFlag
+         , I.FinishFlag
+         , I.WHReceiveFlag
+         , I.[Remark]
+         , Y.G4YarnPkId -- FROM G4Yarn
+	     , Y.EntryDate
+		 , Y.LotNo
+		 , Y.ItemYarn
+		 , Y.YarnType
+		 , Y.Item400
+		 , Y.ReceiveDate
+		 , Y.ReceiveBy
+		 , Y.Verify
+		 --, Y.Packing
+		 --, Y.Clean
+		 --, Y.Tearing
+		 --, Y.Falldown
+      FROM G4IssueYarn I, G4Yarn Y
+     WHERE DATEADD(dd, 0, DATEDIFF(dd, 0, I.IssueDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @IssueDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, I.IssueDate)))
+       AND UPPER(LTRIM(RTRIM(Y.ItemYarn))) = UPPER(LTRIM(RTRIM(COALESCE(@ItemYarn, Y.ItemYarn))))
+       AND UPPER(LTRIM(RTRIM(Y.Item400))) = UPPER(LTRIM(RTRIM(COALESCE(@Item400, Y.Item400))))
+       AND I.PalletNo = Y.PalletNo
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
+       AND (I.IssueDate IS NOT NULL)
+     ORDER BY I.IssueDate , I.PalletNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[G4IssueYarnReceive]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	G4IssueYarnReceive
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[G4IssueYarnReceive] (
+  @G4IssueYarnPkId int
+, @Receive bit = 1
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM G4IssueYarn WHERE G4IssueYarnPkId = @G4IssueYarnPkId)
+        BEGIN
+            UPDATE G4IssueYarn 
+               SET WHReceiveFlag = @Receive
+             WHERE G4IssueYarnPkId = @G4IssueYarnPkId
+        END
+        
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
 
 
 /*********** Script Update Date: 2023-05-17  ***********/
