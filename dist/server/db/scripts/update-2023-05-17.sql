@@ -142,7 +142,9 @@ CREATE TABLE G4IssueYarn(
     PalletNo nvarchar(30) NULL, -- รหัส Pallet (แท่นวาง) S7G280004
     WeightQty decimal(16, 3) NULL,
     ConeCH decimal(16, 3) NULL, -- จำนวน Cheese
-    PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' อาจจะย่อมาจาก Flat
+    PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' or 'H'
+    EditDate datetime NULL,
+    EditBy int NULL,
     DeleteFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
  CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
@@ -163,6 +165,139 @@ GO
 CREATE INDEX IX_G4IssueYarn_IssueBy ON G4IssueYarn(IssueBy ASC)
 GO
 
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+CREATE TABLE CordYarn(
+	CordYarnPkId int IDENTITY(1,1) NOT NULL,
+    ReceiveDate datetime NULL,
+    ReceiveBy int NULL,
+    PalletNo nvarchar(30) NULL, -- รหัส Pallet (แท่นวาง) S7G280004
+    TraceNo nvarchar(30) NULL, -- รหัสเส้นด้ายจาก G4 2170330024
+    LotNo nvarchar(30) NULL, -- รหัส Lot G4
+    YarnType nvarchar(30) NULL, -- ประเภทการนำไปทอเป็นผ้า Warp, Warp
+    ItemYarn nvarchar(30) NULL, -- รหัสเส้นด้าย 470-72-1781-JJ
+    PalletType nvarchar(30) NULL, -- ประเภท Pallet 'F' อาจจะย่อมาจาก Flat
+    Item400 nvarchar(30) NULL, -- รหัส Item จาก AS 400
+    ConeCH decimal(16, 3) NULL, -- จำนวน CH
+    WeightQty decimal(16, 3) NULL, -- น้ำหนักรวมทั้ง Pallet
+    FinishFlag bit NULL DEFAULT 0,
+    DeleteFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_CordYarn PRIMARY KEY (CordYarnPkId ASC)
+)
+
+CREATE INDEX IX_CordYarn_TraceNo ON CordYarn(TraceNo ASC)
+GO
+
+CREATE INDEX IX_CordYarn_PalletNo ON CordYarn(PalletNo ASC)
+GO
+
+CREATE INDEX IX_CordYarn_LotNo ON CordYarn(LotNo ASC)
+GO
+
+CREATE INDEX IX_CordYarn_ItemYarn ON CordYarn(ItemYarn ASC)
+GO
+
+CREATE INDEX IX_CordYarn_YarnType ON CordYarn(YarnType ASC)
+GO
+
+CREATE INDEX IX_CordYarn_Item400 ON CordYarn(Item400 ASC)
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+CREATE TABLE CordProduct(
+	CordProductPkId int IDENTITY(1,1) NOT NULL,
+    ProductLotNo nvarchar(30) NULL, -- เบอร์ชุดผลิตภัณฑ์
+    CustomerCode nvarchar(30) NULL, -- รหัสลูกค้า
+    CustomerName nvarchar(150) NULL, -- ชื่อลูกค้า
+    ItemYarn nvarchar(30) NULL, -- รหัสเส้นด้าย 470-72-1781-JJ
+    YarnType nvarchar(30) NULL, -- ประเภทการนำไปทอเป็นผ้า Warp, Warp
+    Item400 nvarchar(30) NULL, -- รหัส ผลิตภัณฑ์
+    TargetQty decimal(16, 3) NULL, -- น้ำหนักที่ต้องการ
+    ActualQty decimal(16, 3) NULL, -- น้ำหนักจริง
+    FinishFlag bit NULL DEFAULT 0,
+    DeleteFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_CordProduct PRIMARY KEY (CordProductPkId ASC)
+)
+
+CREATE INDEX IX_CordProduct_ProductLotNo ON CordProduct(ProductLotNo ASC)
+GO
+
+CREATE INDEX IX_CordProduct_ItemYarn ON CordProduct(ItemYarn ASC)
+GO
+
+CREATE INDEX IX_CordProduct_YarnType ON CordProduct(YarnType ASC)
+GO
+
+CREATE INDEX IX_CordProduct_Item400 ON CordProduct(Item400 ASC)
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+CREATE TABLE DoffSheet(
+	DoffSheetId int IDENTITY(1,1) NOT NULL,
+    CordProductPkId int,
+    PaperTubeColor nvarchar(100) NULL, -- สีหลอด
+    ProcessFlow nvarchar(100) NULL, -- กระบวนการผลิต i.e. S-4-1
+    FinishFlag bit NULL DEFAULT 0,
+    DeleteFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_DoffSheet PRIMARY KEY (DoffSheetId ASC)
+)
+
+CREATE INDEX IX_DoffSheet_CordProductPkId ON DoffSheet(CordProductPkId ASC)
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+CREATE TABLE DoffSheetItem(
+	DoffSheetId int NOT NULL,
+    SeqNo int NOT NULL,
+    ProductionDate datetime NULL,
+    PalletNo nvarchar(30) NULL, -- รหัส Pallet (แท่นวาง) S7G280004
+    TraceNo nvarchar(30) NULL, -- รหัสเส้นด้ายจาก G4 2170330024
+    LotNo nvarchar(30) NULL, -- รหัส Lot G4
+    YarnType nvarchar(30) NULL, -- ประเภทการนำไปทอเป็นผ้า Warp, Warp
+    DoffType int NOT NULL DEFAULT 0, -- 0: TEST, 1: DOFF
+    DoffNo int NOT NULL DEFAULT 0,
+    ShiftId int NULL,
+    ChiefId int NULL,
+    IsKeiba bit NULL DEFAULT 0,
+    IsTraverse bit NULL DEFAULT 0,
+    IsCrossing bit NULL DEFAULT 0,
+    IsScrapeTube bit NULL DEFAULT 0,
+    IsForm bit NULL DEFAULT 0,
+    IsStain bit NULL DEFAULT 0,
+    DeleteFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_DoffSheetItem PRIMARY KEY (DoffSheetId ASC, SeqNo ASC)
+)
+
+CREATE INDEX IX_DoffSheetItem_TraceNo ON DoffSheetItem(TraceNo ASC)
+GO
+
+CREATE INDEX IX_DoffSheetItem_PalletNo ON DoffSheetItem(PalletNo ASC)
+GO
+
+CREATE INDEX IX_DoffSheetItem_LotNo ON DoffSheetItem(LotNo ASC)
+GO
+
+CREATE INDEX IX_DoffSheetItem_YarnType ON DoffSheetItem(YarnType ASC)
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+CREATE TABLE DoffSheetItemSP(
+	DoffSheetId int NOT NULL,
+    SeqNo int NOT NULL,
+    SPNo int NOT NULL,
+    --Core1 bit NULL DEFAULT 1,
+    --Core2 bit NULL DEFAULT 0,
+    FinishFlag bit NULL DEFAULT 0,
+    DeleteFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_DoffSheetItemSP PRIMARY KEY (DoffSheetId ASC, SeqNo ASC, SPNo ASC)
+)
+
+GO
 
 
 /*********** Script Update Date: 2023-05-17  ***********/
@@ -776,12 +911,18 @@ BEGIN
          , I.DeleteFlag
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
-         , Y.ItemYarn
-         , Y.LotNo
-         , Y.YarnType
-         , Y.Item400
-         , Y.EntryDate
-         , Y.G4YarnPkId
+	     , Y.EntryDate
+		 , Y.LotNo
+		 , Y.ItemYarn
+		 , Y.YarnType
+		 , Y.Item400
+		 , Y.ReceiveDate
+		 , Y.ReceiveBy
+		 , Y.Verify
+		 --, Y.Packing
+		 --, Y.Clean
+		 --, Y.Tearing
+		 --, Y.Falldown
       FROM G4IssueYarn I, G4Yarn Y
      WHERE UPPER(LTRIM(RTRIM(I.RequestNo))) = UPPER(LTRIM(RTRIM(COALESCE(@RequestNo, I.RequestNo))))
        AND I.PalletNo = Y.PalletNo
@@ -791,6 +932,529 @@ BEGIN
 END
 
 GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[SearchG4YarnStock]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SearchG4YarnStock
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC SearchG4YarnStock NULL, NULL, NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[SearchG4YarnStock]
+(
+  @ItemYarn nvarchar(30) = NULL
+, @EntryDate datetime = NULL
+, @YarnType nvarchar(30) = NULL
+)
+AS
+BEGIN
+	SELECT *
+	  FROM G4YarnView
+	 WHERE UPPER(LTRIM(RTRIM(ItemYarn))) = UPPER(LTRIM(RTRIM(COALESCE(@ItemYarn, ItemYarn))))
+       AND UPPER(LTRIM(RTRIM(YarnType))) = UPPER(LTRIM(RTRIM(COALESCE(@YarnType, YarnType))))
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @EntryDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)))
+       AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+       AND (FinishFlag IS NULL OR FinishFlag = 0)
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[G4InsertUpdateIssueYarn]    Script Date: 5/31/2023 10:43:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	G4InsertUpdateIssueYarn
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- =============================================
+CREATE PROCEDURE [dbo].[G4InsertUpdateIssueYarn] (
+  @RequestNo nvarchar(30)
+, @PalletNo nvarchar(30)
+, @TraceNo nvarchar(30)
+, @WeightQty decimal(16, 3)
+, @ConeCH decimal(16, 3)
+, @PalletType nvarchar(30)
+, @IssueDate datetime
+, @IssueBy int
+--, @G4IssueYarnPkId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @cnt int
+DECLARE @G4YarnWeight decimal(16, 3)
+DECLARE @G4RemainWeight decimal(16, 3)
+DECLARE @RemainWeight decimal(16, 3)
+DECLARE @NewPalletType nvarchar(30)
+DECLARE @FinishFlag bit
+    BEGIN TRY
+		IF (
+		       @PalletNo IS NULL 
+		    OR @TraceNo IS NULL 
+			OR @WeightQty IS NULL
+			OR @ConeCH IS NULL
+			--OR @PalletType IS NULL
+		)
+		BEGIN
+			-- Update Error Status/Message
+			SET @errNum = 101;
+			SET @errMsg = 'Paramter(s) is null.';
+			RETURN;
+		END
+
+        SELECT @cnt = COUNT(*) 
+          FROM G4IssueYarn
+         WHERE RequestNo = @RequestNo
+           AND PalletNo = @PalletNo
+           AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+        IF (@cnt = 0)
+        BEGIN
+            -- NO ISSUE YARN FOUND. SO INSERT NEW ONE
+            INSERT INTO G4IssueYarn
+            (
+                  RequestNo
+                , IssueDate
+                , IssueBy
+                , PalletNo
+                , TraceNo
+                , WeightQty
+                , ConeCH
+                , PalletType
+                , DeleteFlag
+            )
+            VALUES
+            (
+                  @RequestNo
+                , @IssueDate
+                , @IssueBy
+                , @PalletNo
+                , @TraceNo
+                , @WeightQty
+                , @ConeCH
+                , @PalletType
+                , 0 -- DeleteFlag = 0 (Not delete)
+            )
+            -- NOW CALCULATE WEIGHT
+            SELECT @G4YarnWeight = WeightQty
+              FROM G4Yarn
+             WHERE PalletNo = @PalletNo;
+            
+            IF (@G4YarnWeight = @WeightQty)
+            BEGIN
+                SET @RemainWeight = 0
+                SET @FinishFlag = 1 -- SET FLAG THAT PALLET IS FINISH
+                SET @NewPalletType = NULL
+            END
+            ELSE
+            BEGIN
+                SET @RemainWeight = @G4YarnWeight - @WeightQty
+                SET @FinishFlag = NULL
+                SET @NewPalletType = N'H'
+            END
+            -- UPDATE CALCULATE WEIGHT AND FLAGS
+            UPDATE G4Yarn
+               SET RemainQty = @RemainWeight
+                 , FinishFlag = COALESCE(@FinishFlag, FinishFlag)
+                 , PalletType = COALESCE(@NewPalletType, PalletType)
+                 , UpdateDate = COALESCE(@IssueDate, UpdateDate)
+             WHERE PalletNo = @PalletNo
+        END
+        ELSE
+        BEGIN
+            -- ISSUE YARN FOUND. SO CANCEL YARN FROM Request No.
+            UPDATE G4IssueYarn
+               SET DeleteFlag = 1 -- Set flag = 1 (Deleted)
+                 , [Remark] = N'Cancel Pallet'
+                 , EditDate = GETDATE()
+                 , EditBy = COALESCE(@IssueBy, EditBy)
+             WHERE RequestNo = @RequestNo
+               AND PalletNo = @PalletNo
+
+            -- NOW CALCULATE WEIGHT
+            SELECT @G4YarnWeight = WeightQty
+                 , @G4RemainWeight = RemainQty
+              FROM G4Yarn
+             WHERE PalletNo = @PalletNo;
+
+            IF (@G4RemainWeight IS NULL) 
+            BEGIN
+                -- PREVENT CALCULATION ERROR WITH NULL VALUE
+                SET @G4RemainWeight = 0
+            END
+
+            SET @RemainWeight = @G4RemainWeight + @WeightQty
+
+            IF (@G4YarnWeight = @RemainWeight)
+            BEGIN
+                SET @NewPalletType = N'F'
+            END
+            ELSE
+            BEGIN
+                SET @NewPalletType = N'H'
+            END
+            -- UPDATE CALCULATE WEIGHT AND FLAGS
+            UPDATE G4Yarn
+               SET RemainQty = @RemainWeight
+                 , FinishFlag = 0 -- SET FLAG THAT PALLET IS NOT FINISH
+                 , PalletType = COALESCE(@NewPalletType, PalletType)
+                 , UpdateDate = GETDATE()
+             WHERE PalletNo = @PalletNo
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[GetG4ReceiveYarnInStock]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetG4ReceiveYarnInStock
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetG4ReceiveYarnInStock NULL, NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetG4ReceiveYarnInStock]
+(
+  @ItemYarn nvarchar(30) = NULL
+, @ReceiveDate datetime = NULL
+)
+AS
+BEGIN
+	SELECT *
+	  FROM G4YarnView
+	 WHERE UPPER(LTRIM(RTRIM(ItemYarn))) = UPPER(LTRIM(RTRIM(COALESCE(@ItemYarn, ItemYarn))))
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, ReceiveDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @ReceiveDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, ReceiveDate)))
+       AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+       --AND (FinishFlag IS NULL OR FinishFlag = 0)
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveCordYarn]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveCordYarn
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveCordYarn] (
+  @ItemYarn nvarchar(30)
+, @PalletNo nvarchar(30)
+, @YarnType nvarchar(30)
+, @WeightQty decimal(16, 3)
+, @LotNo nvarchar(30)
+, @TraceNo nvarchar(30)
+, @ConeCH decimal(16, 3)
+, @PalletType nvarchar(30)
+, @Item400 nvarchar(30)
+, @ReceiveDate datetime
+, @ReceiveBy int
+, @FinishFlag bit
+, @DeleteFlag bit
+, @CordYarnPkId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM CordYarn WHERE CordYarnPkId = @CordYarnPkId)
+        BEGIN
+            UPDATE CordYarn 
+               SET ItemYarn = @ItemYarn
+                 , PalletNo = @PalletNo
+                 , YarnType = @YarnType
+                 , WeightQty = @WeightQty
+                 , LotNo = @LotNo
+                 , TraceNo = @TraceNo
+                 , ConeCH = @ConeCH
+                 , PalletType = @PalletType
+                 , Item400 = @Item400
+                 , ReceiveDate = @ReceiveDate
+                 , ReceiveBy = @ReceiveBy
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
+             WHERE CordYarnPkId = @CordYarnPkId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO CordYarn
+		    (
+                  ItemYarn
+                , PalletNo
+                , YarnType
+                , WeightQty
+                , LotNo
+                , TraceNo
+                , ConeCH
+                , PalletType
+                , Item400
+                , ReceiveDate
+                , ReceiveBy
+                , FinishFlag
+                , DeleteFlag
+			)
+			VALUES
+			(
+                  @ItemYarn
+                , @PalletNo
+                , @YarnType
+                , @WeightQty
+                , @LotNo
+                , @TraceNo
+                , @ConeCH
+                , @PalletType
+                , @Item400
+                , @ReceiveDate
+                , @ReceiveBy
+                , @FinishFlag
+                , @DeleteFlag
+			);
+
+			SET @CordYarnPkId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveCordProduct]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveCordProduct
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveCordProduct] (
+  @ProductLotNo nvarchar(30)
+, @CustomerCode nvarchar(30)
+, @CustomerName nvarchar(150)
+, @ItemYarn nvarchar(30)
+, @YarnType nvarchar(30)
+, @Item400 nvarchar(30)
+, @TargetQty decimal(16, 3)
+, @ActualQty decimal(16, 3)
+, @FinishFlag bit
+, @DeleteFlag bit
+, @CordProductPkId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM CordProduct WHERE CordProductPkId = @CordProductPkId)
+        BEGIN
+            UPDATE CordProduct 
+               SET ProductLotNo = @ProductLotNo
+                 , CustomerCode = @CustomerCode
+                 , CustomerName = @CustomerName
+                 , ItemYarn = @ItemYarn
+                 , YarnType = @YarnType
+                 , Item400 = @Item400
+                 , TargetQty = @TargetQty
+                 , ActualQty = @ActualQty
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
+             WHERE @CordProductPkId = @@CordProductPkId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO CordProduct
+		    (
+                  ProductLotNo
+                , CustomerCode
+                , CustomerName
+                , ItemYarn
+                , YarnType
+                , Item400
+                , TargetQty
+                , ActualQty
+                , FinishFlag
+                , DeleteFlag
+			)
+			VALUES
+			(
+                  @ProductLotNo
+                , @CustomerCode
+                , @CustomerName
+                , @ItemYarn
+                , @YarnType
+                , @Item400
+                , @TargetQty
+                , @ActualQty
+                , @FinishFlag
+                , @DeleteFlag
+			);
+
+			SET @CordProductPkId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveDoffSheet]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveDoffSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveDoffSheet] (
+  @CordProductPkId int
+, @PaperTubeColor nvarchar(100)
+, @ProcessFlow nvarchar(100)
+, @FinishFlag bit
+, @DeleteFlag bit
+, @DoffSheetId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM DoffSheet WHERE DoffSheetId = @DoffSheetId)
+        BEGIN
+            UPDATE DoffSheet 
+               SET CordProductPkId = @CordProductPkId
+                 , PaperTubeColor = @PaperTubeColor
+                 , ProcessFlow = @ProcessFlow
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
+             WHERE @DoffSheetId = @DoffSheetId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO DoffSheet
+		    (
+                  CordProductPkId
+                , PaperTubeColor
+                , ProcessFlow
+                , FinishFlag
+                , DeleteFlag
+			)
+			VALUES
+			(
+                  @CordProductPkId
+                , @PaperTubeColor
+                , @ProcessFlow
+                , @FinishFlag
+                , @DeleteFlag
+			);
+
+			SET @DoffSheetId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+--SaveDoffSheetItem
+
+
+/*********** Script Update Date: 2023-05-17  ***********/
+--SaveDoffSheetItemSP
 
 
 /*********** Script Update Date: 2023-05-17  ***********/
