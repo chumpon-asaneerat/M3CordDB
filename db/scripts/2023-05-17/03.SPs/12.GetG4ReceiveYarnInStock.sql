@@ -27,7 +27,7 @@ BEGIN
 	 WHERE UPPER(LTRIM(RTRIM(ItemYarn))) = UPPER(LTRIM(RTRIM(COALESCE(@ItemYarn, ItemYarn))))
        AND DATEADD(dd, 0, DATEDIFF(dd, 0, ReceiveDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @ReceiveDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, ReceiveDate)))
        AND (DeleteFlag IS NULL OR DeleteFlag = 0)
-       --AND (FinishFlag IS NULL OR FinishFlag = 0)
+       AND (FinishFlag IS NULL OR FinishFlag = 0)
 END
 
 GO

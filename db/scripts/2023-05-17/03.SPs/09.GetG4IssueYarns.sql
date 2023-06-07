@@ -49,6 +49,7 @@ BEGIN
      WHERE UPPER(LTRIM(RTRIM(I.RequestNo))) = UPPER(LTRIM(RTRIM(COALESCE(@RequestNo, I.RequestNo))))
        AND I.PalletNo = Y.PalletNo
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
      ORDER BY I.IssueDate , I.PalletNo;
 
 END

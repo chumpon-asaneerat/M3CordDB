@@ -11,6 +11,7 @@ CREATE TABLE G4IssueYarn(
     EditDate datetime NULL,
     EditBy int NULL,
     DeleteFlag bit NULL DEFAULT 0,
+    FinishFlag bit NULL DEFAULT 0,
     [Remark] nvarchar(200) NULL,
  CONSTRAINT PK_G4IssueYarn PRIMARY KEY (G4IssueYarnPkId ASC)
 )
