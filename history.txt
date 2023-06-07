@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-06-08 #2
+- Update SP GetG4IssueYarns
+- Add SP SearchG4IssueYarns
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-06-08 #1
 - Update Table G4IssueYarn
 - Update SP GetG4ReceiveYarnInStock
