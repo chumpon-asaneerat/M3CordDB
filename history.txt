@@ -1,5 +1,13 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-06-20 #6
+- ReCreate TABLE G4Yarn
+- Update VIEW G4YarnView
+- Update SP SaveG4Yarn
+- Update SP GetG4Yarns
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-06-20 #5
 - Update SP SaveBCSPRFTP
 
