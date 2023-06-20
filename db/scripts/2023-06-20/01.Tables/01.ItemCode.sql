@@ -1,8 +1,8 @@
 CREATE TABLE ItemCode(
-    ItemCode400 nvarchar(30) NOT NULL, -- AS400
+    Item400 nvarchar(30) NOT NULL, -- AS400
     ItemYarn nvarchar(30) NOT NULL, -- TRACE
-    ItemGroup nvarchar(30) NULL,
- CONSTRAINT PK_ItemCode PRIMARY KEY (ItemCode400 ASC)
+    ItemGroup nvarchar(30) NULL, -- LOT GROUP
+ CONSTRAINT PK_ItemCode PRIMARY KEY (Item400 ASC)
 )
 
 CREATE INDEX IX_ItemCode_ItemYarn ON ItemCode(ItemYarn ASC)

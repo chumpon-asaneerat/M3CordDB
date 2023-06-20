@@ -40,7 +40,7 @@ DECLARE @KgPerCH decimal(16, 3)
 	BEGIN TRY
         SELECT @ItemYarn = ItemYarn 
           FROM ItemCode 
-         WHERE ItemCode400 = @CDKE1
+         WHERE Item400 = @CDKE1
 
         --IF (@ItemYarn IS NULL)
         --BEGIN
