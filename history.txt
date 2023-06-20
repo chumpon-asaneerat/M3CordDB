@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-06-20 #12
+- Remove TABLE ItemCodeMap
+- Recread TABLE ItemCode
+- Update SP SaveBCSPRFTP
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-06-20 #11
 - Update SP SaveCordYarn
 

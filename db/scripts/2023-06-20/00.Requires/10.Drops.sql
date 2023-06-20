@@ -6,4 +6,3 @@ GO
 
 EXEC DropTable N'CordYarn'
 GO
-

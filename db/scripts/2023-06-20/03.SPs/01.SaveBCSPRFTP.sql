@@ -39,14 +39,14 @@ DECLARE @iCnt int
 DECLARE @KgPerCH decimal(16, 3) 
 	BEGIN TRY
         SELECT @ItemYarn = ItemYarn 
-          FROM ItemCodeMap 
+          FROM ItemCode 
          WHERE ItemCode400 = @CDKE1
 
-        IF (@ItemYarn IS NULL)
-        BEGIN
-            SET @ItemYarn = @CDKE1
-            INSERT INTO ItemCodeMap (ItemCode400, ItemYarn) VALUES (@CDKE1, @ItemYarn)
-        END
+        --IF (@ItemYarn IS NULL)
+        --BEGIN
+        --    SET @ItemYarn = @CDKE1
+        --    INSERT INTO ItemCode (ItemCode400, ItemYarn) VALUES (@CDKE1, @ItemYarn)
+        --END
 
         SELECT @iCnt = COUNT(*)
           FROM G4Yarn
