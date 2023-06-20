@@ -42,6 +42,12 @@ DECLARE @KgPerCH decimal(16, 3)
           FROM ItemCodeMap 
          WHERE ItemCode400 = @CDKE1
 
+        IF (@ItemYarn IS NULL)
+        BEGIN
+            SET @ItemYarn = @CDKE1
+            INSERT INTO ItemCodeMap (ItemCode400, ItemYarn) VALUES (@CDKE1, @ItemYarn)
+        END
+
         SELECT @iCnt = COUNT(*)
           FROM G4Yarn
          WHERE PALLETNO = @CDCON;
