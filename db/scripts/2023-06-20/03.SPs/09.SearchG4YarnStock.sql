@@ -28,6 +28,7 @@ BEGIN
        AND DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @EntryDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)))
        AND (DeleteFlag IS NULL OR DeleteFlag = 0)
        AND (FinishFlag IS NULL OR FinishFlag = 0)
+       AND (ReceiveDate IS NOT NULL)
 END
 
 GO
