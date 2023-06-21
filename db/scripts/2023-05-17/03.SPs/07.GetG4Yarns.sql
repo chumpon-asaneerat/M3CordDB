@@ -26,6 +26,7 @@ BEGIN
 	 WHERE UPPER(LTRIM(RTRIM(TraceNo))) = UPPER(LTRIM(RTRIM(COALESCE(@traceNo, TraceNo))))
        AND (DeleteFlag IS NULL OR DeleteFlag = 0)
        AND (FinishFlag IS NULL OR FinishFlag = 0)
+       AND (ReceiveDate IS NULL) -- Only no receive date.
 END
 
 GO
