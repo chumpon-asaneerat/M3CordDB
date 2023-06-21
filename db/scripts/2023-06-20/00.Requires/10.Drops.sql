@@ -1,3 +1,8 @@
+-- DELETE DATA
+DELETE FROM G4Yarn
+DELETE FROM G4IssueYarn
+GO
+
 EXEC DropTable N'ItemCode'
 GO
 
@@ -6,3 +11,4 @@ GO
 
 EXEC DropTable N'CordYarn'
 GO
+
