@@ -32,6 +32,7 @@ ALTER PROCEDURE [dbo].[SaveG4Yarn] (
 , @ReceiveBy int
 , @UpdateDate datetime
 , @MovementDate datetime
+, @ExpiredDate datetime
 , @Verify bit
 , @Packing bit
 , @Clean bit
@@ -71,6 +72,7 @@ BEGIN
                  , ReceiveBy = @ReceiveBy
                  , UpdateDate = @UpdateDate
                  , MovementDate = @MovementDate
+                 , ExpiredDate = @ExpiredDate
                  , Verify = @Verify
                  , Packing = @Packing
                  , Clean = @Clean
@@ -107,6 +109,7 @@ BEGIN
                 , ReceiveBy
                 , UpdateDate
                 , MovementDate
+                , ExpiredDate
                 , Verify
                 , Packing
                 , Clean
@@ -140,6 +143,7 @@ BEGIN
                 , @ReceiveBy
                 , @UpdateDate
                 , @MovementDate
+                , @ExpiredDate
                 , @Verify
                 , @Packing
                 , @Clean
