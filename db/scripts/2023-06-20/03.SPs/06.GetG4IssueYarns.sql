@@ -42,6 +42,7 @@ BEGIN
 		 , Y.ReceiveDate
 		 , Y.ReceiveBy
 		 , Y.Verify
+         , Y.ExpiredDate
 		 --, Y.Packing
 		 --, Y.Clean
 		 --, Y.Tearing
