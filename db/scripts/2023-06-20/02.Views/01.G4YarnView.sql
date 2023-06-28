@@ -24,6 +24,7 @@ AS
 		 , A.ReceiveBy
 		 , A.UpdateDate
 		 , A.MovementDate
+         , A.ExpiredDate
 		 , A.Verify
 		 , A.Packing
 		 , A.Clean
