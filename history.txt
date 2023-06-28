@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-06-28 #5
+- Update SP SearchG4IssueYarns add Column ExpiredDate
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-06-28 #4
 - Update SP GetG4IssueYarns add Column ExpiredDate
 

@@ -43,6 +43,7 @@ BEGIN
 		 , Y.Item400
 		 , Y.ReceiveDate
 		 , Y.ReceiveBy
+         , Y.ExpiredDate
 		 , Y.Verify
 		 --, Y.Packing
 		 --, Y.Clean
