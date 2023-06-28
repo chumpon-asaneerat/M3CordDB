@@ -12,6 +12,7 @@ CREATE TABLE G4Yarn(
     KgPerCH decimal(16, 3) NULL, -- น้ำหนักต่อ CH
     WeightQty decimal(16, 3) NULL, -- น้ำหนักรวมทั้ง Pallet
     RemainQty decimal(16, 3) NULL, -- น้ำหนักที่เหลือ กรณี ถูกเอาไปใช้แล้ว
+    ExpiredDate datetime NULL,
     ReceiveDate datetime NULL,
     ReceiveBy int NULL,
     UpdateDate datetime NULL,
