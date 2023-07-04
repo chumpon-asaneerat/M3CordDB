@@ -15,7 +15,7 @@ GO
 --
 -- 
 -- =============================================
-ALTER PROCEDURE [dbo].[G4IssueYarnReceive] (
+CREATE PROCEDURE [dbo].[G4IssueYarnReceive] (
   @G4IssueYarnPkId int
 , @Receive bit = 1
 , @errNum as int = 0 out

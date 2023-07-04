@@ -4,6 +4,10 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+-- CHECK IF EXIST THEN DROP FIRST
+IF (OBJECT_ID('DropAllTables', 'P') IS NOT NULL) DROP PROCEDURE DropAllTables 
+GO
+
 -- =============================================
 -- Author: Chumpon Asaneerat
 -- Name: DropAll.

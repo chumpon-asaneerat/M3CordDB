@@ -15,7 +15,7 @@ GO
 --
 -- EXEC SearchG4YarnStock NULL, NULL, NULL
 -- =============================================
-ALTER PROCEDURE [dbo].[SearchG4YarnStock]
+CREATE PROCEDURE [dbo].[SearchG4YarnStock]
 (
   @ItemYarn nvarchar(30) = NULL
 , @EntryDate datetime = NULL

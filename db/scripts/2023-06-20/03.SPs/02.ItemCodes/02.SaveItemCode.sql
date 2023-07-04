@@ -15,7 +15,7 @@ GO
 --
 -- 
 -- =============================================
-ALTER PROCEDURE [dbo].[SaveItemCode] (
+CREATE PROCEDURE [dbo].[SaveItemCode] (
   @Item400 nvarchar(30)
 , @ItemYarn nvarchar(30)
 , @ItemGroup nvarchar(30)

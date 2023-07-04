@@ -15,7 +15,7 @@ GO
 --
 -- EXEC GetItemCodes NULL
 -- =============================================
-ALTER PROCEDURE [dbo].[GetItemCodes]
+CREATE PROCEDURE [dbo].[GetItemCodes]
 (
   @unused nvarchar(30) = NULL
 )

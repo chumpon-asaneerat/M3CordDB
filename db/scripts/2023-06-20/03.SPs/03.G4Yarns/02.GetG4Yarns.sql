@@ -15,7 +15,7 @@ GO
 --
 -- EXEC GetG4Yarns NULL
 -- =============================================
-ALTER PROCEDURE [dbo].[GetG4Yarns]
+CREATE PROCEDURE [dbo].[GetG4Yarns]
 (
   @traceNo nvarchar(30) = NULL
 )

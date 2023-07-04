@@ -15,7 +15,7 @@ GO
 --
 -- 
 -- =============================================
-ALTER PROCEDURE [dbo].[SaveG4Yarn] (
+CREATE PROCEDURE [dbo].[SaveG4Yarn] (
   @EntryDate datetime
 , @ItemYarn nvarchar(30)
 , @PalletNo nvarchar(30)

@@ -14,7 +14,7 @@ GO
 -- [== Example ==]
 --
 -- =============================================
-ALTER PROCEDURE [dbo].[G4InsertUpdateIssueYarn] (
+CREATE PROCEDURE [dbo].[G4InsertUpdateIssueYarn] (
   @RequestNo nvarchar(30)
 , @PalletNo nvarchar(30)
 , @TraceNo nvarchar(30)
