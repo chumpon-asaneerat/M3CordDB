@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-07-05 #8
+- Add SP GetRawMaterialSheet
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-07-05 #7
 - Add Table RawMateiralSheet
 - Add View RawMateiralSheetView
