@@ -1,14 +1,8 @@
--- DELETE DATA
-DELETE FROM G4Yarn
-DELETE FROM G4IssueYarn
+EXEC DropAllSPs
 GO
 
-EXEC DropTable N'ItemCode'
+EXEC DropAllFNs
 GO
 
-EXEC DropTable N'G4Yarn'
+EXEC DropAllViews
 GO
-
-EXEC DropTable N'CordYarn'
-GO
-

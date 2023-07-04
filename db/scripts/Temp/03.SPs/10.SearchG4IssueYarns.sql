@@ -35,6 +35,7 @@ BEGIN
          , I.DeleteFlag
          , I.FinishFlag
          , I.WHReceiveFlag
+         , I.WHReceiveDate
          , I.[Remark]
          , Y.G4YarnPkId -- FROM G4Yarn
 	     , Y.EntryDate

@@ -25,9 +25,20 @@ BEGIN
 	BEGIN TRY
         IF EXISTS (SELECT TOP 1 * FROM G4IssueYarn WHERE G4IssueYarnPkId = @G4IssueYarnPkId)
         BEGIN
-            UPDATE G4IssueYarn 
-               SET WHReceiveFlag = @Receive
-             WHERE G4IssueYarnPkId = @G4IssueYarnPkId
+            IF (@Receive = 1)
+            BEGIN
+                UPDATE G4IssueYarn 
+                   SET WHReceiveFlag = @Receive
+                     , WHReceiveDate = GETDATE()
+                 WHERE G4IssueYarnPkId = @G4IssueYarnPkId
+            END
+            ELSE
+            BEGIN
+                UPDATE G4IssueYarn 
+                   SET WHReceiveFlag = @Receive
+                     , WHReceiveDate = NULL
+                 WHERE G4IssueYarnPkId = @G4IssueYarnPkId
+            END
         END
         
         -- Update Error Status/Message
