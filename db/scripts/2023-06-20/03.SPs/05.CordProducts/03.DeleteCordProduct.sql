@@ -26,7 +26,7 @@ BEGIN
         BEGIN
             UPDATE CordProduct 
                SET DeleteFlag = 1
-             WHERE @CordProductPkId = @CordProductPkId
+             WHERE CordProductPkId = @CordProductPkId
         END
 
         -- Update Error Status/Message

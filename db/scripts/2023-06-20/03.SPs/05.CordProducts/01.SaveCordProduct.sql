@@ -47,7 +47,7 @@ BEGIN
                  , ActualQty = @ActualQty
                  , FinishFlag = @FinishFlag
                  , DeleteFlag = @DeleteFlag
-             WHERE @CordProductPkId = @CordProductPkId
+             WHERE CordProductPkId = @CordProductPkId
         END
         ELSE
         BEGIN
