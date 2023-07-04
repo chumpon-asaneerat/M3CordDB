@@ -17,7 +17,7 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[GetCordProducts]
 (
-  @CustomerName datetime = NULL
+  @CustomerName nvarchar(150) = NULL
 , @ProductLotNo nvarchar(30) = NULL
 , @ItemYarn nvarchar(30) = NULL
 )
@@ -28,6 +28,7 @@ BEGIN
          , I.CustomerCode
          , I.CustomerName
          , I.ItemYarn
+         , I.ItemCode
          , I.Item400
          , I.Color
          , I.TargetQty
