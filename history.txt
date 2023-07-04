@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-07-05 #1
+- Add SP GetCordProducts
+- Update SP SaveCordProduct
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-07-04 #2
 - Rework db script -> recreate all exists script
 

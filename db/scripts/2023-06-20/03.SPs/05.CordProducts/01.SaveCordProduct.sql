@@ -20,7 +20,6 @@ CREATE PROCEDURE [dbo].[SaveCordProduct] (
 , @CustomerCode nvarchar(30)
 , @CustomerName nvarchar(150)
 , @ItemYarn nvarchar(30)
-, @YarnType nvarchar(30)
 , @Item400 nvarchar(30)
 , @TargetQty decimal(16, 3)
 , @ActualQty decimal(16, 3)
@@ -39,7 +38,6 @@ BEGIN
                  , CustomerCode = @CustomerCode
                  , CustomerName = @CustomerName
                  , ItemYarn = @ItemYarn
-                 , YarnType = @YarnType
                  , Item400 = @Item400
                  , TargetQty = @TargetQty
                  , ActualQty = @ActualQty
@@ -55,7 +53,6 @@ BEGIN
                 , CustomerCode
                 , CustomerName
                 , ItemYarn
-                , YarnType
                 , Item400
                 , TargetQty
                 , ActualQty
@@ -68,7 +65,6 @@ BEGIN
                 , @CustomerCode
                 , @CustomerName
                 , @ItemYarn
-                , @YarnType
                 , @Item400
                 , @TargetQty
                 , @ActualQty
