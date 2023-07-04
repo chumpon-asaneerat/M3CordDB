@@ -5,6 +5,7 @@ CREATE TABLE CordProduct(
     CustomerName nvarchar(150) NULL, -- ชื่อลูกค้า
     ItemYarn nvarchar(30) NULL, -- รหัสเส้นด้าย 470-72-1781-JJ
     Item400 nvarchar(30) NULL, -- รหัส ผลิตภัณฑ์
+    Color nvarchar(100) NULL, -- สี/ลาย
     TargetQty decimal(16, 3) NULL, -- น้ำหนักที่ต้องการ
     ActualQty decimal(16, 3) NULL, -- น้ำหนักจริง
     FinishFlag bit NULL DEFAULT 0,

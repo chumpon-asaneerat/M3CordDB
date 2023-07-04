@@ -21,6 +21,7 @@ CREATE PROCEDURE [dbo].[SaveCordProduct] (
 , @CustomerName nvarchar(150)
 , @ItemYarn nvarchar(30)
 , @Item400 nvarchar(30)
+, @Color nvarchar(100)
 , @TargetQty decimal(16, 3)
 , @ActualQty decimal(16, 3)
 , @FinishFlag bit
@@ -39,6 +40,7 @@ BEGIN
                  , CustomerName = @CustomerName
                  , ItemYarn = @ItemYarn
                  , Item400 = @Item400
+                 , Color = @Color
                  , TargetQty = @TargetQty
                  , ActualQty = @ActualQty
                  , FinishFlag = @FinishFlag
@@ -54,6 +56,7 @@ BEGIN
                 , CustomerName
                 , ItemYarn
                 , Item400
+                , Color
                 , TargetQty
                 , ActualQty
                 , FinishFlag
@@ -66,6 +69,7 @@ BEGIN
                 , @CustomerName
                 , @ItemYarn
                 , @Item400
+                , @Color
                 , @TargetQty
                 , @ActualQty
                 , @FinishFlag

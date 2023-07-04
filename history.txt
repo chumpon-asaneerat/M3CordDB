@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-07-05 #2
+- Update Table CordProduct - Add Color column
+- Update SP GetCordProducts
+- Update SP SaveCordProduct
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-07-05 #1
 - Add SP GetCordProducts
 - Update SP SaveCordProduct

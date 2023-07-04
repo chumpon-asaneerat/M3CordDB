@@ -29,6 +29,7 @@ BEGIN
          , I.CustomerName
          , I.ItemYarn
          , I.Item400
+         , I.Color
          , I.TargetQty
          , I.ActualQty
          , I.FinishFlag
