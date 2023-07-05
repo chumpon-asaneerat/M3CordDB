@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Update 2023-07-05 #9
+- Update Table CordProduct
+- Update SP GetCordProducts
+- Update SP NewRawMaterialSheet
+
+----------------------------------------------------------------------------------------------
+[commited]
 Update 2023-07-05 #8
 - Add SP GetRawMaterialSheet
 

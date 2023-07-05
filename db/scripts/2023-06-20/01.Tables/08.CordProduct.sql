@@ -9,6 +9,7 @@ CREATE TABLE CordProduct(
     Color nvarchar(100) NULL, -- สี/ลาย
     TargetQty decimal(16, 3) NULL, -- น้ำหนักที่ต้องการ
     ActualQty decimal(16, 3) NULL, -- น้ำหนักจริง
+    ProcessingFlag bit NULL DEFAULT 0,
     FinishFlag bit NULL DEFAULT 0,
     DeleteFlag bit NULL DEFAULT 0,
 CONSTRAINT PK_CordProduct PRIMARY KEY (CordProductPkId ASC)
