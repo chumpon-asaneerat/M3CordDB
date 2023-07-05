@@ -567,10 +567,12 @@ CREATE TABLE CordProduct(
     CustomerCode nvarchar(30) NULL, -- รหัสลูกค้า
     CustomerName nvarchar(150) NULL, -- ชื่อลูกค้า
     ItemYarn nvarchar(30) NULL, -- รหัสเส้นด้าย 470-72-1781-JJ
-    YarnType nvarchar(30) NULL, -- ประเภทการนำไปทอเป็นผ้า Warp, Warp
-    Item400 nvarchar(30) NULL, -- รหัส ผลิตภัณฑ์
+    ItemCode nvarchar(30) NULL, -- รหัส ผลิตภัณฑ์
+    Item400 nvarchar(30) NULL, -- รหัส ผลิตภัณฑ์ AS400
+    Color nvarchar(100) NULL, -- สี/ลาย
     TargetQty decimal(16, 3) NULL, -- น้ำหนักที่ต้องการ
     ActualQty decimal(16, 3) NULL, -- น้ำหนักจริง
+    ProcessingFlag bit NULL DEFAULT 0,
     FinishFlag bit NULL DEFAULT 0,
     DeleteFlag bit NULL DEFAULT 0,
 CONSTRAINT PK_CordProduct PRIMARY KEY (CordProductPkId ASC)
@@ -582,10 +584,41 @@ GO
 CREATE INDEX IX_CordProduct_ItemYarn ON CordProduct(ItemYarn ASC)
 GO
 
-CREATE INDEX IX_CordProduct_YarnType ON CordProduct(YarnType ASC)
+CREATE INDEX IX_CordProduct_Item400 ON CordProduct(Item400 ASC)
 GO
 
-CREATE INDEX IX_CordProduct_Item400 ON CordProduct(Item400 ASC)
+
+/*********** Script Update Date: 2023-06-20  ***********/
+
+CREATE TABLE RawMaterialSheet(
+	RawMaterialSheetId int IDENTITY(1,1) NOT NULL,
+    MCCode nvarchar(10) NOT NULL,
+    CordProductPkId int NOT NULL,
+    DeleteFlag bit NULL DEFAULT 0,
+    FinishFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_RawMaterialSheet PRIMARY KEY (RawMaterialSheetId ASC)
+)
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+
+CREATE TABLE RawMaterialSheetItem(
+	RawMaterialSheetId int NOT NULL,
+    Seq int NOT NULL,
+    ProductionDate datetime NULL DEFAULT (GETDATE()),
+    ItemYarn nvarchar(30) NULL,
+    PalletNo nvarchar(30) NULL,
+    TraceNo nvarchar(30) NULL,
+    InputCH int NULL DEFAULT 0,
+    DoffNos nvarchar(50) NULL,
+    SPNos nvarchar(50) NULL,
+    DeleteFlag bit NULL DEFAULT 0,
+    FinishFlag bit NULL DEFAULT 0,
+CONSTRAINT PK_RawMaterialSheetItem PRIMARY KEY (RawMaterialSheetId ASC, Seq ASC)
+)
+
 GO
 
 
@@ -687,6 +720,35 @@ AS
 		 , B.FullName AS ReceiveByFullName
 		 , B.UserName AS ReceiveByUserName
 	  FROM G4Yarn A LEFT OUTER JOIN UserInfoView B ON A.ReceiveBy = B.UserID
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  View [dbo].[RawMaterialSheetView]    Script Date: 11/27/2022 10:10:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW RawMaterialSheetView
+AS
+	SELECT A.RawMaterialSheetId
+	     , A.MCCode
+	     , A.CordProductPkId
+         , B.ProductLotNo
+         , B.CustomerCode
+         , B.CustomerName
+         , B.ItemYarn
+         , B.ItemCode
+         , B.Item400
+         , B.Color
+         , B.TargetQty
+         , B.ActualQty
+	     , A.DeleteFlag
+		 , A.FinishFlag
+	  FROM RawMaterialSheet A LEFT OUTER JOIN CordProduct B ON A.CordProductPkId = B.CordProductPkId
 
 GO
 
@@ -1718,8 +1780,9 @@ CREATE PROCEDURE [dbo].[SaveCordProduct] (
 , @CustomerCode nvarchar(30)
 , @CustomerName nvarchar(150)
 , @ItemYarn nvarchar(30)
-, @YarnType nvarchar(30)
+, @ItemCode nvarchar(30)
 , @Item400 nvarchar(30)
+, @Color nvarchar(100)
 , @TargetQty decimal(16, 3)
 , @ActualQty decimal(16, 3)
 , @FinishFlag bit
@@ -1737,13 +1800,14 @@ BEGIN
                  , CustomerCode = @CustomerCode
                  , CustomerName = @CustomerName
                  , ItemYarn = @ItemYarn
-                 , YarnType = @YarnType
+                 , ItemCode = @ItemCode
                  , Item400 = @Item400
+                 , Color = @Color
                  , TargetQty = @TargetQty
                  , ActualQty = @ActualQty
                  , FinishFlag = @FinishFlag
                  , DeleteFlag = @DeleteFlag
-             WHERE @CordProductPkId = @CordProductPkId
+             WHERE CordProductPkId = @CordProductPkId
         END
         ELSE
         BEGIN
@@ -1753,8 +1817,9 @@ BEGIN
                 , CustomerCode
                 , CustomerName
                 , ItemYarn
-                , YarnType
+                , ItemCode
                 , Item400
+                , Color
                 , TargetQty
                 , ActualQty
                 , FinishFlag
@@ -1766,8 +1831,9 @@ BEGIN
                 , @CustomerCode
                 , @CustomerName
                 , @ItemYarn
-                , @YarnType
+                , @ItemCode
                 , @Item400
+                , @Color
                 , @TargetQty
                 , @ActualQty
                 , @FinishFlag
@@ -1785,6 +1851,386 @@ BEGIN
 		SET @errNum = ERROR_NUMBER();
 		SET @errMsg = ERROR_MESSAGE();
 	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[GetCordProducts]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetCordProducts
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetCordProducts NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetCordProducts]
+(
+  @CustomerName nvarchar(150) = NULL
+, @ProductLotNo nvarchar(30) = NULL
+, @ItemYarn nvarchar(30) = NULL
+)
+AS
+BEGIN
+    SELECT I.CordProductPkId -- FROM CordProduct
+         , I.ProductLotNo
+         , I.CustomerCode
+         , I.CustomerName
+         , I.ItemYarn
+         , I.ItemCode
+         , I.Item400
+         , I.Color
+         , I.TargetQty
+         , I.ActualQty
+         , I.ProcessingFlag
+         , I.FinishFlag
+         , I.DeleteFlag
+      FROM CordProduct I
+     WHERE UPPER(LTRIM(RTRIM(I.CustomerName))) = UPPER(LTRIM(RTRIM(COALESCE(@CustomerName, I.CustomerName))))
+       AND UPPER(LTRIM(RTRIM(I.ProductLotNo))) = UPPER(LTRIM(RTRIM(COALESCE(@ProductLotNo, I.ProductLotNo))))
+       AND UPPER(LTRIM(RTRIM(I.ItemYarn))) = UPPER(LTRIM(RTRIM(COALESCE(@ItemYarn, I.ItemYarn))))
+       AND (I.ProcessingFlag IS NULL OR I.ProcessingFlag = 0)
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+     ORDER BY I.ItemYarn, I.ProductLotNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[DeleteCordProduct]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	DeleteCordProduct
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteCordProduct] (
+  @CordProductPkId int
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM CordProduct WHERE CordProductPkId = @CordProductPkId)
+        BEGIN
+            UPDATE CordProduct 
+               SET DeleteFlag = 1
+             WHERE CordProductPkId = @CordProductPkId
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[GetFirstTwistMCs]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetFirstTwistMCs
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetFirstTwistMCs NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetFirstTwistMCs]
+AS
+BEGIN
+    SELECT MCCode
+         , ProcessName
+         , DeckPerCore
+         , StartCore
+         , EndCore
+      FROM FirstTwistMC
+     ORDER BY ProcessName, MCCode;
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[GetRawMaterialSheet]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetRawMaterialSheet
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetRawMaterialSheet NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetRawMaterialSheet]
+(
+  @MCCode nvarchar(10)
+)
+AS
+BEGIN
+	SELECT RawMaterialSheetId
+	     , MCCode
+	     , CordProductPkId
+         , ProductLotNo
+         , CustomerCode
+         , CustomerName
+         , ItemYarn
+         , ItemCode
+         , Item400
+         , Color
+         , TargetQty
+         , ActualQty
+	     , DeleteFlag
+		 , FinishFlag
+      FROM RawMaterialSheetView
+     WHERE UPPER(LTRIM(RTRIM(MCCode))) = UPPER(LTRIM(RTRIM(@MCCode)))
+	   AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+	   AND (FinishFlag IS NULL OR FinishFlag = 0)
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[NewRawMaterialSheet]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	NewRawMaterialSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[NewRawMaterialSheet] (
+  @MCCode nvarchar(10)
+, @CordProductPkId int = NULL
+, @RawMaterialSheetId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF NOT EXISTS (SELECT TOP 1 * FROM RawMaterialSheet WHERE CordProductPkId = @CordProductPkId)
+        BEGIN
+			INSERT INTO RawMaterialSheet
+		    (
+                  MCCode
+                , CordProductPkId
+			)
+			VALUES
+			(
+                  @MCCode
+                , @CordProductPkId
+			);
+
+			SET @RawMaterialSheetId = @@IDENTITY;
+
+            UPDATE CordProduct
+               SET ProcessingFlag = 1
+             WHERE CordProductPkId = @CordProductPkId;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveRawMaterialSheetItem]    Script Date: 11/26/2022 1:17:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveRawMaterialSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveRawMaterialSheetItem] (
+  @RawMaterialSheetId int = NULL out
+, @ProductionDate datetime
+, @ItemYarn nvarchar(30)
+, @PalletNo nvarchar(30)
+, @TraceNo nvarchar(30)
+, @InputCH int
+, @DoffNos nvarchar(50)
+, @SPNos nvarchar(50)
+, @Seq as int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iMax int;
+	BEGIN TRY
+        IF NOT EXISTS (SELECT TOP 1 * 
+                         FROM RawMaterialSheetItem 
+                        WHERE RawMaterialSheetId = @RawMaterialSheetId 
+                          AND Seq = @Seq)
+        BEGIN
+            SELECT @iMax = MAX(Seq) 
+              FROM RawMaterialSheetItem 
+             WHERE RawMaterialSheetId = @RawMaterialSheetId;
+
+            IF (@iMax IS NULL OR @iMax < 1) 
+            BEGIN
+                SET @iMax = 0;
+            END
+            SET @Seq = @iMax + 1;
+
+			INSERT INTO RawMaterialSheetItem
+		    (
+                  RawMaterialSheetId
+                , Seq
+                , ProductionDate
+                , ItemYarn
+                , PalletNo
+                , TraceNo
+                , InputCH
+                , DoffNos
+                , SPNos
+			)
+			VALUES
+			(
+                  @RawMaterialSheetId
+                , @Seq
+                , @ProductionDate
+                , @ItemYarn
+                , @PalletNo
+                , @TraceNo
+                , @InputCH
+                , @DoffNos
+                , @SPNos
+			);
+        END
+        ELSE
+        BEGIN
+            UPDATE RawMaterialSheetItem
+               SET ProductionDate = @ProductionDate
+                 , ItemYarn = @ItemYarn
+                 , PalletNo = @PalletNo
+                 , TraceNo = @TraceNo
+                 , InputCH = @InputCH
+                 , DoffNos = @DoffNos
+                 , SPNos = @SPNos
+             WHERE RawMaterialSheetId = @RawMaterialSheetId
+               AND Seq = @Seq
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-06-20  ***********/
+/****** Object:  StoredProcedure [dbo].[GetRawMaterialSheetItems]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetRawMaterialSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetRawMaterialSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetRawMaterialSheetItems]
+(
+  @RawMaterialSheetId int
+)
+AS
+BEGIN
+	SELECT RawMaterialSheetId
+	     , Seq
+         , ProductionDate
+         , ItemYarn
+         , PalletNo
+         , TraceNo
+         , InputCH
+         , DoffNos
+         , SPNos
+      FROM RawMaterialSheetItem
+     WHERE RawMaterialSheetId = @RawMaterialSheetId
+
 END
 
 GO
