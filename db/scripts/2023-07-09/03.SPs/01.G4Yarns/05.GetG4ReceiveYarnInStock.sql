@@ -15,7 +15,7 @@ GO
 --
 -- EXEC GetG4ReceiveYarnInStock NULL, NULL
 -- =============================================
-CREATE PROCEDURE [dbo].[GetG4ReceiveYarnInStock]
+ALTER PROCEDURE [dbo].[GetG4ReceiveYarnInStock]
 (
   @ItemYarn nvarchar(30) = NULL
 , @ReceiveDate datetime = NULL
