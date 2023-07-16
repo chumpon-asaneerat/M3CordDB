@@ -1,3 +1,4 @@
+/*
 CREATE TABLE YarnLoadRecord(
 	YarnLoadRecordId int IDENTITY(1,1) NOT NULL,
     CordProductPkId int NOT NULL, -- Reference to Planning
@@ -13,3 +14,4 @@ CREATE TABLE YarnLoadRecord(
 )
 
 GO
+*/

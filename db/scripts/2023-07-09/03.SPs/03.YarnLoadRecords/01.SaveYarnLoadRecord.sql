@@ -14,6 +14,7 @@ GO
 --
 -- 
 -- =============================================
+/*
 CREATE PROCEDURE [dbo].[SaveYarnLoadRecord] (
   @CordProductPkId int
 , @RecordDate datetime
@@ -86,3 +87,4 @@ BEGIN
 END
 
 GO
+*/

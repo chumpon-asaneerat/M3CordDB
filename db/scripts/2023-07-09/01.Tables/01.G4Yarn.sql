@@ -1,0 +1,1 @@
+ALTER TABLE G4Yarn ADD DirectionNo nvarchar(30)
