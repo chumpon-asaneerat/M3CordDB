@@ -1,5 +1,14 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #3
+
+----------------------------------------------------------------------------------------------
+[commited]
+Re-Implements FirstTwist #2
+- Update SearchG4IssueYarns
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #1
 - Prepare RawMateiralSheet related sp.
 

@@ -54,7 +54,7 @@ BEGIN
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
        AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
        AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
-       AND (I.ConeCH > I.UsedCH)
+       AND (I.UsedCH IS NULL OR I.ConeCH > I.UsedCH)
      ORDER BY I.IssueDate , I.PalletNo;
 
 END

@@ -58,8 +58,8 @@ BEGIN
        AND I.PalletNo = Y.PalletNo
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
        AND (I.WHReceiveFlag IS NULL OR I.WHReceiveFlag = 0)
-       AND (I.ConeCH > I.UsedCH)
-       AND (I.IssueDate IS NOT NULL)
+       AND (I.UsedCH IS NULL OR I.ConeCH > I.UsedCH)
+       --AND (I.IssueDate IS NOT NULL)
      ORDER BY I.IssueDate , I.PalletNo;
 
 END
