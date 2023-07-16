@@ -1,0 +1,1 @@
+ALTER TABLE G4IssueYarn ADD UsedCH decimal(16, 0)
