@@ -1,8 +1,13 @@
 TABLES
 [X] ProductItemCode (ItemId, ItemCode)
 [X] Customer (CustomerId, CustomerName)
-[ ] 
-[ ] 
+[ ] S1ConditionStd ??
+[ ] S4x1ConditionStd
+[ ] S4x2ConditionStd
+[ ] S1Condition
+[ ] S4x1Condition
+[ ] S4x2Condition
+
 
 VIEW
 [ ] 
