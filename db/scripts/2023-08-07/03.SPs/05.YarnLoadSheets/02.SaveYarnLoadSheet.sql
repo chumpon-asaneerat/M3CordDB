@@ -1,3 +1,6 @@
+USE [M3Cord]
+GO
+/****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheet]    Script Date: 8/7/2023 4:25:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16,10 +19,9 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[SaveYarnLoadSheet] (
   @CordProductPkId int
-, @RecordDate datetime
 , @MCCode nvarchar(10)
-, @DoffNos nvarchar(50)
-, @Shift nvarchar(10)
+, @FinishFlag bit
+, @DeleteFlag bit
 , @YarnLoadSheetId int = null out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
@@ -31,18 +33,16 @@ BEGIN
 			INSERT INTO YarnLoadSheet
 		    (
                   CordProductPkId
-                , RecordDate
                 , MCCode
-                , DoffNos
-                , Shift
+                , FinishFlag
+                , DeleteFlag
             )
 			VALUES
 			(
                   @CordProductPkId
-                , @RecordDate
                 , @MCCode
-                , @DoffNos
-                , @Shift
+                , @FinishFlag
+                , @DeleteFlag
 			);
 
 			SET @YarnLoadSheetId = @@IDENTITY;
@@ -52,10 +52,9 @@ BEGIN
 
             UPDATE YarnLoadSheet
                SET CordProductPkId = @CordProductPkId
-                 , RecordDate = @RecordDate
                  , MCCode = @MCCode
-                 , DoffNos = @DoffNos
-                 , Shift = @Shift
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
              WHERE YarnLoadSheetId = @YarnLoadSheetId;
         END
 
@@ -69,4 +68,3 @@ BEGIN
 	END CATCH
 END
 
-GO

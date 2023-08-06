@@ -25,10 +25,9 @@ AS
 BEGIN
     SELECT I.YarnLoadSheetId -- FROM YarnLoadSheet
          , I.CordProductPkId
-         , I.RecordDate
          , I.MCCode
-         , I.DoffNos
-         , I.Shift
+         , I.FinishFlag
+         , I.DeleteFlag
          , P.ProductLotNo
          , P.CustomerCode
          , P.CustomerName
@@ -39,8 +38,6 @@ BEGIN
          , P.TargetQty
          , P.ActualQty
          --, P.ProcessingFlag
-         , P.FinishFlag
-         , P.DeleteFlag
          , M.ProcessName
          , M.DeckPerCore
          , M.StartCore
@@ -49,7 +46,9 @@ BEGIN
      WHERE UPPER(LTRIM(RTRIM(I.MCCode))) = UPPER(LTRIM(RTRIM(COALESCE(@MCCode, I.MCCode))))
        AND I.MCCode = M.MCCode
        AND I.CordProductPkId = P.CordProductPkId
-     ORDER BY I.RecordDate;
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+     ORDER BY I.CordProductPkId, I.MCCode;
 
 END
 

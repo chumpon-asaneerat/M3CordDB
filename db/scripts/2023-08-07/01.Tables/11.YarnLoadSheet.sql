@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[YarnLoadSheet]    Script Date: 8/7/2023 1:28:07 ******/
+/****** Object:  Table [dbo].[YarnLoadSheet]    Script Date: 8/7/2023 4:23:42 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -8,10 +8,9 @@ GO
 CREATE TABLE [dbo].[YarnLoadSheet](
 	[YarnLoadSheetId] [int] IDENTITY(1,1) NOT NULL,
 	[CordProductPkId] [int] NOT NULL,
-	[RecordDate] [datetime] NULL,
 	[MCCode] [nvarchar](10) NULL,
-	[DoffNos] [nvarchar](50) NULL,
-	[Shift] [nvarchar](10) NULL,
+	[DeleteFlag] [bit] NULL,
+	[FinishFlag] [bit] NULL,
  CONSTRAINT [PK_YarnLoadSheet] PRIMARY KEY CLUSTERED 
 (
 	[YarnLoadSheetId] ASC
