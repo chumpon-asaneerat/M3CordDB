@@ -1,7 +1,7 @@
 TABLES
 [X] ProductItemCode (ItemId, ItemCode)
 [X] Customer (CustomerId, CustomerName)
-[ ] S1ConditionStd ??
+[ ] S1ConditionStd
 [ ] S4x1ConditionStd
 [ ] S4x2ConditionStd
 [ ] S1Condition
@@ -24,6 +24,6 @@ SP
 INIT MASTER
 [X] ProductItemCode
 [X] Customer
-[ ] 
-[ ] 
+[ ] GetS1ConditionStd
+[ ] SaveS1ConditionStd
 [ ] 
