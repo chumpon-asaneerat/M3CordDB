@@ -1,0 +1,3 @@
+TABLES
+1. ต้องมี ProductItem (PItemCode, ItemYarn)
+2. ต้องมี Customer (CustomerId, CustomerCode, CustomerName)
