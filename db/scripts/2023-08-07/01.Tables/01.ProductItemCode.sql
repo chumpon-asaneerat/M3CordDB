@@ -14,3 +14,6 @@ CREATE TABLE [dbo].[ProductItemCode](
 ) ON [PRIMARY]
 
 GO
+
+CREATE UNIQUE INDEX IX_ProductItemCode_ItemCode ON ProductItemCode(ItemCode ASC)
+GO

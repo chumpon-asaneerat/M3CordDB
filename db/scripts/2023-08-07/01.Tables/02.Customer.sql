@@ -14,3 +14,6 @@ CREATE TABLE [dbo].[Customer](
 ) ON [PRIMARY]
 
 GO
+
+CREATE UNIQUE INDEX IX_Customer_CustomerName ON Customer(CustomerName ASC)
+GO

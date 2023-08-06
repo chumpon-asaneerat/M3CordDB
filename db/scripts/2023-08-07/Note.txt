@@ -1,13 +1,24 @@
 TABLES
 [X] ProductItemCode (ItemId, ItemCode)
 [X] Customer (CustomerId, CustomerName)
+[ ] 
+[ ] 
 
 VIEW
+[ ] 
+[ ] 
 
 SP
 [X] GetProductItemCodes
-[ ] SaveProductItemCode
+[X] SaveProductItemCode
 [X] GetCustomers
-[ ] SaveCustomer
+[X] SaveCustomer
+[ ] 
+[ ] 
 
-
+INIT MASTER
+[X] ProductItemCode
+[X] Customer
+[ ] 
+[ ] 
+[ ] 
