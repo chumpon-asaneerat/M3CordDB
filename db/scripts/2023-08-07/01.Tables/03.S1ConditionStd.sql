@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[S1ConditionStd](
 	[SpindleRotationErrRange] [decimal](18, 2) NULL,
 	[YarnSpeed] [decimal](18, 2) NULL,
 	[YarnSpeedErrRange] [decimal](18, 2) NULL,
-	[SpecialMention] [nvarchar](100) NULL,
+	[SpecialMention] [nvarchar](MAX) NULL,
  CONSTRAINT [PK_S1ConditionStd] PRIMARY KEY CLUSTERED 
 (
 	[PkId] ASC
