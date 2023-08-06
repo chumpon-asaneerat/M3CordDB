@@ -8,7 +8,7 @@ GO
 CREATE TABLE [dbo].[YarnLoadSheetItem](
 	[YarnLoadSheetId] [int] NOT NULL,
 	[SPNo] [int] NOT NULL,
-	[CoreNo] [int] NOT NULL,
+	[DeckNo] [int] NOT NULL,
 	[PalletNo] [nvarchar](30) NOT NULL,
 	[TraceNo] [nvarchar](30) NOT NULL,
 	[YarnBarcode] [nvarchar](30) NULL
