@@ -1,3 +1,13 @@
 TABLES
-1. ต้องมี ProductItem (PItemCode, ItemYarn)
-2. ต้องมี Customer (CustomerId, CustomerCode, CustomerName)
+[X] ProductItemCode (ItemId, ItemCode)
+[X] Customer (CustomerId, CustomerName)
+
+VIEW
+
+SP
+[X] GetProductItemCodes
+[ ] SaveProductItemCode
+[X] GetCustomers
+[ ] SaveCustomer
+
+
