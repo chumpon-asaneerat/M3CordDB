@@ -1,5 +1,3 @@
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheet]    Script Date: 8/7/2023 4:25:57 ******/
 SET ANSI_NULLS ON
 GO

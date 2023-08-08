@@ -1,7 +1,3 @@
-/*********** Script Update Date: 2023-08-07  ***********/
-DROP PROCEDURE SaveYarnLoadRecord
-GO
-
 DROP PROCEDURE SaveRawMaterialSheetItem
 GO
 
@@ -21,9 +17,6 @@ EXEC DropTable N'RawMaterialSheetItem'
 GO
 
 EXEC DropTable N'RawMaterialSheet'
-GO
-
-EXEC DropTable N'YarnLoadRecord'
 GO
 
 
@@ -661,9 +654,6 @@ END
 GO
 */
 
-/*********** Script Update Date: 2023-08-07  ***********/
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheet]    Script Date: 8/7/2023 4:25:57 ******/
 SET ANSI_NULLS ON
 GO
@@ -793,9 +783,6 @@ END
 GO
 
 
-/*********** Script Update Date: 2023-08-07  ***********/
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheetDoff]    Script Date: 8/7/2023 4:25:57 ******/
 SET ANSI_NULLS ON
 GO

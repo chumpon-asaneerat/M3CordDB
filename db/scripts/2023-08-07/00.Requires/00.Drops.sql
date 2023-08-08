@@ -1,6 +1,7 @@
+/*
 DROP PROCEDURE SaveYarnLoadRecord
 GO
-
+*/
 DROP PROCEDURE SaveRawMaterialSheetItem
 GO
 
@@ -21,7 +22,7 @@ GO
 
 EXEC DropTable N'RawMaterialSheet'
 GO
-
+/*
 EXEC DropTable N'YarnLoadRecord'
 GO
-
+*/
