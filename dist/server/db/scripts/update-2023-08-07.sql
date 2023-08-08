@@ -138,6 +138,72 @@ GO
 
 
 /*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  Table [dbo].[YarnLoadSheet]    Script Date: 8/7/2023 4:23:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[YarnLoadSheet](
+	[YarnLoadSheetId] [int] IDENTITY(1,1) NOT NULL,
+	[CordProductPkId] [int] NOT NULL,
+	[MCCode] [nvarchar](10) NULL,
+	[DeleteFlag] [bit] NULL DEFAULT 0,
+	[FinishFlag] [bit] NULL DEFAULT 0,
+ CONSTRAINT [PK_YarnLoadSheet] PRIMARY KEY CLUSTERED 
+(
+	[YarnLoadSheetId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  Table [dbo].[YarnLoadSheetDoff]    Script Date: 8/7/2023 4:22:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[YarnLoadSheetDoff](
+	[YarnLoadSheetDoffId] [int] IDENTITY(1,1) NOT NULL,
+	[YarnLoadSheetId] [int] NOT NULL,
+	[RecordDate] [datetime] NULL,
+	[DoffNos] [nvarchar](50) NULL,
+	[Shift] [nvarchar](10) NULL,
+ CONSTRAINT [PK_YarnLoadSheetDoff] PRIMARY KEY CLUSTERED 
+(
+	[YarnLoadSheetDoffId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  Table [dbo].[YarnLoadSheetItem]    Script Date: 8/7/2023 1:27:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[YarnLoadSheetItem](
+	[YarnLoadSheetId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[DeckNo] [int] NOT NULL,
+	[PalletNo] [nvarchar](30) NOT NULL,
+	[TraceNo] [nvarchar](30) NOT NULL,
+	[YarnBarcode] [nvarchar](30) NULL
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
 /****** Object:  StoredProcedure [dbo].[GetProductItemCodes]    Script Date: 11/27/2022 10:15:25 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -316,6 +382,140 @@ GO
 
 
 /*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  StoredProcedure [dbo].[GetWarehouseYarns]    Script Date: 8/7/2023 0:57:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetG4IssueYarns
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetWarehouseYarns NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetWarehouseYarns]
+(
+  @PalletNo nvarchar(30) = NULL
+)
+AS
+BEGIN
+    SELECT I.G4IssueYarnPkId -- FROM G4IssueYarn
+         , I.RequestNo
+         , I.IssueDate
+         , I.IssueBy
+         , I.TraceNo
+         , I.PalletNo
+         , I.WeightQty
+         , I.ConeCH
+         , I.PalletType
+         , I.DeleteFlag
+         , I.FinishFlag
+         , I.WHReceiveFlag
+         , I.[Remark]
+         , I.UsedCH
+         , Y.G4YarnPkId -- FROM G4Yarn
+	     , Y.EntryDate
+		 , Y.LotNo
+		 , Y.ItemYarn
+		 , Y.Item400
+		 , Y.ReceiveDate
+		 , Y.ReceiveBy
+		 , Y.Verify
+         , Y.ExpiredDate
+		 --, Y.Packing
+		 --, Y.Clean
+		 --, Y.Tearing
+		 --, Y.Falldown
+      FROM G4IssueYarn I, G4Yarn Y
+     WHERE UPPER(LTRIM(RTRIM(I.PalletNo))) = UPPER(LTRIM(RTRIM(COALESCE(@PalletNo, I.PalletNo))))
+       AND I.PalletNo = Y.PalletNo
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+       AND (I.WHReceiveFlag = 1)
+       AND (I.UsedCH IS NULL OR I.ConeCH > I.UsedCH)
+     ORDER BY I.IssueDate , I.PalletNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  StoredProcedure [dbo].[SearchWarehousePallet]    Script Date: 8/7/2023 0:58:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetG4IssueYarns
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC SearchWarehousePallet NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[SearchWarehousePallet]
+(
+  @PalletNo nvarchar(30) = NULL
+)
+AS
+BEGIN
+    SELECT I.G4IssueYarnPkId -- FROM G4IssueYarn
+         , I.RequestNo
+         , I.IssueDate
+         , I.IssueBy
+         , I.TraceNo
+         , I.PalletNo
+         , I.WeightQty
+         , I.ConeCH
+         , I.PalletType
+         , I.DeleteFlag
+         , I.FinishFlag
+         , I.WHReceiveFlag
+         , I.[Remark]
+         , I.UsedCH
+         , Y.G4YarnPkId -- FROM G4Yarn
+	     , Y.EntryDate
+		 , Y.LotNo
+		 , Y.ItemYarn
+		 , Y.Item400
+		 , Y.ReceiveDate
+		 , Y.ReceiveBy
+		 , Y.Verify
+         , Y.ExpiredDate
+		 --, Y.Packing
+		 --, Y.Clean
+		 --, Y.Tearing
+		 --, Y.Falldown
+      FROM G4IssueYarn I, G4Yarn Y
+     WHERE UPPER(LTRIM(RTRIM(I.PalletNo))) = UPPER(LTRIM(RTRIM(@PalletNo)))
+       AND I.PalletNo = Y.PalletNo
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+       AND (I.WHReceiveFlag = 1)
+       AND (I.UsedCH IS NULL OR I.ConeCH > I.UsedCH)
+     ORDER BY I.IssueDate , I.PalletNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
 /****** Object:  StoredProcedure [dbo].[GetCordProducts]    Script Date: 8/7/2023 0:16:06 ******/
 SET ANSI_NULLS ON
 GO
@@ -460,6 +660,211 @@ END
 
 GO
 */
+
+/*********** Script Update Date: 2023-08-07  ***********/
+USE [M3Cord]
+GO
+/****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheet]    Script Date: 8/7/2023 4:25:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveYarnLoadSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveYarnLoadSheet] (
+  @CordProductPkId int
+, @MCCode nvarchar(10)
+, @FinishFlag bit
+, @DeleteFlag bit
+, @YarnLoadSheetId int = null out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF NOT EXISTS (SELECT TOP 1 * FROM YarnLoadSheet WHERE YarnLoadSheetId = @YarnLoadSheetId)
+        BEGIN
+			INSERT INTO YarnLoadSheet
+		    (
+                  CordProductPkId
+                , MCCode
+                , FinishFlag
+                , DeleteFlag
+            )
+			VALUES
+			(
+                  @CordProductPkId
+                , @MCCode
+                , @FinishFlag
+                , @DeleteFlag
+			);
+
+			SET @YarnLoadSheetId = @@IDENTITY;
+        END
+        ELSE
+        BEGIN
+
+            UPDATE YarnLoadSheet
+               SET CordProductPkId = @CordProductPkId
+                 , MCCode = @MCCode
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
+             WHERE YarnLoadSheetId = @YarnLoadSheetId;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
+/****** Object:  StoredProcedure [dbo].[GetYarnLoadSheets]    Script Date: 8/7/2023 0:57:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetYarnLoadSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetWarehouseYarns NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetYarnLoadSheets]
+(
+  @MCCode nvarchar(10) = NULL
+)
+AS
+BEGIN
+    SELECT I.YarnLoadSheetId -- FROM YarnLoadSheet
+         , I.CordProductPkId
+         , I.MCCode
+         , I.FinishFlag
+         , I.DeleteFlag
+         , P.ProductLotNo
+         , P.CustomerCode
+         , P.CustomerName
+         , P.ItemYarn
+         , P.ItemCode
+         , P.Item400
+         , P.Color
+         , P.TargetQty
+         , P.ActualQty
+         --, P.ProcessingFlag
+         , M.ProcessName
+         , M.DeckPerCore
+         , M.StartCore
+         , M.EndCore
+      FROM YarnLoadSheet I, CordProduct P, FirstTwistMC M
+     WHERE UPPER(LTRIM(RTRIM(I.MCCode))) = UPPER(LTRIM(RTRIM(COALESCE(@MCCode, I.MCCode))))
+       AND I.MCCode = M.MCCode
+       AND I.CordProductPkId = P.CordProductPkId
+       AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
+       AND (I.FinishFlag IS NULL OR I.FinishFlag = 0)
+     ORDER BY I.CordProductPkId, I.MCCode;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-08-07  ***********/
+USE [M3Cord]
+GO
+/****** Object:  StoredProcedure [dbo].[SaveYarnLoadSheetDoff]    Script Date: 8/7/2023 4:25:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveYarnLoadSheetDoff
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveYarnLoadSheetDoff] (
+  @YarnLoadSheetId int
+, @RecordDate datetime
+, @DoffNos nvarchar(50)
+, @Shift nvarchar(10)
+, @YarnLoadSheetDoffId int = null out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF NOT EXISTS (SELECT TOP 1 * FROM YarnLoadSheetDoff WHERE YarnLoadSheetDoffId = @YarnLoadSheetDoffId)
+        BEGIN
+			INSERT INTO YarnLoadSheetDoff
+		    (
+                  YarnLoadSheetId
+                , RecordDate
+                , DoffNos
+                , Shift
+            )
+			VALUES
+			(
+                  @YarnLoadSheetId
+                , @RecordDate
+                , @DoffNos
+                , @Shift
+			);
+
+			SET @YarnLoadSheetDoffId = @@IDENTITY;
+        END
+        ELSE
+        BEGIN
+            UPDATE YarnLoadSheetDoff
+               SET YarnLoadSheetId = @YarnLoadSheetId
+                 , RecordDate = @RecordDate
+                 , DoffNos = @DoffNos
+                 , Shift = @Shift
+             WHERE YarnLoadSheetDoffId = @YarnLoadSheetDoffId;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
 
 /*********** Script Update Date: 2023-08-07  ***********/
 /****** Object:  StoredProcedure [dbo].[GetS1ConditionStds]    Script Date: 11/27/2022 10:15:25 PM ******/
