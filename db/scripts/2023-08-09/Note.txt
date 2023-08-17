@@ -10,8 +10,8 @@ DROP SP SCRIPTS
 [X] SaveCordProduct
 [X] GetCordProducts
 
-[ ] SaveCustomer
-[ ] GetCustomers
+[X] SaveCustomer
+[X] GetCustomers
 
 [ ] SaveProductItemCode
 [ ] GetProductItemCodes
