@@ -22,6 +22,11 @@ GO
 DROP PROCEDURE GetCustomers
 GO
 
+DROP PROCEDURE SaveProductItemCode
+GO
+DROP PROCEDURE GetProductItemCodes
+GO
+
 EXEC DropTable N'YarnLoadSheetItem'
 GO
 EXEC DropTable N'YarnLoadSheetDoff'
@@ -34,4 +39,6 @@ GO
 EXEC DropTable N'CordProduct'
 GO
 EXEC DropTable N'Customer'
+GO
+EXEC DropTable N'ProductItemCode'
 GO

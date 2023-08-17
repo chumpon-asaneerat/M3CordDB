@@ -13,18 +13,22 @@ DROP SP SCRIPTS
 [X] SaveCustomer
 [X] GetCustomers
 
-[ ] SaveProductItemCode
-[ ] GetProductItemCodes
+[X] SaveProductItemCode
+[X] GetProductItemCodes
 
 [ ] GetFirstTwistMCs
 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
+DROP TABLE SCRIPTS
+[X] YarnLoadSheetItem
+[X] YarnLoadSheetDoff
+[X] YarnLoadSheet
+
+[X] S1ConditionStd
+[X] CordProduct
+[X] Customer
+[X] ProductItemCode
+
+
 [ ] 
 [ ] 
 [ ] 
