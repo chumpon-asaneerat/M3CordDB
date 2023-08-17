@@ -19,7 +19,8 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[GetPCCards]
 (
-  @unused bit = NULL
+  @CustomerName nvarchar(150) = NULL
+, @ProductLotNo nvarchar(30) = NULL
 )
 AS
 BEGIN
@@ -37,6 +38,10 @@ BEGIN
          , FinishFlag
          , DeleteFlag
       FROM PCCardView
+     WHERE UPPER(LTRIM(RTRIM(CustomerName))) = UPPER(LTRIM(RTRIM(COALESCE(@CustomerName, CustomerName))))
+       AND UPPER(LTRIM(RTRIM(ProductLotNo))) = UPPER(LTRIM(RTRIM(COALESCE(@ProductLotNo, ProductLotNo))))
+       AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+       AND (FinishFlag IS NULL OR FinishFlag = 0)
      ORDER BY PCDate;
 
 END
