@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PCCard]    Script Date: 8/11/2023 8:46:43 ******/
+/****** Object:  Table [dbo].[PCCard]    Script Date: 8/17/2023 23:46:22 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -8,11 +8,10 @@ GO
 CREATE TABLE [dbo].[PCCard](
 	[PCId] [int] IDENTITY(1,1) NOT NULL,
 	[PINo] [nvarchar](50) NULL,
-	[IssueDate] [datetime] NULL,
-	[ItemCode] [nvarchar](30) NULL,
+	[CustomerId] [int] NULL,
+	[ProductCode] [nvarchar](30) NULL,
 	[ItemYarn] [nvarchar](30) NULL,
 	[ProductLotNo] [nvarchar](30) NULL,
-	[Flow] [nvarchar](100) NULL,
 	[TargetQty] [decimal](16, 3) NULL,
 	[FinishFlag] [bit] NULL,
 	[DeleteFlag] [bit] NULL,
