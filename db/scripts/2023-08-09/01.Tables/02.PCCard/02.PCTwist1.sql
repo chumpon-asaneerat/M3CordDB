@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[PCTwist1](
 	[SectionHead] [nvarchar](200) NULL,
 	[SectionMgr] [nvarchar](200) NULL,
 	[MCCode] [nvarchar](10) NULL,
+    [PaperTubeColor] [nvarchar](100) NULL,
 	[ActualQty] [decimal](16, 3) NULL,
 	[Remark] [nvarchar](200) NULL,
 	[FinishFlag] [bit] NULL,
