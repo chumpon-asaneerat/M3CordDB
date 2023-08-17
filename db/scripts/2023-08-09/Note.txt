@@ -1,19 +1,23 @@
-DROP
-[ ] SaveYarnLoadSheetDoff
-[ ] SaveYarnLoadSheet
-[ ] GetYarnLoadSheets
-[ ] GetWarehouseYarns
-[ ] SearchWarehousePallet
-[ ] GetCordProducts
-[ ] SaveS1ConditionStd
-[ ] GetS1ConditionStds
+DROP SP SCRIPTS
+[X] SaveYarnLoadSheetDoff
+[X] SaveYarnLoadSheet
+[X] GetYarnLoadSheets
+
+[X] SaveS1ConditionStd
+[X] GetS1ConditionStds
+
+[X] DeleteCordProduct
+[X] SaveCordProduct
+[X] GetCordProducts
+
 [ ] SaveCustomer
-[ ] SaveProductItemCode
 [ ] GetCustomers
+
+[ ] SaveProductItemCode
 [ ] GetProductItemCodes
+
 [ ] GetFirstTwistMCs
-[ ] DeleteCordProduct
-[ ] SaveCordProduct
+
 [ ] 
 [ ] 
 [ ] 

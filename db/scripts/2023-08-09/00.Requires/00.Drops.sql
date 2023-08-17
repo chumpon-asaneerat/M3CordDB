@@ -17,6 +17,11 @@
 --DROP PROCEDURE DeleteCordProduct
 --GO
 
+--DROP PROCEDURE SaveCustomer
+--GO
+--DROP PROCEDURE GetCustomers
+--GO
+
 --EXEC DropTable N'YarnLoadSheetItem'
 --GO
 --EXEC DropTable N'YarnLoadSheetDoff'
@@ -24,4 +29,6 @@
 --EXEC DropTable N'YarnLoadSheet'
 --GO
 --EXEC DropTable N'CordProduct'
+--GO
+--EXEC DropTable N'Customer'
 --GO
