@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Twist1LoadRecord](
 	[ItemYarn] [int] NULL,
 	[ShiftName] [nvarchar](10) NULL,
 	[Chief] [nvarchar](100) NULL,
-	[Remarl] [nvarchar](200) NULL,
+	[Remark] [nvarchar](200) NULL,
 	[Keiba] [bit] NULL,
 	[Traverse] [bit] NULL,
 	[Crossing] [bit] NULL,

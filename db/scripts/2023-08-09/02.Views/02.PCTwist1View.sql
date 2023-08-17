@@ -11,6 +11,8 @@ AS
          , T1.PaperTubeColor
          , T1.ActualQty
          , T1.Remark
+         , T1.LastTestNo
+         , T1.LastDoffNo
          , T1.FinishFlag
          , T1.DeleteFlag
          , PC.PCId

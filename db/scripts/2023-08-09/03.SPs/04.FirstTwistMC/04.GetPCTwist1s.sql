@@ -34,6 +34,8 @@ BEGIN
          , PaperTubeColor
          , ActualQty
          , Remark
+         , LastTestNo
+         , LastDoffNo
          , FinishFlag
          , DeleteFlag
          , PCId
