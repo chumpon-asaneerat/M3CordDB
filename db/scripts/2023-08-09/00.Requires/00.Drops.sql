@@ -1,8 +1,8 @@
 --DROP PROCEDURE SaveYarnLoadSheet
 --GO
---DROP PROCEDURE GetYarnLoadSheets
---GO
 --DROP PROCEDURE SaveYarnLoadSheetDoff
+--GO
+--DROP PROCEDURE GetYarnLoadSheets
 --GO
 
 --DROP PROCEDURE SaveS1ConditionStd
