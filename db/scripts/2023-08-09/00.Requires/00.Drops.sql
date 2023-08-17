@@ -33,5 +33,5 @@ EXEC DropTable N'S1ConditionStd'
 GO
 EXEC DropTable N'CordProduct'
 GO
---EXEC DropTable N'Customer'
---GO
+EXEC DropTable N'Customer'
+GO
