@@ -1,31 +1,19 @@
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
+DROP
+[ ] SaveYarnLoadSheetDoff
+[ ] SaveYarnLoadSheet
+[ ] GetYarnLoadSheets
+[ ] GetWarehouseYarns
+[ ] SearchWarehousePallet
+[ ] GetCordProducts
+[ ] SaveS1ConditionStd
+[ ] GetS1ConditionStds
+[ ] SaveCustomer
+[ ] SaveProductItemCode
+[ ] GetCustomers
+[ ] GetProductItemCodes
+[ ] GetFirstTwistMCs
+[ ] DeleteCordProduct
+[ ] SaveCordProduct
 [ ] 
 [ ] 
 [ ] 
