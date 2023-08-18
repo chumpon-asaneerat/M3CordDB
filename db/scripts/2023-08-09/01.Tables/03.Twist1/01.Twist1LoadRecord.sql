@@ -11,7 +11,7 @@ CREATE TABLE [dbo].[Twist1LoadRecord](
 	[ProductionDate] [datetime] NULL,
 	[TestFlag] [bit] NULL,
 	[DoffNo] [int] NULL,
-	[ItemYarn] [nvarchar(30)] NULL,
+	[ItemYarn] [nvarchar](30) NULL,
 	[ShiftName] [nvarchar](10) NULL,
 	[Chief] [nvarchar](100) NULL,
 	[Remark] [nvarchar](100) NULL,

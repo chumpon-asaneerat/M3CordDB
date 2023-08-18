@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PCCard]    Script Date: 8/17/2023 23:46:22 ******/
+/****** Object:  Table [dbo].[PCCard]    Script Date: 8/18/2023 7:46:02 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -8,6 +8,7 @@ GO
 CREATE TABLE [dbo].[PCCard](
 	[PCId] [int] IDENTITY(1,1) NOT NULL,
 	[PINo] [nvarchar](50) NULL,
+	[PCDate] [datetime] NULL,
 	[CustomerId] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[ItemYarn] [nvarchar](30) NULL,
@@ -28,3 +29,5 @@ GO
 
 ALTER TABLE [dbo].[PCCard] ADD  CONSTRAINT [DF_PCCard_DeleteFlag]  DEFAULT ((0)) FOR [DeleteFlag]
 GO
+
+
