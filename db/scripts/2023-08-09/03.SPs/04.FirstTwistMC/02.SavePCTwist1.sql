@@ -28,6 +28,8 @@ CREATE PROCEDURE [dbo].[SavePCTwist1] (
 , @ActualQty decimal(16,3)
 , @PaperTubeColor nvarchar(100)
 , @Remark nvarchar(200)
+, @LastTestNo int
+, @LastDoffNo int
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
@@ -45,6 +47,8 @@ BEGIN
                  , ActualQty = @ActualQty
                  , PaperTubeColor = @PaperTubeColor
                  , Remark = @Remark
+                 , LastTestNo = @LastTestNo
+                 , LastDoffNo = @LastDoffNo
              WHERE PCTwist1Id = @PCTwist1Id
         END
 

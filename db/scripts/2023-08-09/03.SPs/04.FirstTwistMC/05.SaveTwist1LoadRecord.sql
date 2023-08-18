@@ -25,7 +25,7 @@ CREATE PROCEDURE [dbo].[SaveTwist1LoadRecord] (
 , @ItemYarn nvarchar(30)
 , @ShiftName nvarchar(10)
 , @Chief nvarchar(100)
-, @Remark nvarchar(200)
+, @Remark nvarchar(100)
 , @Keiba bit
 , @Traverse bit
 , @Crossing bit
