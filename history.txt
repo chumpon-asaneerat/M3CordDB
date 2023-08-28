@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #53
+- Prepare db folder 2023-09-04
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #52
 - Update SP GetG4IssueYarns add DirectionNo column.
 
