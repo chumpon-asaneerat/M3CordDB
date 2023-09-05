@@ -14,3 +14,20 @@ UPDATE Product SET TwistSpec = N'150.0 ± 10.0 (S) T/M' WHERE ProductCode = N'P1
 UPDATE Product SET TwistSpec = N'125 ± 10 (Z) T/M' WHERE ProductCode = N'P1670ZFT'
 UPDATE Product SET TwistSpec = N'80.0 ± 10.0 (S) T/M' WHERE ProductCode = N'P1671TT'
 GO
+
+-- INIT TREAT ROUTE
+UPDATE Product SET TreatRoute = N'S-1 → S-2 → S-3 → S-24' WHERE ProductCode = N'9A0663L'
+UPDATE Product SET TreatRoute = N'S-1 → S-2 → S-3 → S-24' WHERE ProductCode = N'9A1100L'
+UPDATE Product SET TreatRoute = N'S-1 → S-2 → S-3 → S-24' WHERE ProductCode = N'9H0663SL'
+UPDATE Product SET TreatRoute = N'S-1 → S-2 → S-3 → S-24' WHERE ProductCode = N'R10023'
+UPDATE Product SET TreatRoute = N'S-5 → S-1 → S-13 → S -8 → S-24' WHERE ProductCode = N'1800TW'
+UPDATE Product SET TreatRoute = N'S-4 → S-5 → S-8 → S-24' WHERE ProductCode = N'H1671T'
+UPDATE Product SET TreatRoute = N'S-1 → S-13 → S-8 → S-24' WHERE ProductCode = N'KT3R16'
+UPDATE Product SET TreatRoute = N'S-1 → S-13 → S-8 → S-24' WHERE ProductCode = N'KT3S71'
+UPDATE Product SET TreatRoute = N'S-4 → S-5 → S-13 → S-8 → S-24' WHERE ProductCode = N'P1100TT'
+UPDATE Product SET TreatRoute = N'S-1 → S-13 → S-8 → S-24' WHERE ProductCode = N'P1100ZFT'
+UPDATE Product SET TreatRoute = N'S-1 → S-13 → S-8 → S-24' WHERE ProductCode = N'P1402TRH'
+UPDATE Product SET TreatRoute = N'S-1 → S-13 → S-8 → S-24' WHERE ProductCode = N'P1670T1R'
+UPDATE Product SET TreatRoute = N'-' WHERE ProductCode = N'P1670ZFT'
+UPDATE Product SET TreatRoute = N'S-4 → S-5 → S-8 → S-24' WHERE ProductCode = N'P1671TT'
+GO
