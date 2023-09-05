@@ -22,11 +22,11 @@ CREATE PROCEDURE [dbo].[SaveConditionStd] (
   @ProcessName nvarchar(30)
 , @ProductCode nvarchar(30)
 , @ParamName nvarchar(50)
-, @ParamType int
-, @SC bit
-, @StdValueS nvarchar(100)
-, @StdValueD decimal(18, 3)
-, @StdValueE decimal(18, 3)
+, @ParamType int = 1
+, @SC bit = 0
+, @StdValueS nvarchar(100) = NULL
+, @StdValueD decimal(18, 3) = NULL
+, @StdValueE decimal(18, 3) = NULL
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
