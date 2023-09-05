@@ -27,6 +27,7 @@ CREATE PROCEDURE [dbo].[SaveConditionStd] (
 , @StdValueS nvarchar(100) = NULL
 , @StdValueD decimal(18, 3) = NULL
 , @StdValueE decimal(18, 3) = NULL
+, @StdValueB bit = NULL
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
@@ -43,6 +44,7 @@ BEGIN
                  , StdValueS = @StdValueS
                  , StdValueD = @StdValueD
                  , StdValueE = @StdValueE
+                 , StdValueB = @StdValueB
              WHERE ProcessName = @ProcessName
                AND ProductCode = @ProductCode
                AND ParamName = @ParamName
@@ -59,6 +61,7 @@ BEGIN
                 , StdValueS
                 , StdValueD
                 , StdValueE
+                , StdValueB
 			)
 			VALUES
 			(
@@ -70,6 +73,7 @@ BEGIN
                 , @StdValueS
                 , @StdValueD
                 , @StdValueE
+                , @StdValueB
 			);
         END
 

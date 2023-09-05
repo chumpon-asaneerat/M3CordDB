@@ -14,6 +14,7 @@ CREATE TABLE [dbo].[ConditionStd](
 	[StdValueS] [nvarchar](100) NULL,
 	[StdValueD] [decimal](18, 3) NULL,
 	[StdValueE] [decimal](18, 3) NULL,
+    [StdValueB] [bit] NULL,
  CONSTRAINT [PK_ComditionStd] PRIMARY KEY CLUSTERED 
 (
 	[ProcessName] ASC,

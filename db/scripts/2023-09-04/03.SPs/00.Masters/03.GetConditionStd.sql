@@ -33,6 +33,7 @@ BEGIN
          , StdValueS
          , StdValueD
          , StdValueE
+         , StdValueB
       FROM ConditionStd
      WHERE UPPER(LTRIM(RTRIM(ProcessName))) = UPPER(LTRIM(RTRIM(@ProcessName)))
        AND UPPER(LTRIM(RTRIM(ProductCode))) = UPPER(LTRIM(RTRIM(@ProductCode)))
