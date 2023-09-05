@@ -1,0 +1,16 @@
+-- INIT TWIST SPEC
+UPDATE Product SET TwistSpec = N'164.0 ± 22 (S) x 95.0 ± 14 (Z) T/M' WHERE ProductCode = N'9A0663L'
+UPDATE Product SET TwistSpec = N'165.0 ± 17 (S) x 83.0 ± 12 (Z) T/M' WHERE ProductCode = N'9A1100L'
+UPDATE Product SET TwistSpec = N'164.0 ± 22.0 (Z) x 95.0 ± 14.0 (S) T/M' WHERE ProductCode = N'9H0663SL'
+UPDATE Product SET TwistSpec = N'210.0 ± 20.0 (S) x 114.0 ± 11.0 (Z) T/M' WHERE ProductCode = N'R10023'
+UPDATE Product SET TwistSpec = N'75.0 ± 15.0 (S) T/M' WHERE ProductCode = N'1800TW'
+UPDATE Product SET TwistSpec = N'60.0 ± 10.0 (S) T/M' WHERE ProductCode = N'H1671T'
+UPDATE Product SET TwistSpec = N'60.0(S) ± 12 T/M' WHERE ProductCode = N'KT3R16'
+UPDATE Product SET TwistSpec = N'120.0 ± 15.0 (S) T/M' WHERE ProductCode = N'KT3S71'
+UPDATE Product SET TwistSpec = N'80.0 ± 10.0 (S) T/M' WHERE ProductCode = N'P1100TT'
+UPDATE Product SET TwistSpec = N'90.0 (Z) T/M' WHERE ProductCode = N'P1100ZFT'
+UPDATE Product SET TwistSpec = N'45.0 ± 20.0 (S) T/M' WHERE ProductCode = N'P1402TRH'
+UPDATE Product SET TwistSpec = N'150.0 ± 10.0 (S) T/M' WHERE ProductCode = N'P1670T1R'
+UPDATE Product SET TwistSpec = N'125 ± 10 (Z) T/M' WHERE ProductCode = N'P1670ZFT'
+UPDATE Product SET TwistSpec = N'80.0 ± 10.0 (S) T/M' WHERE ProductCode = N'P1671TT'
+GO

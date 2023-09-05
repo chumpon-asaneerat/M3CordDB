@@ -17,13 +17,11 @@ GO
 --
 -- 
 -- =============================================
-ALTER PROCEDURE [dbo].[SaveProduct] (
+CREATE PROCEDURE [dbo].[SaveProduct] (
   @ProductCode nvarchar(30)
 , @ProductName nvarchar(100)
 , @ItemYarn nvarchar(30)
 , @CordStructure nvarchar(100)
-, @TreatRoute nvarchar(150)
-, @TwistSpec nvarchar(100)
 , @ProductId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
@@ -37,8 +35,6 @@ BEGIN
                  , ProductName = @ProductName
                  , ItemYarn = @ItemYarn
                  , CordStructure = @CordStructure
-                 , TreatRoute = @TreatRoute
-                 , TwistSpec = @TwistSpec
              WHERE ProductId = @ProductId
         END
         ELSE
@@ -49,8 +45,6 @@ BEGIN
                 , ProductName
                 , ItemYarn
                 , CordStructure
-                , TreatRoute
-                , TwistSpec                
 			)
 			VALUES
 			(
@@ -58,8 +52,6 @@ BEGIN
                 , @ProductName
                 , @ItemYarn
                 , @CordStructure
-                , @TreatRoute
-                , @TwistSpec
 			);
 
 			SET @ProductId = @@IDENTITY;
