@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #69
+- Prepare Script 2023-09-18
+- Update SP GetRawMaterialSummaries
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #68
 - Generate script 2023-09-04
 
