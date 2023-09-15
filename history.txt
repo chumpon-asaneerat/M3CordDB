@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #70
+- Update gulpfile
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #69
 - Prepare Script 2023-09-18
 - Update SP GetRawMaterialSummaries
