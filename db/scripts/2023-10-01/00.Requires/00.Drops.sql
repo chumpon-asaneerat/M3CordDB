@@ -1,3 +1,4 @@
+/*
 DELETE FROM PCTwist1Operation
 GO
 
@@ -12,3 +13,4 @@ GO
 
 DELETE FROM PCTwist1
 GO
+*/
