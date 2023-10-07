@@ -1,9 +1,3 @@
-/****** Object:  Table [dbo].[S4x2ConditionStd]    Script Date: 7/10/2566 2:29:20 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
 CREATE TABLE [dbo].[S4x2ConditionStd](
 	[ProductCode] [nvarchar](30) NULL,
 	[FullPackageModeSC] [bit] NULL,
@@ -36,6 +30,8 @@ CREATE TABLE [dbo].[S4x2ConditionStd](
 	[DoffTime] [decimal](18, 3) NULL,
 	[DoffTimeErr] [decimal](18, 3) NULL,
 	[ProductQuantitySC] [bit] NULL,
+	[ProductQuantity] [decimal](18, 3) NULL,
+	[ProductQuantityErr] [decimal](18, 3) NULL,
 	[ProductQuantityKg] [decimal](18, 3) NULL,
 	[ProductQuantityDay] [decimal](18, 3) NULL,
 	[CalculatedTwistingNumberSC] [bit] NULL,
