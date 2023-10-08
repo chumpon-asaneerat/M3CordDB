@@ -22,6 +22,7 @@ CREATE PROCEDURE [dbo].[SaveTwist1CheckSheet] (
 , @DoffNo int
 , @ShiftName nvarchar(10)
 , @UserId int
+, @Chief nvarchar(100)
 , @Remark nvarchar(100)
 , @Twist1CheckId int = NULL out
 , @errNum as int = 0 out
@@ -39,6 +40,7 @@ DECLARE @LastNo int;
                  , DoffNo = @DoffNo
                  , ShiftName = @ShiftName
                  , UserId = @UserId
+                 , Chief = @Chief
                  , [Remark] = @Remark
              WHERE Twist1CheckId = @Twist1CheckId
         END
@@ -51,6 +53,7 @@ DECLARE @LastNo int;
                 , DoffNo
                 , ShiftName
                 , UserId
+                , Chief
                 , [Remark]
 			)
 			VALUES
@@ -60,6 +63,7 @@ DECLARE @LastNo int;
                 , @DoffNo
                 , @ShiftName
                 , @UserId
+                , @Chief
                 , @Remark
 			);
 

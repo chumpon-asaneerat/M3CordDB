@@ -28,6 +28,7 @@ BEGIN
          , DoffNo
          , ShiftName
          , UserId
+         , Chief
          , [Remark]
       FROM Twist1CheckSheet
      WHERE Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
