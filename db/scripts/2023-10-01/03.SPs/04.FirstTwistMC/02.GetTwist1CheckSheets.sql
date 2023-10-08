@@ -16,33 +16,22 @@ GO
 --
 -- EXEC GetTwist1CheckSheets NULL
 -- =============================================
-ALTER PROCEDURE [dbo].[GetTwist1CheckSheets]
+CREATE PROCEDURE [dbo].[GetTwist1CheckSheets]
 (
-  @Twist1LoadId int = NULL
+  @Twist1CheckId int = NULL
 )
 AS
 BEGIN
-    SELECT Twist1LoadId
-         , SPNo
-         , RawB
-         , RawE
-         , CrossB
-         , CrossE
-         , FormB
-         , FormE
-         , KebaB
-         , KebaE
-         , StainB
-         , StainE
-         , PaperTubeB
-         , PaperTubeE
-         , YarnNoB
-         , YarnNoE
-         , BBMarkB
-         , BBMarkE
+    SELECT Twist1CheckId
+         , PCTwist1Id
+         , TestFlag
+         , DoffNo
+         , ShiftName
+         , UserId
+         , [Remark]
       FROM Twist1CheckSheet
-     WHERE Twist1LoadId = COALESCE(@Twist1LoadId, Twist1LoadId)
-     ORDER BY Twist1LoadId, SPNo;
+     WHERE Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
+     ORDER BY Twist1CheckId
 END
 
 GO
