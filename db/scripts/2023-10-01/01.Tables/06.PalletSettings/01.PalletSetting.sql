@@ -10,7 +10,6 @@ CREATE TABLE [dbo].[PalletSetting](
 	[PCTwist1Id] [int] NULL,
 	[PalletCode] [nvarchar](30) NULL,
 	[CreateDate] [datetime] NULL,
-	[TwistNo] [nvarchar](100) NULL,
 	[Counter] [int] NULL,
 	[UserId] [int] NULL,
 	[PalletType] [int] NULL,
