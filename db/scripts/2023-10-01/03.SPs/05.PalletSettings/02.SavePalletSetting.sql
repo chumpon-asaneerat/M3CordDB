@@ -20,7 +20,9 @@ CREATE PROCEDURE [dbo].[SavePalletSetting] (
   @PCTwist1Id int
 , @PalletCode nvarchar(30)
 , @CreateDate datetime
+, @TwistNo nvarchar(100)
 , @Counter int
+, @Mts nvarchar(100)
 , @UserId int
 , @PalletType int
 , @PalletStatus int
@@ -38,7 +40,9 @@ DECLARE @LastNo int;
                SET PCTwist1Id = @PCTwist1Id
                  , PalletCode = @PalletCode
                  , CreateDate = @CreateDate
+                 , TwistNo = @TwistNo
                  , [Counter] = @Counter
+                 , Mts = @Mts
                  , UserId = @UserId
                  , PalletType = @PalletType
                  , PalletStatus = @PalletStatus
@@ -51,7 +55,9 @@ DECLARE @LastNo int;
                   PCTwist1Id
                 , PalletCode
                 , CreateDate
+                , TwistNo
                 , [Counter]
+                , Mts
                 , UserId
                 , PalletType
                 , PalletStatus
@@ -61,7 +67,9 @@ DECLARE @LastNo int;
                   @PCTwist1Id
                 , @PalletCode
                 , @CreateDate
+                , @TwistNo
                 , @Counter
+                , @Mts
                 , @UserId
                 , @PalletType
                 , @PalletStatus

@@ -11,7 +11,9 @@ AS
 	     , A.PCTwist1Id
 		 , A.PalletCode
 		 , A.CreateDate
+         , A.TwistNo
 		 , A.[Counter]
+         , A.Mts
 		 , A.UserId
 		 , A.PalletType
 		 , A.PalletStatus

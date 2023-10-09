@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[PalletSetting]    Script Date: 10/9/2023 9:23:38 ******/
+/****** Object:  Table [dbo].[PalletSetting]    Script Date: 10/9/2023 18:54:41 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,7 +10,9 @@ CREATE TABLE [dbo].[PalletSetting](
 	[PCTwist1Id] [int] NULL,
 	[PalletCode] [nvarchar](30) NULL,
 	[CreateDate] [datetime] NULL,
+	[TwistNo] [nvarchar](100) NULL,
 	[Counter] [int] NULL,
+	[Mts] [nvarchar](100) NULL,
 	[UserId] [int] NULL,
 	[PalletType] [int] NULL,
 	[PalletStatus] [int] NULL,
@@ -30,3 +32,4 @@ GO
 
 ALTER TABLE [dbo].[PalletSetting] ADD  CONSTRAINT [DF_PalletSetting_PalletStatus]  DEFAULT ((0)) FOR [PalletStatus]
 GO
+
