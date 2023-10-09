@@ -17,6 +17,23 @@ GO
 */
 
 /*********** Script Update Date: 2023-10-01  ***********/
+-- DROP TABLE ConditionStd
+/*
+EXEC DropTable N'ConditionStd'
+GO
+*/
+
+DROP PROCEDURE SaveTwist1CheckSheet
+GO
+
+DROP PROCEDURE SaveTwist1CheckSheet
+GO
+
+EXEC DropTable 'Twist1CheckSheet'
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
 /****** Object:  Table [dbo].[S1ConditionStd]    Script Date: 7/10/2566 2:29:20 ******/
 SET ANSI_NULLS ON
 GO
@@ -653,6 +670,221 @@ CREATE TABLE [dbo].[CordSamplingDetails](
 	[Remark5] [nvarchar](100) NULL,
 	[RemarkSum] [nvarchar](100) NULL
 ) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/9/2023 4:56:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Twist1CheckSheet](
+	[Twist1CheckId] [int] NOT NULL,
+	[PCTwist1Id] [int] NULL,
+	[TestFlag] [bit] NULL DEFAULT 0,
+	[DoffNo] [int] NULL,
+	[ShiftName] [nvarchar](10) NULL,
+	[UserId] [int] NULL,
+	[Chief] [nvarchar](100) NULL,
+	[Remark] [nvarchar](100) NULL,
+ CONSTRAINT [PK_Twist1CheckSheet] PRIMARY KEY CLUSTERED 
+(
+	[Twist1CheckId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  Table [dbo].[Twist1CheckSheetItem]    Script Date: 10/9/2023 4:57:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Twist1CheckSheetItem](
+	[Twist1CheckId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[RawB] [bit] NULL,
+	[RawE] [bit] NULL,
+	[CrossB] [bit] NULL,
+	[CrossE] [bit] NULL,
+	[FormB] [bit] NULL,
+	[FormE] [bit] NULL,
+	[KebaB] [bit] NULL,
+	[KebaE] [bit] NULL,
+	[StainB] [bit] NULL,
+	[StainE] [bit] NULL,
+	[PaperTubeB] [bit] NULL,
+	[PaperTubeE] [bit] NULL,
+	[YarnNoB] [bit] NULL,
+	[YarnNoE] [bit] NULL,
+	[BBMarkB] [bit] NULL,
+	[BBMarkE] [bit] NULL,
+ CONSTRAINT [PK_Twist1CheckSheetItem] PRIMARY KEY CLUSTERED 
+(
+	[Twist1CheckId] ASC,
+	[SPNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_RawB]  DEFAULT ((0)) FOR [RawB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_RawE]  DEFAULT ((0)) FOR [RawE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_CrossB]  DEFAULT ((0)) FOR [CrossB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_CrossE]  DEFAULT ((0)) FOR [CrossE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_FormB]  DEFAULT ((0)) FOR [FormB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_FormE]  DEFAULT ((0)) FOR [FormE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_KebaB]  DEFAULT ((0)) FOR [KebaB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_KebaE]  DEFAULT ((0)) FOR [KebaE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_StainB]  DEFAULT ((0)) FOR [StainB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_StainE]  DEFAULT ((0)) FOR [StainE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_PaperTubeB]  DEFAULT ((0)) FOR [PaperTubeB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_PaperTubeE]  DEFAULT ((0)) FOR [PaperTubeE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_YarnNoB]  DEFAULT ((0)) FOR [YarnNoB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_YarnNoE]  DEFAULT ((0)) FOR [YarnNoE]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_BBMarkB]  DEFAULT ((0)) FOR [BBMarkB]
+GO
+
+ALTER TABLE [dbo].[Twist1CheckSheetItem] ADD  CONSTRAINT [DF_Twist1CheckSheetItem_BBMarkE]  DEFAULT ((0)) FOR [BBMarkE]
+GO
+
+
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  Table [dbo].[PalletSetting]    Script Date: 10/9/2023 18:54:41 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PalletSetting](
+	[PalletId] [int] IDENTITY(1,1) NOT NULL,
+	[PCTwist1Id] [int] NULL,
+	[PalletCode] [nvarchar](30) NULL,
+	[CreateDate] [datetime] NULL,
+	[TwistNo] [nvarchar](100) NULL,
+	[Counter] [int] NULL,
+	[Mts] [nvarchar](100) NULL,
+	[UserId] [int] NULL,
+	[PalletType] [int] NULL,
+	[PalletStatus] [int] NULL,
+ CONSTRAINT [PK_PalletSetting] PRIMARY KEY CLUSTERED 
+(
+	[PalletId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[PalletSetting] ADD  CONSTRAINT [DF_PalletSetting_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
+GO
+
+ALTER TABLE [dbo].[PalletSetting] ADD  CONSTRAINT [DF_PalletSetting_PalletType]  DEFAULT ((0)) FOR [PalletType]
+GO
+
+ALTER TABLE [dbo].[PalletSetting] ADD  CONSTRAINT [DF_PalletSetting_PalletStatus]  DEFAULT ((0)) FOR [PalletStatus]
+GO
+
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  Table [dbo].[PalletSettingItem]    Script Date: 10/9/2023 9:24:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PalletSettingItem](
+	[PalletId] [int] NOT NULL,
+	[DoffNo] [int] NOT NULL,
+	[CH] [decimal](18, 3) NULL,
+	[SPNoStart] [int] NULL,
+	[SPNoEnd] [int] NULL,
+ CONSTRAINT [PK_PalletSettingItem] PRIMARY KEY CLUSTERED 
+(
+	[PalletId] ASC,
+	[DoffNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  View [dbo].[PalletSettingView]    Script Date: 11/27/2022 10:10:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW PalletSettingView
+AS
+	SELECT A.PalletId
+	     , A.PCTwist1Id
+		 , A.PalletCode
+		 , A.CreateDate
+         , A.TwistNo
+		 , A.[Counter]
+         , A.Mts
+		 , A.UserId
+		 , A.PalletType
+		 , A.PalletStatus
+		 , B.PCId
+		 , B.PCDate
+		 , B.CustomerId
+		 , B.CustomerName
+		 , B.ProductCode
+		 , B.ProductName
+		 , B.ItemYarn
+		 , B.CordStructure
+		 , B.TreatRoute
+		 , B.TwistSpec
+		 , B.ProductLotNo
+		 , B.MCCode
+		 , B.ActualQty
+		 , B.TargetQty
+	  FROM PalletSetting A 
+	  LEFT JOIN PCTwist1View B ON B.PCTwist1Id = A.PCTwist1Id
 
 GO
 
@@ -4135,10 +4367,1279 @@ GO
 
 
 /*********** Script Update Date: 2023-10-01  ***********/
--- Port data to new tables
-
--- DROP TABLE ConditionStd
-/*
-EXEC DropTable N'ConditionStd'
+/****** Object:  StoredProcedure [dbo].[SaveTwist1CheckSheet]    Script Date: 10/9/2023 4:50:30 ******/
+SET ANSI_NULLS ON
 GO
-*/
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveTwist1CheckSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveTwist1CheckSheet] (
+  @PCTwist1Id int
+, @TestFlag bit
+, @DoffNo int
+, @ShiftName nvarchar(10)
+, @UserId int
+, @Chief nvarchar(100)
+, @Remark nvarchar(100)
+, @Twist1CheckId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM Twist1CheckSheet 
+                    WHERE Twist1CheckId = @Twist1CheckId)
+        BEGIN
+            UPDATE Twist1CheckSheet 
+               SET PCTwist1Id = @PCTwist1Id
+                 , TestFlag = @TestFlag
+                 , DoffNo = @DoffNo
+                 , ShiftName = @ShiftName
+                 , UserId = @UserId
+                 , Chief = @Chief
+                 , [Remark] = @Remark
+             WHERE Twist1CheckId = @Twist1CheckId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO Twist1CheckSheet
+		    (
+                  PCTwist1Id
+                , TestFlag
+                , DoffNo
+                , ShiftName
+                , UserId
+                , Chief
+                , [Remark]
+			)
+			VALUES
+			(
+                  @PCTwist1Id
+                , @TestFlag
+                , @DoffNo
+                , @ShiftName
+                , @UserId
+                , @Chief
+                , @Remark
+			);
+
+			SET @Twist1CheckId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[GetTwist1CheckSheets]    Script Date: 10/9/2023 4:50:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetTwist1CheckSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetTwist1CheckSheets NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetTwist1CheckSheets]
+(
+  @Twist1CheckId int = NULL
+)
+AS
+BEGIN
+    SELECT Twist1CheckId
+         , PCTwist1Id
+         , TestFlag
+         , DoffNo
+         , ShiftName
+         , UserId
+         , Chief
+         , [Remark]
+      FROM Twist1CheckSheet
+     WHERE Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
+     ORDER BY Twist1CheckId
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveTwist1CheckSheetItem]    Script Date: 10/9/2023 4:50:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveTwist1CheckSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveTwist1CheckSheetItem] (
+  @Twist1CheckId int
+, @SPNo int
+, @RawB bit
+, @RawE bit
+, @CrossB bit
+, @CrossE bit
+, @FormB bit
+, @FormE bit
+, @KebaB bit
+, @KebaE bit
+, @StainB bit
+, @StainE bit
+, @PaperTubeB bit
+, @PaperTubeE bit
+, @YarnNoB bit
+, @YarnNoE bit
+, @BBMarkB bit
+, @BBMarkE bit
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM Twist1CheckSheetItem 
+                    WHERE Twist1CheckId = @Twist1CheckId
+                      AND SPNo = @SPNo)
+        BEGIN
+            UPDATE Twist1CheckSheetItem 
+               SET RawB = @RawB
+                 , RawE = @RawE
+                 , CrossB = @CrossB
+                 , CrossE = @CrossE
+                 , FormB = @FormB
+                 , FormE = @FormE
+                 , KebaB = @KebaB
+                 , KebaE = @KebaE
+                 , StainB = @StainB
+                 , StainE = @StainE
+                 , PaperTubeB = @PaperTubeB
+                 , PaperTubeE = @PaperTubeE
+                 , YarnNoB = @YarnNoB
+                 , YarnNoE = @YarnNoE
+                 , BBMarkB = @BBMarkB
+                 , BBMarkE = @BBMarkE
+             WHERE Twist1CheckId = @Twist1CheckId
+               AND SPNo = @SPNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO Twist1CheckSheetItem
+		    (
+                  Twist1CheckId
+                , SPNo
+                , RawB
+                , RawE
+                , CrossB
+                , CrossE
+                , FormB
+                , FormE
+                , KebaB
+                , KebaE
+                , StainB
+                , StainE
+                , PaperTubeB
+                , PaperTubeE
+                , YarnNoB
+                , YarnNoE
+                , BBMarkB
+                , BBMarkE
+			)
+			VALUES
+			(
+                  @Twist1CheckId
+                , @SPNo
+                , @RawB
+                , @RawE
+                , @CrossB
+                , @CrossE
+                , @FormB
+                , @FormE
+                , @KebaB
+                , @KebaE
+                , @StainB
+                , @StainE
+                , @PaperTubeB
+                , @PaperTubeE
+                , @YarnNoB
+                , @YarnNoE
+                , @BBMarkB
+                , @BBMarkE
+			);
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[GetTwist1CheckSheetItems]    Script Date: 10/9/2023 4:50:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetTwist1CheckSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetTwist1CheckSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetTwist1CheckSheetItems]
+(
+  @Twist1CheckId int = NULL
+)
+AS
+BEGIN
+    SELECT Twist1CheckId
+         , SPNo
+         , RawB
+         , RawE
+         , CrossB
+         , CrossE
+         , FormB
+         , FormE
+         , KebaB
+         , KebaE
+         , StainB
+         , StainE
+         , PaperTubeB
+         , PaperTubeE
+         , YarnNoB
+         , YarnNoE
+         , BBMarkB
+         , BBMarkE
+      FROM Twist1CheckSheetItem
+     WHERE Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
+     ORDER BY Twist1CheckId, SPNo;
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[SearchPCTwist1ByLotNo]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SearchPCTwist1
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC SearchPCTwist1ByLotNo NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[SearchPCTwist1ByLotNo]
+(
+  @ProductLotNo nvarchar(30) = NULL
+)
+AS
+BEGIN
+	SELECT *
+	  FROM PCTwist1View
+	 WHERE UPPER(LTRIM(RTRIM(ProductLotNo))) = UPPER(LTRIM(RTRIM(COALESCE(@ProductLotNo, ProductLotNo))))
+     ORDER BY PCDate, ProductLotNo
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[GetPalletSettings]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetPalletSettings
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetPalletSettings NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPalletSettings]
+(
+  @unused bit = NULL
+)
+AS
+BEGIN
+	SELECT *
+	  FROM PalletSettingView
+     ORDER BY CreateDate, ProductLotNo
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[SavePalletSetting]    Script Date: 10/9/2023 4:50:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SavePalletSetting
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SavePalletSetting] (
+  @PCTwist1Id int
+, @PalletCode nvarchar(30)
+, @CreateDate datetime
+, @TwistNo nvarchar(100)
+, @Counter int
+, @Mts nvarchar(100)
+, @UserId int
+, @PalletType int
+, @PalletStatus int
+, @PalletId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM PalletSetting 
+                    WHERE PalletId = @PalletId)
+        BEGIN
+            UPDATE PalletSetting 
+               SET PCTwist1Id = @PCTwist1Id
+                 , PalletCode = @PalletCode
+                 , CreateDate = @CreateDate
+                 , TwistNo = @TwistNo
+                 , [Counter] = @Counter
+                 , Mts = @Mts
+                 , UserId = @UserId
+                 , PalletType = @PalletType
+                 , PalletStatus = @PalletStatus
+             WHERE PalletId = @PalletId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO PalletSetting
+		    (
+                  PCTwist1Id
+                , PalletCode
+                , CreateDate
+                , TwistNo
+                , [Counter]
+                , Mts
+                , UserId
+                , PalletType
+                , PalletStatus
+			)
+			VALUES
+			(
+                  @PCTwist1Id
+                , @PalletCode
+                , @CreateDate
+                , @TwistNo
+                , @Counter
+                , @Mts
+                , @UserId
+                , @PalletType
+                , @PalletStatus
+			);
+        END
+
+        SET @PalletId = @@IDENTITY;
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[SearchPalletSettings]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SearchPalletSettings
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC SearchPalletSettings NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[SearchPalletSettings]
+(
+  @ProductLotNo nvarchar(30) = NULL
+, @beginDate datetime = NULL
+, @endDate datetime = NULL
+, @ProductCode nvarchar(30) = NULL
+)
+AS
+BEGIN
+	SELECT *
+	  FROM PalletSettingView
+	 WHERE UPPER(LTRIM(RTRIM(ProductCode))) = UPPER(LTRIM(RTRIM(COALESCE(@ProductCode, ProductCode))))
+       AND UPPER(LTRIM(RTRIM(ProductLotNo))) = UPPER(LTRIM(RTRIM(COALESCE(@ProductLotNo, ProductLotNo))))
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, CreateDate)) >= COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @beginDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, CreateDate)))
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, CreateDate)) <= COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @endDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, CreateDate)))
+     ORDER BY CreateDate, ProductLotNo
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[GetPalletSettingItems]    Script Date: 11/27/2022 9:58:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetPalletSettingItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetPalletSettingItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPalletSettingItems]
+(
+  @PalletId int = NULL
+)
+AS
+BEGIN
+	SELECT PalletId
+         , DoffNo
+         , CH
+         , SPNoStart
+         , SPNoEnd
+	  FROM PalletSettingItem
+     WHERE PalletId = COALESCE(@PalletId, PalletId)
+     ORDER BY PalletId, DoffNo
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+/****** Object:  StoredProcedure [dbo].[SavePalletSettingItem]    Script Date: 10/9/2023 4:50:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SavePalletSettingItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SavePalletSettingItem] (
+  @PalletId int
+, @DoffNo int
+, @CH decimal(18,3)
+, @SPNoStart int
+, @SPNoEnd int
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM PalletSettingItem 
+                    WHERE PalletId = @PalletId
+                      AND DoffNo = @DoffNo)
+        BEGIN
+            UPDATE PalletSettingItem 
+               SET CH = @CH
+                 , SPNoStart = @SPNoStart
+                 , SPNoEnd = @SPNoEnd
+             WHERE PalletId = @PalletId
+               AND DoffNo = @DoffNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO PalletSettingItem
+		    (
+                  PalletId
+                , DoffNo
+                , CH
+                , SPNoStart
+                , SPNoEnd
+			)
+			VALUES
+			(
+                  @PalletId
+                , @DoffNo
+                , @CH
+                , @SPNoStart
+                , @SPNoEnd
+			);
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-01  ***********/
+DELETE FROM S1Condition
+GO
+DELETE FROM S4x1Condition
+GO
+DELETE FROM S4x2Condition
+GO
+DELETE FROM S5Condition
+GO
+
+-- S1
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9A0663L',0,'8 1/2" R x 14" L'
+,1,41,45,83
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1 Pcs.'
+,0,20120,30
+,0,4.5,0.02
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,164,22
+,0,3800,30
+,0,23.56,2.9
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterUnit2SC,CouterUnit2,CouterUnit2Err
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CouterWeight2SC,CouterWeight2,CouterWeight2Err
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9A1100L',0,'8 1/2" R x 14" L'
+,1,72,62,66
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1 Pcs.'
+,0,12000,30
+,0,24000,30
+,0,2.75,0.05
+,0,5.5,0.05
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,165,17
+,0,3800,30
+,0,23.29,2.58
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9H0663SL',0,'8 1/2" R x 14" L'
+,1,38,45,83
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1 Pcs.'
+,0,600,0
+,0,0,0
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,153.2,22
+,0,3100,30
+,0,18.9,2.76
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+--9H0663SL(1)
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9H0663SL',0,'8 1/2" R x 14" L'
+,1,38,45,83
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1 Pcs.'
+,0,600,0
+,0,0,0
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,177.4,22
+,0,3100,30
+,0,18.9,2.76
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+--9H0663SL(2)
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9H0663SL',0,'8 1/2" R x 14" L'
+,1,41,45,83
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1 Pcs.'
+,0,600,0
+,0,0,0
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,164,22
+,0,3100,30
+,0,18.9,2.76
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+--9A1100L(3)
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('9H0663SL',0,'8 1/2" R x 14" L'
+,1,41,45,83
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1 Pcs.'
+,0,20000,30
+,0,4.5,0.2
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,164,22
+,0,3100,30
+,0,19.27,2.76
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('R10023',0,'8 1/2" R x 14" L'
+,1,78,56,72
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1 Pcs.'
+,0,13500,50
+,0,3,0.05
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,210,20
+,0,3800,30
+,0,16.02,6.05
+,0,'รอยต่อต้องไม่เกิน 2 จุด ต่อ 1 Bobbin');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('1800TW',0,'210 x 356'
+,1,39,66,62
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1Pcs'
+,0,33100,50
+,0,5.7,0.03
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,75,15
+,0,3800,30
+,0,50.66,10.97
+,0,'ไม่มีรอยต่อ');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('KT3R16',0,'81/2"R18"L'
+,1,36,72,56
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1 Pcs.'
+,0,21800,50
+,0,5.7,0.2
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,60,12
+,0,3100,30
+,0,51.66,11.28
+,0,'มีรอยต่อ ได้ 2 รอยต่อ');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('KT3S71',0,'81/2"R18"L'
+,1,43,56,72
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1 Pcs.'
+,0,21700,50
+,0,5,0.2
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,120,15
+,0,3800,30
+,0,32.2,4.27
+,0,'มีรอยต่อ ได้ 2 รอยต่อ');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1100ZFT',0,'81/2"R14"L'
+,1,44,66,62
+,0,48,56
+,0,217
+,0,'RK - 500 J x 1Pcs'
+,0,45300,50
+,0,5,0.2
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,90,10
+,0,3800,30
+,0,42.78,5.08
+,0,'ไม่มีรอยต่อ');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1402TRH',0,'81/2"R14"L'
+,1,42,83,45
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1Pcs'
+,0,16450,100
+,0,4.4,0.1
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,45,20
+,0,3100,30
+,0,86.21,38.98
+,0,'ไม่มีรอยต่อ');
+
+INSERT INTO S1ConditionStd
+( ProductCode,RingDiameterSC,RingDiameter
+,TwistChangeGearSC,TwistChangeGearI,TwistChangeGearJ,TwistChangeGearK
+,LifterChangeGearSC,LifterChangeGearA,LifterChangeGearB
+,OuterDiameterSC,OuterDiameter
+,TravellerNoSC,TravellerNo
+,CouterUnitSC,CouterUnit,CouterUnitErr
+,CouterWeightSC,CouterWeight,CouterWeightErr
+,CounterSystemSC,CounterSystem
+,SenserYarnBreakSC,SenserYarnBreak
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1670T1R',0,'81/2"R14"L'
+,1,36,44,84
+,0,48,56
+,0,177
+,0,'RK - 500 J x 1Pcs'
+,0,1793,50
+,0,3.1,0.1
+,0,'เมื่อด้ายเต็ม Counter ที่ตั้งไว้เครื่องต้องหยุดและมีสัญญาณไฟเตือน'
+,0,'เมื่อด้ายขาด เครื่องหยุด และมีสัญญาณเตือน'
+,1,150,10
+,0,3100,30
+,0,20.14,2.21
+,0,'ไม่มีรอยต่อ');
+GO
+
+-- S4x1
+INSERT INTO S4x1ConditionStd
+( ProductCode,TwistChangeGearSC,TwistChangeGearE,TwistChangeGearF,TwistChangeGearG,TwistChangeGearH
+,MotorPulleyDiaSC,MotorPulleyDia,DrivingPulleyDiaSC,DrivingPulleyDia
+,OverFeedSC,OverFeedRate,OverFeedGear
+,WindAngleSC,WindAngleDeg,WindAngleGearA,WindAngleGearB
+,TensorDialSetSC,TensorDialSet,NumberOfLoopSC,NumberOfLoop,NumberOfLoopErr
+,MethodOfKnotSC,MethodOfKnot,WindQuantitySC,WindQuantity,WindQuantityErr
+,LengthSC,[Length],LengthErr
+,DoffTimeSC,DoffTime,DoffTimeErr
+,ProductQuantitySC,ProductQuantityDay,ProductQuantityKg
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1671TT',1,68,32,50,80
+,0,224,0,236
+,0,15.6,28
+,0,35,62,80
+,0,3,0,1,0.5
+,0,'NO KNOT',0,5.1,0.2
+,0,30070,100
+,0,5,0.5
+,0,null,null
+,1,80,10
+,0,4150,100
+,0,122.58,15.71
+,0,'ไม่มีรอยต่อ');
+GO
+
+-- S4x2
+INSERT INTO S4x2ConditionStd
+( ProductCode,FullPackageModeSC,FullPackageMode
+,LengthSC,[Length],LengthErr
+,WindAngleShiftFunctionSC,WindAngleShiftFunction
+,AmountOfDisturbSC,AmountOfDisturb
+,WindAngleSC,WindAngle
+,DistuebAccelerationTimeSC,DistuebAccelerationTime
+,DistuebDccelerationTimeSC,DistuebDccelerationTime
+,TensorSettingSC,TensorSetting
+,FeedRollerSettingSC,FeedRollerSetting
+,BollonSettingSC,BollonSetting
+,MethodOfKnotSC,MethodOfKnot
+,WindQuantitySC,WindQuantity,WindQuantityErr
+,DoffTimeSC,DoffTime,DoffTimeErr
+,ProductQuantitySC,ProductQuantityKg,ProductQuantityDay
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('H1671T',0,'Full package'
+,0,30150,100
+,0,'Linear'
+,0,'+ 5%'
+,0,20
+,0,7.5
+,0,7.5
+,0,'No.3'
+,0,'No.6'
+,0,'No.8'
+,0,'NO KNOT'
+,0,5,0.1
+,0,5.33,0.1
+,0,null,null
+,1,60,10
+,0,2800,100
+,0,93.33,3.33
+,0,'ไม่มีรอยต่อ');
+
+INSERT INTO S4x2ConditionStd
+( ProductCode,FullPackageModeSC,FullPackageMode
+,LengthSC,[Length],LengthErr
+,WindAngleShiftFunctionSC,WindAngleShiftFunction
+,AmountOfDisturbSC,AmountOfDisturb
+,WindAngleSC,WindAngle
+,DistuebAccelerationTimeSC,DistuebAccelerationTime
+,DistuebDccelerationTimeSC,DistuebDccelerationTime
+,TensorSettingSC,TensorSetting
+,FeedRollerSettingSC,FeedRollerSetting
+,BollonSettingSC,BollonSetting
+,MethodOfKnotSC,MethodOfKnot
+,WindQuantitySC,WindQuantity,WindQuantityErr
+,DoffTimeSC,DoffTime,DoffTimeErr
+,ProductQuantitySC,ProductQuantityKg,ProductQuantityDay
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1100TT',0,'Full package'
+,0,45300,100
+,0,'Linear'
+,0,'+ 5%'
+,0,20
+,0,7.5
+,0,7.5
+,0,'No.3'
+,0,'No.6'
+,0,'No.8'
+,0,'NO KNOT'
+,0,5,0.1
+,0,6.96,0.1
+,0,null,null
+,1,80,10
+,0,4200,100
+,0,106.97,15.87
+,0,'ไม่มีรอยต่อ');
+
+INSERT INTO S4x2ConditionStd
+( ProductCode,FullPackageModeSC,FullPackageMode
+,LengthSC,[Length],LengthErr
+,WindAngleShiftFunctionSC,WindAngleShiftFunction
+,AmountOfDisturbSC,AmountOfDisturb
+,WindAngleSC,WindAngle
+,DistuebAccelerationTimeSC,DistuebAccelerationTime
+,DistuebDccelerationTimeSC,DistuebDccelerationTime
+,TensorSettingSC,TensorSetting
+,FeedRollerSettingSC,FeedRollerSetting
+,BollonSettingSC,BollonSetting
+,MethodOfKnotSC,MethodOfKnot
+,WindQuantitySC,WindQuantity,WindQuantityErr
+,DoffTimeSC,DoffTime,DoffTimeErr
+,ProductQuantitySC,ProductQuantityKg,ProductQuantityDay
+,CalculatedTwistingNumberSC,CalculatedTwistingNumber,CalculatedTwistingNumberErr
+,NumberOfSpindleRotationSC,NumberOfSpindleRotation,NumberOfSpindleRotationErr
+,YarnSpeedSC,YarnSpeed,YarnSpeedErr
+,SpecialMentionSC,SpecialMention )
+VALUES
+('P1671TT',0,'Full package'
+,0,30150,100
+,0,'Linear'
+,0,'+ 5%'
+,0,20
+,0,7.5
+,0,7.5
+,0,'No.3'
+,0,'No.6'
+,0,'No.8'
+,0,'NO KNOT'
+,0,5.1,0.2
+,0,5,0.5
+,0,null,null
+,1,80,10
+,0,4200,100
+,0,105,15.87
+,0,'ไม่มีรอยต่อ');
+GO
+
+-- S5
+INSERT INTO S5ConditionStd
+( ProductCode,MainSupplySteamPressureSC,MainSupplySteamPressureSet,MainSupplySteamPressureSetErr,MainSupplySteamPressureSpec,MainSupplySteamPressureSpecErr
+,AgeingSteamPressureSC,AgeingSteamPressureSet,AgeingSteamPressureSetErr,AgeingSteamPressureSpec,AgeingSteamPressureSpecErr
+,SettingTemperatureSC,SettingTemperatureSet,SettingTemperatureSetErr,SettingTemperatureSpec,SettingTemperatureSpecErr
+,SettingTimeSC,SettingTimeSet,SettingTimeSetErr,SettingTimeSpec,SettingTimeSpecErr
+,LampStatusSystemSC,LampStatusSystemSet,LampStatusSystemSpec
+,SoudSystemTemperatureSC,SoudSystemTemperatureSet,SoudSystemTemperatureSpec
+,YarnTypeSC,YarnTypeSet,YarnTypeSpec
+,CordStructureSC,CordStructureSet,CordStructureSpec
+,TwistingNoSC,TwistingNoSet,TwistingNoSetErr,TwistingNoSpec,TwistingNoSpecErr
+,UnitWeightSC,UnitWeightSet,UnitWeightSetErr,UnitWeightSpec,UnitWeightSpecErr)
+VALUES
+('H1671T',0,6,1,6,1
+,0,6,1,6,1
+,0,60,3,60,3
+,0,12,0.5,12,0.5
+,0,'เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์','เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์'
+,0,'มีสัญญานเสียงเตือนอุณภูมิ','มีสัญญานเสียงเตือนอุณภูมิ'
+,1,'1670T - 360F - 705M','1670T - 360F - 705M'
+,0,'P1670/1','P1670/1'
+,1,60,10,60,10
+,0,5.1,0.2,5.1,0.2);
+
+INSERT INTO S5ConditionStd
+( ProductCode,MainSupplySteamPressureSC,MainSupplySteamPressureSet,MainSupplySteamPressureSetErr,MainSupplySteamPressureSpec,MainSupplySteamPressureSpecErr
+,AgeingSteamPressureSC,AgeingSteamPressureSet,AgeingSteamPressureSetErr,AgeingSteamPressureSpec,AgeingSteamPressureSpecErr
+,SettingTemperatureSC,SettingTemperatureSet,SettingTemperatureSetErr,SettingTemperatureSpec,SettingTemperatureSpecErr
+,SettingTimeSC,SettingTimeSet,SettingTimeSetErr,SettingTimeSpec,SettingTimeSpecErr
+,LampStatusSystemSC,LampStatusSystemSet,LampStatusSystemSpec
+,SoudSystemTemperatureSC,SoudSystemTemperatureSet,SoudSystemTemperatureSpec
+,YarnTypeSC,YarnTypeSet,YarnTypeSpec
+,CordStructureSC,CordStructureSet,CordStructureSpec
+,TwistingNoSC,TwistingNoSet,TwistingNoSetErr,TwistingNoSpec,TwistingNoSpecErr
+,UnitWeightSC,UnitWeightSet,UnitWeightSetErr,UnitWeightSpec,UnitWeightSpecErr)
+VALUES
+('KT3R16',0,6,1,6,1
+,0,6,1,6,1
+,0,60,3,60,3
+,0,3,0.5,3,0.5
+,0,'เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์','เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์'
+,0,'มีสัญญานเสียงเตือนอุณภูมิ','มีสัญญานเสียงเตือนอุณภูมิ'
+,1,'1100T - 240F - 707M','1100T - 240F - 707M'
+,0,'P1100T//2','P1100T//2'
+,1,60,15,60,15
+,0,5,0.1,5,0.1);
+
+INSERT INTO S5ConditionStd
+( ProductCode,MainSupplySteamPressureSC,MainSupplySteamPressureSet,MainSupplySteamPressureSetErr,MainSupplySteamPressureSpec,MainSupplySteamPressureSpecErr
+,AgeingSteamPressureSC,AgeingSteamPressureSet,AgeingSteamPressureSetErr,AgeingSteamPressureSpec,AgeingSteamPressureSpecErr
+,SettingTemperatureSC,SettingTemperatureSet,SettingTemperatureSetErr,SettingTemperatureSpec,SettingTemperatureSpecErr
+,SettingTimeSC,SettingTimeSet,SettingTimeSetErr,SettingTimeSpec,SettingTimeSpecErr
+,LampStatusSystemSC,LampStatusSystemSet,LampStatusSystemSpec
+,SoudSystemTemperatureSC,SoudSystemTemperatureSet,SoudSystemTemperatureSpec
+,YarnTypeSC,YarnTypeSet,YarnTypeSpec
+,CordStructureSC,CordStructureSet,CordStructureSpec
+,TwistingNoSC,TwistingNoSet,TwistingNoSetErr,TwistingNoSpec,TwistingNoSpecErr
+,UnitWeightSC,UnitWeightSet,UnitWeightSetErr,UnitWeightSpec,UnitWeightSpecErr)
+VALUES
+('P1100TT',0,6,1,6,1
+,0,6,1,6,1
+,0,60,3,60,3
+,0,12,0.5,12,0.5
+,0,'เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์','เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์'
+,0,'มีสัญญานเสียงเตือนอุณภูมิ','มีสัญญานเสียงเตือนอุณภูมิ'
+,1,'1100T - 240F - 705M','1100T - 240F - 705M'
+,0,'P1100/1','P1100/1'
+,1,80,10,80,10
+,0,5,0.1,5,0.1);
+
+INSERT INTO S5ConditionStd
+( ProductCode,MainSupplySteamPressureSC,MainSupplySteamPressureSet,MainSupplySteamPressureSetErr,MainSupplySteamPressureSpec,MainSupplySteamPressureSpecErr
+,AgeingSteamPressureSC,AgeingSteamPressureSet,AgeingSteamPressureSetErr,AgeingSteamPressureSpec,AgeingSteamPressureSpecErr
+,SettingTemperatureSC,SettingTemperatureSet,SettingTemperatureSetErr,SettingTemperatureSpec,SettingTemperatureSpecErr
+,SettingTimeSC,SettingTimeSet,SettingTimeSetErr,SettingTimeSpec,SettingTimeSpecErr
+,LampStatusSystemSC,LampStatusSystemSet,LampStatusSystemSpec
+,SoudSystemTemperatureSC,SoudSystemTemperatureSet,SoudSystemTemperatureSpec
+,YarnTypeSC,YarnTypeSet,YarnTypeSpec
+,CordStructureSC,CordStructureSet,CordStructureSpec
+,TwistingNoSC,TwistingNoSet,TwistingNoSetErr,TwistingNoSpec,TwistingNoSpecErr
+,UnitWeightSC,UnitWeightSet,UnitWeightSetErr,UnitWeightSpec,UnitWeightSpecErr)
+VALUES
+('P1671T',0,6,1,6,1
+,0,6,1,6,1
+,0,60,3,60,3
+,0,12,0.5,12,0.5
+,0,'เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์','เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์'
+,0,'มีสัญญานเสียงเตือนอุณภูมิ','มีสัญญานเสียงเตือนอุณภูมิ'
+,1,'1670T - 360F - 705M','1670T - 360F - 705M'
+,0,'P1670/1','P1670/1'
+,1,80,10,80,10
+,0,5,0.2,5,0.2);
+
+INSERT INTO S5ConditionStd
+( ProductCode,MainSupplySteamPressureSC,MainSupplySteamPressureSet,MainSupplySteamPressureSetErr,MainSupplySteamPressureSpec,MainSupplySteamPressureSpecErr
+,AgeingSteamPressureSC,AgeingSteamPressureSet,AgeingSteamPressureSetErr,AgeingSteamPressureSpec,AgeingSteamPressureSpecErr
+,SettingTemperatureSC,SettingTemperatureSet,SettingTemperatureSetErr,SettingTemperatureSpec,SettingTemperatureSpecErr
+,SettingTimeSC,SettingTimeSet,SettingTimeSetErr,SettingTimeSpec,SettingTimeSpecErr
+,LampStatusSystemSC,LampStatusSystemSet,LampStatusSystemSpec
+,SoudSystemTemperatureSC,SoudSystemTemperatureSet,SoudSystemTemperatureSpec
+,YarnTypeSC,YarnTypeSet,YarnTypeSpec
+,CordStructureSC,CordStructureSet,CordStructureSpec
+,TwistingNoSC,TwistingNoSet,TwistingNoSetErr,TwistingNoSpec,TwistingNoSpecErr
+,UnitWeightSC,UnitWeightSet,UnitWeightSetErr,UnitWeightSpec,UnitWeightSpecErr)
+VALUES
+('P1671TT',0,6,1,6,1
+,0,6,1,6,1
+,0,60,3,60,3
+,0,12,0.5,12,0.5
+,0,'เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์','เมื่อกดเปิดเครื่องต้องมีสัญญานไฟโชว์'
+,0,'มีสัญญานเสียงเตือนอุณภูมิ','มีสัญญานเสียงเตือนอุณภูมิ'
+,1,'1670T - 360F - 705M','1670T - 360F - 705M'
+,0,'P1670/1','P1670/1'
+,1,80,10,80,10
+,0,5,0.2,5,0.2);
+GO
+
