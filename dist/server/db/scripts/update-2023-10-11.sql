@@ -1,10 +1,10 @@
-/*********** Script Update Date: 2023-10-15  ***********/
+/*********** Script Update Date: 2023-10-11  ***********/
 
 
-/*********** Script Update Date: 2023-10-15  ***********/
+/*********** Script Update Date: 2023-10-11  ***********/
 
 
-/*********** Script Update Date: 2023-10-15  ***********/
+/*********** Script Update Date: 2023-10-11  ***********/
 /****** Object:  StoredProcedure [dbo].[SearchWarehousePallet]    Script Date: 10/11/2023 9:28:47 ******/
 SET ANSI_NULLS ON
 GO
