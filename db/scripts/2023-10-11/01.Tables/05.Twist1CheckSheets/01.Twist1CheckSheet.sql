@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 11:59:48 ******/
+/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 12:57:58 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -6,7 +6,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Twist1CheckSheet](
-	[Twist1CheckId] [int] NOT NULL,
+	[Twist1CheckId] [int] IDENTITY(1,1) NOT NULL,
 	[PCTwist1Id] [int] NULL,
 	[ConditionDate] [datetime] NULL,
 	[TestFlag] [bit] NULL,
