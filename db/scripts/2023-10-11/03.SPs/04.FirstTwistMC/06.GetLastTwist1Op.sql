@@ -1,4 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[GetCurrentTwist1Op]    Script Date: 10/13/2023 14:03:27 ******/
+/****** Object:  StoredProcedure [dbo].[GetLastTwist1Op]    Script Date: 10/13/2023 14:03:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7,16 +7,16 @@ GO
 
 -- =============================================
 -- Author: Chumpon Asaneerat
--- Description:	GetRawMaterialSummaries
+-- Description:	GetLastTwist1Op
 -- [== History ==]
 -- <2023-04-26> :
 --	- Stored Procedure Created.
 --
 -- [== Example ==]
 --
--- EXEC GetCurrentTwist1Op NULL
+-- EXEC GetLastTwist1Op NULL
 -- =============================================
-CREATE PROCEDURE [dbo].[GetCurrentTwist1Op]
+CREATE PROCEDURE [dbo].[GetLastTwist1Op]
 (
   @PCTwist1Id int
 )
