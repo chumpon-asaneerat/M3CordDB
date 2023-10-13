@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 12:57:58 ******/
+/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 13:17:25 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -8,9 +8,11 @@ GO
 CREATE TABLE [dbo].[Twist1CheckSheet](
 	[Twist1CheckId] [int] IDENTITY(1,1) NOT NULL,
 	[PCTwist1Id] [int] NULL,
+	[ProductionDate] [datetime] NULL,
 	[ConditionDate] [datetime] NULL,
 	[TestFlag] [bit] NULL,
 	[DoffNo] [int] NULL,
+	[ItemYarn] [nvarchar](30) NULL,
 	[ShiftName] [nvarchar](10) NULL,
 	[UserId] [int] NULL,
 	[Chief] [nvarchar](100) NULL,

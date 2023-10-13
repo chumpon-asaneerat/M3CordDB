@@ -18,21 +18,25 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[GetTwist1CheckSheets]
 (
-  @Twist1CheckId int = NULL
+  @PCTwist1Id int = NULL
+, @Twist1CheckId int = NULL
 )
 AS
 BEGIN
     SELECT Twist1CheckId
          , PCTwist1Id
+         , ProductionDate
          , ConditionDate
          , TestFlag
          , DoffNo
+         , ItemYarn
          , ShiftName
          , UserId
          , Chief
          , [Remark]
       FROM Twist1CheckSheet
-     WHERE Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
+     WHERE PCTwist1Id = COALESCE(@PCTwist1Id, PCTwist1Id)
+       AND Twist1CheckId = COALESCE(@Twist1CheckId, Twist1CheckId)
      ORDER BY Twist1CheckId
 END
 

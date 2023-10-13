@@ -18,9 +18,11 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[SaveTwist1CheckSheet] (
   @PCTwist1Id int
+, @ProductionDate datetime  
 , @ConditionDate datetime  
 , @TestFlag bit
 , @DoffNo int
+, @ItemYarn nvarchar(30)
 , @ShiftName nvarchar(10)
 , @UserId int
 , @Chief nvarchar(100)
@@ -37,9 +39,11 @@ DECLARE @LastNo int;
         BEGIN
             UPDATE Twist1CheckSheet 
                SET PCTwist1Id = @PCTwist1Id
+                 , ProductionDate = @ProductionDate
                  , ConditionDate = @ConditionDate
                  , TestFlag = @TestFlag
                  , DoffNo = @DoffNo
+                 , ItemYarn = @ItemYarn
                  , ShiftName = @ShiftName
                  , UserId = @UserId
                  , Chief = @Chief
@@ -51,9 +55,11 @@ DECLARE @LastNo int;
 			INSERT INTO Twist1CheckSheet
 		    (
                   PCTwist1Id
+                , ProductionDate
                 , ConditionDate
                 , TestFlag
                 , DoffNo
+                , ItemYarn
                 , ShiftName
                 , UserId
                 , Chief
@@ -62,9 +68,11 @@ DECLARE @LastNo int;
 			VALUES
 			(
                   @PCTwist1Id
+                , @ProductionDate
                 , @ConditionDate
                 , @TestFlag
                 , @DoffNo
+                , @ItemYarn
                 , @ShiftName
                 , @UserId
                 , @Chief
