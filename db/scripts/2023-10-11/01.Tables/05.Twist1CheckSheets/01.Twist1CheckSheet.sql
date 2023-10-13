@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 13:17:25 ******/
+/****** Object:  Table [dbo].[Twist1CheckSheet]    Script Date: 10/13/2023 13:47:28 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Twist1CheckSheet](
 	[DoffNo] [int] NULL,
 	[ItemYarn] [nvarchar](30) NULL,
 	[ShiftName] [nvarchar](10) NULL,
-	[UserId] [int] NULL,
+	[UserName] [nvarchar](100) NULL,
 	[Chief] [nvarchar](100) NULL,
 	[Remark] [nvarchar](100) NULL,
  CONSTRAINT [PK_Twist1CheckSheet] PRIMARY KEY CLUSTERED 
@@ -27,3 +27,5 @@ GO
 
 ALTER TABLE [dbo].[Twist1CheckSheet] ADD  CONSTRAINT [DF_Twist1CheckSheet_TestFlag]  DEFAULT ((0)) FOR [TestFlag]
 GO
+
+

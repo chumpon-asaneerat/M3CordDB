@@ -31,7 +31,7 @@ BEGIN
          , DoffNo
          , ItemYarn
          , ShiftName
-         , UserId
+         , UserName
          , Chief
          , [Remark]
       FROM Twist1CheckSheet
