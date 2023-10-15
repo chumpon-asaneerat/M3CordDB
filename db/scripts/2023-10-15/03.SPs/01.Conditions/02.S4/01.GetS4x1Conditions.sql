@@ -94,10 +94,18 @@ BEGIN
 			 SpecialMentionSC ,
 			 SpecialMention ,
 			 SpecialMentionActual
+             UpdateBy ,
+             UpdateDate ,
+             CheckedBy , 
+             CheckedDate ,
+             ApproveBy ,
+             ApproveDate ,
+             ShiftLeader , 
+             ProductionManager
       FROM S4x1Condition
      WHERE PCTwist1Id = COALESCE(@PCTwist1Id, PCTwist1Id)
        AND S4x1ConditionId = COALESCE(@S4x1ConditionId, S4x1ConditionId)
-     ORDER BY ProductCode;
+     ORDER BY PCTwist1Id, S4x1ConditionId;
 
 END
 

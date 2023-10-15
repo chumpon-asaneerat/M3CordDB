@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S1Condition]    Script Date: 10/15/2023 12:24:33 ******/
+/****** Object:  Table [dbo].[S1Condition]    Script Date: 10/15/2023 12:52:57 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -67,6 +67,14 @@ CREATE TABLE [dbo].[S1Condition](
 	[SpecialMentionSC] [bit] NULL,
 	[SpecialMention] [nvarchar](100) NULL,
 	[SpecialMentionActual] [nvarchar](100) NULL,
+	[UpdateBy] [nvarchar](100) NULL,
+	[UpdateDate] [datetime] NULL,
+	[CheckedBy] [nvarchar](100) NULL,
+	[CheckedDate] [datetime] NULL,
+	[ApproveBy] [nvarchar](100) NULL,
+	[ApproveDate] [datetime] NULL,
+	[ShiftLeader] [nvarchar](100) NULL,
+	[ProductionManager] [nvarchar](100) NULL,
  CONSTRAINT [PK_S1Condition] PRIMARY KEY CLUSTERED 
 (
 	[S1ConditionId] ASC

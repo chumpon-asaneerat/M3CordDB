@@ -87,6 +87,7 @@ CREATE PROCEDURE [dbo].[SaveS4x1Condition] (
 	@SpecialMentionSC bit  ,
 	@SpecialMention nvarchar(100)  ,
 	@SpecialMentionActual nvarchar(100) ,  
+    @UpdateBy nvarchar(100) , 
     @S4x1ConditionId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
@@ -166,7 +167,9 @@ BEGIN
 				YarnSpeedErr = @YarnSpeedErr ,
 				SpecialMentionSC = @SpecialMentionSC ,
 				SpecialMention = @SpecialMention ,
-				SpecialMentionActual = @SpecialMentionActual  
+				SpecialMentionActual = @SpecialMentionActual , 
+                UpdateBy = @UpdateBy ,
+                UpdateDate = GETDATE()
              WHERE S4x1ConditionId = @S4x1ConditionId
         END
         ELSE
@@ -242,7 +245,9 @@ BEGIN
 				YarnSpeedActual ,
 				SpecialMentionSC ,
 				SpecialMention  ,
-				SpecialMentionActual          
+				SpecialMentionActual , 
+                UpdateBy ,
+                UpdateDate
 			)
 			VALUES
 			(
@@ -315,7 +320,9 @@ BEGIN
 				@YarnSpeedActual ,
 				@SpecialMentionSC ,
 				@SpecialMention  ,
-				@SpecialMentionActual   
+				@SpecialMentionActual ,
+                @UpdateBy ,
+                GETDATE()
 			);
         END
 

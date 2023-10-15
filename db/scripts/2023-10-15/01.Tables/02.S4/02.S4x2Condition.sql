@@ -71,6 +71,14 @@ CREATE TABLE [dbo].[S4x2Condition](
 	[SpecialMentionSC] [bit] NULL,
 	[SpecialMention] [nvarchar](100) NULL,
 	[SpecialMentionActual] [nvarchar](100) NULL,
+	[UpdateBy] [nvarchar](100) NULL,
+	[UpdateDate] [datetime] NULL,
+	[CheckedBy] [nvarchar](100) NULL,
+	[CheckedDate] [datetime] NULL,
+	[ApproveBy] [nvarchar](100) NULL,
+	[ApproveDate] [datetime] NULL,
+	[ShiftLeader] [nvarchar](100) NULL,
+	[ProductionManager] [nvarchar](100) NULL,
  CONSTRAINT [PK_S4x2Condition] PRIMARY KEY CLUSTERED 
 (
 	[S4x2ConditionId] ASC

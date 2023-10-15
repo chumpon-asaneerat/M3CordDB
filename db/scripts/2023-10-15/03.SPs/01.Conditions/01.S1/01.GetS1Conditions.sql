@@ -82,11 +82,19 @@ BEGIN
 			YarnSpeedActual ,
 			SpecialMentionSC ,
 			SpecialMention ,
-			SpecialMentionActual 
+			SpecialMentionActual ,
+            UpdateBy ,
+            UpdateDate ,
+            CheckedBy , 
+            CheckedDate ,
+            ApproveBy ,
+            ApproveDate ,
+            ShiftLeader , 
+            ProductionManager
      FROM S1Condition
      WHERE PCTwist1Id = COALESCE(@PCTwist1Id, PCTwist1Id)
        AND S1ConditionId = COALESCE(@S1ConditionId, S1ConditionId)
-     ORDER BY ProductCode;
+     ORDER BY PCTwist1Id, S1ConditionId;
 
 END
 
