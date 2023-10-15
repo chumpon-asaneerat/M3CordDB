@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S5Condition]    Script Date: 10/15/2023 23:38:30 ******/
+/****** Object:  Table [dbo].[S5Condition]    Script Date: 10/16/2023 0:12:33 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -78,17 +78,17 @@ CREATE TABLE [dbo].[S5Condition](
 	[OutTimeSC] [bit] NULL,
 	[OutTime] [datetime] NULL,
 	[DoffNo1SC] [bit] NULL,
+	[DoffNo1PalletCode] [nvarchar](50) NULL,
+	[DoffNo1TraceNo] [nvarchar](50) NULL,
 	[DoffNo1MCNo] [nvarchar](50) NULL,
 	[DoffNo1Doff] [nvarchar](50) NULL,
 	[DoffNo1Qty] [nvarchar](50) NULL,
 	[DoffNo2SC] [bit] NULL,
+	[DoffNo2PalletCode] [nvarchar](50) NULL,
+	[DoffNo2TraceNo] [nvarchar](50) NULL,
 	[DoffNo2MCNo] [nvarchar](50) NULL,
 	[DoffNo2Doff] [nvarchar](50) NULL,
 	[DoffNo2Qty] [nvarchar](50) NULL,
-	[StartTime] [datetime] NULL,
-	[StartBy] [nvarchar](100) NULL,
-	[EndTime] [datetime] NULL,
-	[EndBy] [nvarchar](100) NULL,
 	[UpdateBy] [nvarchar](100) NULL,
 	[UpdateDate] [datetime] NULL,
 	[CheckedBy] [nvarchar](100) NULL,

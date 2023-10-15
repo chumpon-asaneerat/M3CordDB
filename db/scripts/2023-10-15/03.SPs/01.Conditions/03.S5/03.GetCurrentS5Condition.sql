@@ -90,17 +90,17 @@ BEGIN
 			OutTimeSC ,
 			OutTime ,
 			DoffNo1SC ,
+			DoffNo1PalletCode ,
+			DoffNo1TraceNo ,
 			DoffNo1MCNo ,
 			DoffNo1Doff ,
 			DoffNo1Qty ,
 			DoffNo2SC ,
+			DoffNo2PalletCode ,
+			DoffNo2TraceNo ,
 			DoffNo2MCNo ,
 			DoffNo2Doff ,
 			DoffNo2Qty ,
-            StartTime ,
-            StartBy ,
-            EndTime ,
-            EndBy ,
             UpdateBy ,
             UpdateDate ,
             CheckedBy , 
@@ -110,7 +110,11 @@ BEGIN
             ShiftLeader , 
             ProductionManager
      FROM S5Condition
-     WHERE StartTime IS NULL OR EndTime IS NULL
+     WHERE /*StartingTimeSettingTime IS NULL 
+        OR */
+           StartingTimeStartAgeingTime IS NULL
+        OR FinishTime IS NULL
+        OR OutTime IS NULL
      ORDER BY S5ConditionId;
 
 END
