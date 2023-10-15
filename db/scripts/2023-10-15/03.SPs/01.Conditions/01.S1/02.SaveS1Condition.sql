@@ -86,7 +86,9 @@ BEGIN
         IF EXISTS (SELECT TOP 1 * FROM S1Condition WHERE S1ConditionId = @S1ConditionId)
         BEGIN
             UPDATE S1Condition 
-               SET RingDiameterSC = @RingDiameterSC  ,
+               SET  PCTwist1Id = @PCTwist1Id ,
+                    ProductCode = @ProductCode ,
+                    RingDiameterSC = @RingDiameterSC ,
 					RingDiameter = @RingDiameter ,
 					RingDiameterActual = @RingDiameterActual ,
 					TwistChangeGearSC = @TwistChangeGearSC ,
@@ -152,6 +154,7 @@ BEGIN
         BEGIN
 			INSERT INTO S1Condition
 		    (
+                PCTwist1Id ,
                 ProductCode ,
 				RingDiameterSC ,
 				RingDiameter ,
@@ -216,6 +219,7 @@ BEGIN
 			)
 			VALUES
 			(
+                @PCTwist1Id ,
                 @ProductCode ,
 				@RingDiameterSC ,
 				@RingDiameter ,

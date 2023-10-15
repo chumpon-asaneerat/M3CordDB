@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #131
+- recreate table S1, S4x1, S4x2 Condition and SPs #6
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #130
 - recreate table S1, S4x1, S4x2 Condition and SPs #5
 
