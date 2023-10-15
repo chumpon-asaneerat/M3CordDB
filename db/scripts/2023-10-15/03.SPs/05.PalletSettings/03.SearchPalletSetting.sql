@@ -18,13 +18,14 @@ GO
 CREATE PROCEDURE [dbo].[SearchPalletSetting]
 (
   @PalletCode nvarchar(30)
+, @PalletStatus int = NULL
 )
 AS
 BEGIN
     SELECT *
-     FROM PalletSetting
+     FROM PalletSettingView
      WHERE UPPER(LTRIM(RTRIM(PalletCode))) = UPPER(LTRIM(RTRIM(@PalletCode)))
-
+	   AND PalletStatus = COALESCE(@PalletStatus, PalletStatus)
 END
 
 GO
