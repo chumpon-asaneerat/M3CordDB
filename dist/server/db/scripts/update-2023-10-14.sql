@@ -1,10 +1,4 @@
 /*********** Script Update Date: 2023-10-14  ***********/
-
-
-/*********** Script Update Date: 2023-10-14  ***********/
-
-
-/*********** Script Update Date: 2023-10-14  ***********/
 /****** Object:  Table [dbo].[ChemicalMaster]    Script Date: 14/10/2566 10:49:10 ******/
 SET ANSI_NULLS ON
 GO

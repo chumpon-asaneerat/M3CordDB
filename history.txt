@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #127
+- Add Chemical table/sp/init data #4
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #126
 - Add Chemical table/sp/init data #3
 
