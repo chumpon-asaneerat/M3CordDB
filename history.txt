@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #133
+- Implements Pallet Setting #2
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #132
 - Implements Pallet Setting #1
 
