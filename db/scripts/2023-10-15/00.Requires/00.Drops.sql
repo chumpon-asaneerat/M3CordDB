@@ -19,3 +19,10 @@ DROP PROCEDURE GetS4x2Condition
 GO
 EXEC DropTable N'S4x2Condition'
 GO
+-- S5
+DROP PROCEDURE SaveS5Condition
+GO
+DROP PROCEDURE GetS5Condition
+GO
+EXEC DropTable N'S5Condition'
+GO
