@@ -1,0 +1,18 @@
+/****** Object:  Table [dbo].[PalletCode]    Script Date: 10/15/2023 14:21:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PalletCode](
+	[MCCode] [nvarchar](10) NOT NULL,
+	[Year] [int] NULL,
+	[LastId] [int] NULL,
+ CONSTRAINT [PK_PalletCode] PRIMARY KEY CLUSTERED 
+(
+	[MCCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
