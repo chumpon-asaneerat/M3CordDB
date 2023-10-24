@@ -1,5 +1,3 @@
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[SaveDIPMaterialCheckSheet]    Script Date: 10/24/2023 18:04:57 ******/
 SET ANSI_NULLS ON
 GO
