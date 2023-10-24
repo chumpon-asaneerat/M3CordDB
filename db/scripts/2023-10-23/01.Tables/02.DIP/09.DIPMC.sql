@@ -1,0 +1,19 @@
+/****** Object:  Table [dbo].[DIPMC]    Script Date: 10/24/2023 16:14:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPMC](
+	[MCCode] [nvarchar](10) NOT NULL,
+	[ProcessName] [nvarchar](30) NULL,
+	[StartCore] [int] NULL,
+	[EndCore] [int] NULL,
+ CONSTRAINT [PK_DIPMC] PRIMARY KEY CLUSTERED 
+(
+	[MCCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
