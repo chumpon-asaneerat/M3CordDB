@@ -17,6 +17,9 @@ AS
          , PD.TreatRoute
          , PD.TwistSpec
          , PC.DIPLotNo
+         , PC.StartTime
+         , PC.EndTime
+         , PC.FinishTime
          , PC.FinishFlag
          , PC.DeleteFlag
       FROM DIPPCCard PC 

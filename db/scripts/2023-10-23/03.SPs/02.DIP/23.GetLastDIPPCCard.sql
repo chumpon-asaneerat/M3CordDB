@@ -1,4 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[GetDIPPCCards]    Script Date: 10/24/2023 16:28:37 ******/
+/****** Object:  StoredProcedure [dbo].[GetLastDIPPCCard]    Script Date: 10/24/2023 16:28:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7,22 +7,23 @@ GO
 
 -- =============================================
 -- Author: Chumpon Asaneerat
--- Description:	GetDIPPCCards
+-- Description:	GetLastDIPPCCard
 -- [== History ==]
 -- <2023-04-26> :
 --	- Stored Procedure Created.
 --
 -- [== Example ==]
 --
--- EXEC GetDIPCards NULL
+-- EXEC GetLastDIPPCCard NULL
 -- =============================================
-CREATE PROCEDURE [dbo].[GetDIPPCCards]
+CREATE PROCEDURE [dbo].[GetLastDIPPCCard]
 (
-  @DIPPCId int = NULL
+  @unused int = NULL
 )
 AS
 BEGIN
-    SELECT DIPPCId
+    SELECT TOP 1 
+	       DIPPCId
          , CustomerId
          , CustomerName
          , ProductCode
@@ -38,10 +39,12 @@ BEGIN
          , FinishFlag
          , DeleteFlag
       FROM DIPPCCardView 
-     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
-       AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+     WHERE (DeleteFlag IS NULL OR DeleteFlag = 0)
        AND (FinishFlag IS NULL OR FinishFlag = 0)
-     ORDER BY DIPPCId;
+	   AND (   StartTime IS NULL 
+	        OR EndTime IS NULL 
+			OR FinishTime IS NULL)
+     ORDER BY DIPPCId DESC;
 
 END
 
