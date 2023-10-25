@@ -23,12 +23,18 @@ CREATE PROCEDURE [dbo].[GetDIPPCCards]
 AS
 BEGIN
     SELECT DIPPCId
+         , CustomerId
+         , CustomerName
          , ProductCode
-         , DIPLotNo
+         , ProductName
          , ItemYarn
+         , CordStructure
+         , TreatRoute
+         , TwistSpec
+         , DIPLotNo
          , FinishFlag
          , DeleteFlag
-      FROM DIPPCCard 
+      FROM DIPPCCardView 
      WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
        AND (DeleteFlag IS NULL OR DeleteFlag = 0)
        AND (FinishFlag IS NULL OR FinishFlag = 0)
