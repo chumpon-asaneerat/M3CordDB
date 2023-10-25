@@ -7,6 +7,7 @@ GO
 
 CREATE TABLE [dbo].[DIPPCCard](
 	[DIPPCId] [int] IDENTITY(1,1) NOT NULL,
+    [CustomerId] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[DIPLotNo] [nvarchar](30) NULL,
 	[ItemYarn] [nvarchar](30) NULL,

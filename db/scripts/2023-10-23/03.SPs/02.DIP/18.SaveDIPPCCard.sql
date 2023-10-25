@@ -17,7 +17,8 @@ GO
 -- 
 -- =============================================
 CREATE PROCEDURE [dbo].[SaveDIPPCCard] (
-  @ProductCode nvarchar(30)
+  @CustomerId int = NULL out
+, @ProductCode nvarchar(30)
 , @DIPLotNo nvarchar(30)
 , @ItemYarn nvarchar(30)
 , @FinishFlag bit
@@ -31,7 +32,8 @@ BEGIN
         IF EXISTS (SELECT TOP 1 * FROM DIPPCCard WHERE DIPPCId = @DIPPCId)
         BEGIN
             UPDATE DIPPCCard  
-               SET ProductCode = @ProductCode
+               SET CustomerId = @CustomerId
+			     , ProductCode = @ProductCode
                  , DIPLotNo = @DIPLotNo
                  , ItemYarn = @ItemYarn
                  , FinishFlag = @FinishFlag
@@ -42,7 +44,8 @@ BEGIN
         BEGIN
 			INSERT INTO DIPPCCard 
 		    (
-                  ProductCode
+			      CustomerId
+                , ProductCode
                 , DIPLotNo
                 , ItemYarn
                 , FinishFlag
@@ -50,7 +53,8 @@ BEGIN
 			)
 			VALUES
 			(
-                  @ProductCode
+			      @CustomerId
+                , @ProductCode
                 , @DIPLotNo
                 , @ItemYarn
                 , @FinishFlag
