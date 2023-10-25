@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[DIPPCCard]    Script Date: 10/24/2023 15:52:50 ******/
+/****** Object:  Table [dbo].[DIPPCCard]    Script Date: 10/25/2023 15:06:37 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -7,10 +7,13 @@ GO
 
 CREATE TABLE [dbo].[DIPPCCard](
 	[DIPPCId] [int] IDENTITY(1,1) NOT NULL,
-    [CustomerId] [int] NULL,
+	[CustomerId] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[DIPLotNo] [nvarchar](30) NULL,
 	[ItemYarn] [nvarchar](30) NULL,
+	[StartTime] [datetime] NULL,
+	[EndTime] [datetime] NULL,
+	[FinishTime] [datetime] NULL,
 	[FinishFlag] [bit] NULL,
 	[DeleteFlag] [bit] NULL,
  CONSTRAINT [PK_DIPPCCard] PRIMARY KEY CLUSTERED 
@@ -26,3 +29,5 @@ GO
 
 ALTER TABLE [dbo].[DIPPCCard] ADD  CONSTRAINT [DF_DIPPCCard_DeleteFlag]  DEFAULT ((0)) FOR [DeleteFlag]
 GO
+
+
