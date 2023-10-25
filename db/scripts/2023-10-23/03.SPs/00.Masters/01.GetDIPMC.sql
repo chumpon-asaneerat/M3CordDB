@@ -18,6 +18,10 @@ GO
 -- EXEC GetDIPMCs NULL
 -- =============================================
 CREATE PROCEDURE [dbo].[GetDIPMCs]
+(
+  @ProcessName nvarchar(30) = NULL
+, @MCCode nvarchar(30) = NULL  
+)
 AS
 BEGIN
     SELECT MCCode
@@ -25,6 +29,8 @@ BEGIN
          , StartCore
          , EndCore
       FROM DIPMC
+     WHERE UPPER(LOWER(ProcessName)) = UPPER(LOWER(COALESCE(@ProcessName, ProcessName)))
+       AND UPPER(LOWER(MCCode)) = UPPER(LOWER(COALESCE(@MCCode, MCCode)))
      ORDER BY ProcessName, MCCode;
 END
 

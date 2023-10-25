@@ -19,6 +19,7 @@ GO
 CREATE PROCEDURE [dbo].[SaveDIPMaterialCheckSheet] (
   @DIPPCId int
 , @CheckDate datetime  
+, @MCCode nvarchar(10)
 , @DoffNo int
 , @ShiftName nvarchar(10)
 , @UserName nvarchar(100)
@@ -35,6 +36,7 @@ DECLARE @LastNo int;
             UPDATE DIPMaterialCheckSheet 
                SET DIPPCId = @DIPPCId
                  , CheckDate = @CheckDate
+                 , MCCode = @MCCode
                  , DoffNo = @DoffNo
                  , ShiftName = @ShiftName
                  , UserName = @UserName
@@ -46,6 +48,7 @@ DECLARE @LastNo int;
 		    (
                   DIPPCId
                 , CheckDate
+                , MCCode
                 , DoffNo
                 , ShiftName
                 , UserName
@@ -54,6 +57,7 @@ DECLARE @LastNo int;
 			(
                   @DIPPCId
                 , @CheckDate
+                , @MCCode
                 , @DoffNo
                 , @ShiftName
                 , @UserName

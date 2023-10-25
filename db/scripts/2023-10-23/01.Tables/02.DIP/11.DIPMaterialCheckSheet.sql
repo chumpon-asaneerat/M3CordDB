@@ -9,6 +9,7 @@ CREATE TABLE [dbo].[DIPMaterialCheckSheet](
 	[MaterialCheckId] [int] IDENTITY(1,1) NOT NULL,
 	[DIPPCId] [int] NULL,
 	[CheckDate] [datetime] NULL,
+    [MCCode] [nvarchar](10) NULL,
 	[DoffNo] [int] NULL,
 	[ShiftName] [nvarchar](10) NULL,
 	[UserName] [nvarchar](100) NULL,

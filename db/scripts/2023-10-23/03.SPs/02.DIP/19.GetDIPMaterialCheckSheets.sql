@@ -26,6 +26,7 @@ BEGIN
     SELECT MaterialCheckId
          , DIPPCId
          , CheckDate
+         , MCCode
          , DoffNo
          , ShiftName
          , UserName
