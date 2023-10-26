@@ -695,6 +695,374 @@ GO
 
 
 /*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[DIPMC]    Script Date: 10/24/2023 16:14:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPMC](
+	[MCCode] [nvarchar](10) NOT NULL,
+	[ProcessName] [nvarchar](30) NULL,
+	[StartCore] [int] NULL,
+	[EndCore] [int] NULL,
+ CONSTRAINT [PK_DIPMC] PRIMARY KEY CLUSTERED 
+(
+	[MCCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[DIPPCCard]    Script Date: 10/25/2023 15:06:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPPCCard](
+	[DIPPCId] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerId] [int] NULL,
+	[ProductCode] [nvarchar](30) NULL,
+	[DIPLotNo] [nvarchar](30) NULL,
+	[ItemYarn] [nvarchar](30) NULL,
+	[StartTime] [datetime] NULL,
+	[EndTime] [datetime] NULL,
+	[FinishTime] [datetime] NULL,
+	[FinishFlag] [bit] NULL,
+	[DeleteFlag] [bit] NULL,
+ CONSTRAINT [PK_DIPPCCard] PRIMARY KEY CLUSTERED 
+(
+	[DIPPCId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[DIPPCCard] ADD  CONSTRAINT [DF_DIPPCCard_FinishFlag]  DEFAULT ((0)) FOR [FinishFlag]
+GO
+
+ALTER TABLE [dbo].[DIPPCCard] ADD  CONSTRAINT [DF_DIPPCCard_DeleteFlag]  DEFAULT ((0)) FOR [DeleteFlag]
+GO
+
+
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[DIPMaterialCheckSheet]    Script Date: 10/24/2023 16:12:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPMaterialCheckSheet](
+	[MaterialCheckId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
+	[CheckDate] [datetime] NULL,
+    [MCCode] [nvarchar](10) NULL,
+	[DoffNo] [int] NULL,
+	[ShiftName] [nvarchar](10) NULL,
+	[UserName] [nvarchar](100) NULL,
+ CONSTRAINT [PK_DIPMaterialCheckSheet] PRIMARY KEY CLUSTERED 
+(
+	[MaterialCheckId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[DIPMaterialCheckSheetItem]    Script Date: 10/24/2023 17:23:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPMaterialCheckSheetItem](
+	[MaterialCheckId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[LotNo] [nvarchar](30) NULL,
+	[CHNo] [int] NULL,
+	[CheckYarnNo] [bit] NULL,
+	[CheckYanScrap] [bit] NULL,
+	[CheckYarnBall] [bit] NULL,
+	[CheckCover] [bit] NULL,
+	[CheckSensor] [bit] NULL,
+	[CheckDustFilter] [bit] NULL,
+ CONSTRAINT [PK_DIPMaterialCheckSheetItem] PRIMARY KEY CLUSTERED 
+(
+	[MaterialCheckId] ASC,
+	[SPNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S7CreelCheckSheet]    Script Date: 10/26/2023 9:11:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S7CreelCheckSheet](
+	[CreelId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
+	[CheckDate] [datetime] NULL,
+	[MCCode] [nvarchar](10) NULL,
+	[ShiftName] [nvarchar](10) NULL,
+	[UserName] [nvarchar](100) NULL,
+ CONSTRAINT [PK_S7CreelCheckSheet] PRIMARY KEY CLUSTERED 
+(
+	[CreelId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S7CreelCheckSheetItem]    Script Date: 10/26/2023 9:12:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S7CreelCheckSheetItem](
+	[CreelId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[CheckUnstable] [bit] NULL,
+	[CheckNotReachEnd] [bit] NULL,
+	[CheckNotStraight] [bit] NULL,
+	[CheckHasSound] [bit] NULL,
+ CONSTRAINT [PK_S7CreelCheckItem_1] PRIMARY KEY CLUSTERED 
+(
+	[CreelId] ASC,
+	[SPNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[DIPChemicalReqisition]    Script Date: 10/26/2023 9:23:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DIPChemicalReqisition](
+	[ReqId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
+	[ReqDate] [datetime] NULL,
+	[ProductCode] [nvarchar](30) NULL,
+	[DIPLotNo] [nvarchar](30) NULL,
+	[SolutionName] [nvarchar](30) NULL,
+	[TankNo] [nvarchar](30) NULL,
+	[Quantity] [decimal](18, 3) NULL,
+	[S8LotNo] [nvarchar](30) NULL,
+	[UserName] [nvarchar](100) NULL,
+	[Chief] [nvarchar](100) NULL,
+ CONSTRAINT [PK_DIPChemicalReqisition] PRIMARY KEY CLUSTERED 
+(
+	[ReqId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S9CleanCheckSheet]    Script Date: 10/26/2023 9:36:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S9CleanCheckSheet](
+	[CleanId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
+	[CheckDate] [datetime] NULL,
+	[MCCode] [nvarchar](10) NULL,
+	[ShiftName] [nvarchar](10) NULL,
+	[UserName] [nvarchar](100) NULL,
+ CONSTRAINT [PK_S9CleanCheckSheet] PRIMARY KEY CLUSTERED 
+(
+	[CleanId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S9CleanCheckSheetItem]    Script Date: 10/26/2023 9:43:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S9CleanCheckSheetItem](
+	[CleanId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[CheckSplitter] [bit] NULL,
+	[CheckRollerCeramic] [bit] NULL,
+	[CheckSlidebar] [bit] NULL,
+	[CheckRollerCambox] [bit] NULL,
+	[CheckTopGuide] [bit] NULL,
+	[CheckBottomGuide] [bit] NULL,
+	[CheckRollerFrontS9] [bit] NULL,
+ CONSTRAINT [PK_S9CleanCheckSheetItem] PRIMARY KEY CLUSTERED 
+(
+	[CleanId] ASC,
+	[SPNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S9AppearanceCheckSheet]    Script Date: 10/26/2023 9:56:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S9AppearanceCheckSheet](
+	[AppearId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
+	[CheckDate] [datetime] NULL,
+	[MCCode] [nvarchar](10) NULL,
+	[ShiftName] [nvarchar](10) NULL,
+	[UserName] [nvarchar](100) NULL,
+ CONSTRAINT [PK_S9AppearanceCheckSheet] PRIMARY KEY CLUSTERED 
+(
+	[AppearId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  Table [dbo].[S9AppearanceCheckSheetItem]    Script Date: 10/26/2023 9:56:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[S9AppearanceCheckSheetItem](
+	[AppearId] [int] NOT NULL,
+	[SPNo] [int] NOT NULL,
+	[CheckGood] [bit] NULL,
+	[CheckBad] [bit] NULL,
+	[Check2Color] [bit] NULL,
+	[CheckKeiba] [bit] NULL,
+	[CheckWeight] [bit] NULL,
+	[CheckFrontTwist] [bit] NULL,
+	[CheckBackTwist] [bit] NULL,
+	[CheckSnarl] [bit] NULL,
+	[CheckTube] [bit] NULL,
+ CONSTRAINT [PK_S9AppearanceCheckSheetItem] PRIMARY KEY CLUSTERED 
+(
+	[AppearId] ASC,
+	[SPNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  View [dbo].[PCCardView]    Script Date: 10/25/2023 14:35:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW DIPPCCardView
+AS
+    SELECT PC.DIPPCId
+         , PC.CustomerId
+         , CM.CustomerName
+         , PC.ProductCode
+         , PD.ProductName
+         , PD.ItemYarn
+         , PD.CordStructure
+         , PD.TreatRoute
+         , PD.TwistSpec
+         , PC.DIPLotNo
+         , PC.StartTime
+         , PC.EndTime
+         , PC.FinishTime
+         , PC.FinishFlag
+         , PC.DeleteFlag
+      FROM DIPPCCard PC 
+           LEFT OUTER JOIN Customer CM ON PC.CustomerId = CM.CustomerId
+           LEFT OUTER JOIN Product PD ON LTRIM(RTRIM(PC.ProductCode)) = LTRIM(RTRIM(PD.ProductCode))
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+USE [M3Cord]
+GO
+/****** Object:  StoredProcedure [dbo].[GetDIPMCs]    Script Date: 10/24/2023 16:18:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetDIPMCs
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetDIPMCs NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDIPMCs]
+(
+  @ProcessName nvarchar(30) = NULL
+, @MCCode nvarchar(30) = NULL  
+)
+AS
+BEGIN
+    SELECT MCCode
+         , ProcessName
+         , StartCore
+         , EndCore
+      FROM DIPMC
+     WHERE UPPER(LOWER(ProcessName)) = UPPER(LOWER(COALESCE(@ProcessName, ProcessName)))
+       AND UPPER(LOWER(MCCode)) = UPPER(LOWER(COALESCE(@MCCode, MCCode)))
+     ORDER BY ProcessName, MCCode;
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
 /****** Object:  StoredProcedure [dbo].[GetDIPConditionStd]    Script Date: 23/10/2566 1:44:40 ******/
 SET ANSI_NULLS ON
 GO
@@ -3914,34 +4282,34 @@ CREATE PROCEDURE [dbo].[GetDIPTimeTableStd]
 AS
 BEGIN
     SELECT ProductCode,
-	S7Bobbin,
-	S8CoolingWaterSystemBath1SC,
-	S8CoolingWaterSystemBath1,
-	S8CoolingWaterSystemBath1Err,
-	S8CoolingWaterSystemBath2SC,
-	S8CoolingWaterSystemBath2,
-	S8CoolingWaterSystemBath2Err,
-	S8ChemicalWork,
-	S8ChemicalFilter,
-	S8SpeedSC,
-	S8Speed,
-	S8SpeedErr,
-	S8StretchDSC,
-	S8StretchD,
-	S8StretchDErr,
-	S8StretchHSC,
-	S8StretchH,
-	S8StretchHErr,
-	S8StretchNSC,
-	S8StretchN,
-	S8StretchNErr,
-	S8TempDSC,
-	S8TempD,
-	S8TempDErr,
-	S8TempHNSC,
-	S8TempHN,
-	S8TempHNErr,
-	S9GlideStatus
+        S7Bobbin,
+        S8CoolingWaterSystemBath1SC,
+        S8CoolingWaterSystemBath1,
+        S8CoolingWaterSystemBath1Err,
+        S8CoolingWaterSystemBath2SC,
+        S8CoolingWaterSystemBath2,
+        S8CoolingWaterSystemBath2Err,
+        S8ChemicalWork,
+        S8ChemicalFilter,
+        S8SpeedSC,
+        S8Speed,
+        S8SpeedErr,
+        S8StretchDSC,
+        S8StretchD,
+        S8StretchDErr,
+        S8StretchHSC,
+        S8StretchH,
+        S8StretchHErr,
+        S8StretchNSC,
+        S8StretchN,
+        S8StretchNErr,
+        S8TempDSC,
+        S8TempD,
+        S8TempDErr,
+        S8TempHNSC,
+        S8TempHN,
+        S8TempHNErr,
+        S9GlideStatus
      FROM DIPTimeTableStd
      WHERE ProductCode = COALESCE(@ProductCode, ProductCode)
      ORDER BY ProductCode;
@@ -4239,4 +4607,1458 @@ GO
 
 
 /*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetDIPPCCards]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetDIPPCCards
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetDIPCards NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDIPPCCards]
+(
+  @DIPPCId int = NULL
+)
+AS
+BEGIN
+    SELECT DIPPCId
+         , CustomerId
+         , CustomerName
+         , ProductCode
+         , ProductName
+         , ItemYarn
+         , CordStructure
+         , TreatRoute
+         , TwistSpec
+         , DIPLotNo
+         , StartTime
+         , EndTime
+         , FinishTime
+         , FinishFlag
+         , DeleteFlag
+      FROM DIPPCCardView 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND (DeleteFlag IS NULL OR DeleteFlag = 0)
+       AND (FinishFlag IS NULL OR FinishFlag = 0)
+     ORDER BY DIPPCId;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveDIPPCCard]    Script Date: 10/24/2023 16:37:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveDIPPCCard
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveDIPPCCard] (
+  @CustomerId int = NULL out
+, @ProductCode nvarchar(30)
+, @DIPLotNo nvarchar(30)
+, @ItemYarn nvarchar(30)
+, @FinishFlag bit
+, @DeleteFlag bit
+, @DIPPCId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM DIPPCCard WHERE DIPPCId = @DIPPCId)
+        BEGIN
+            UPDATE DIPPCCard  
+               SET CustomerId = @CustomerId
+			     , ProductCode = @ProductCode
+                 , DIPLotNo = @DIPLotNo
+                 , ItemYarn = @ItemYarn
+                 , FinishFlag = @FinishFlag
+                 , DeleteFlag = @DeleteFlag
+             WHERE DIPPCId = @DIPPCId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO DIPPCCard 
+		    (
+			      CustomerId
+                , ProductCode
+                , DIPLotNo
+                , ItemYarn
+                , FinishFlag
+                , DeleteFlag
+			)
+			VALUES
+			(
+			      @CustomerId
+                , @ProductCode
+                , @DIPLotNo
+                , @ItemYarn
+                , @FinishFlag
+                , @DeleteFlag
+			);
+
+			SET @DIPPCId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetLastDIPPCCard]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetLastDIPPCCard
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetLastDIPPCCard NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetLastDIPPCCard]
+(
+  @unused int = NULL
+)
+AS
+BEGIN
+    SELECT TOP 1 
+	       DIPPCId
+         , CustomerId
+         , CustomerName
+         , ProductCode
+         , ProductName
+         , ItemYarn
+         , CordStructure
+         , TreatRoute
+         , TwistSpec
+         , DIPLotNo
+         , StartTime
+         , EndTime
+         , FinishTime
+         , FinishFlag
+         , DeleteFlag
+      FROM DIPPCCardView 
+     WHERE (DeleteFlag IS NULL OR DeleteFlag = 0)
+       AND (FinishFlag IS NULL OR FinishFlag = 0)
+	   AND (   StartTime IS NULL 
+	        OR EndTime IS NULL 
+			OR FinishTime IS NULL)
+     ORDER BY DIPPCId DESC;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[StartDIP]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	StartDIP
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC StartDIP NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[StartDIP]
+(
+  @DIPPCId int = NULL
+)
+AS
+BEGIN
+    UPDATE DIPPCCard
+       SET StartTime = GETDATE()
+     WHERE DIPPCId = @DIPPCId
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[EndDIP]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	EndDIP
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC EndDIP NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[EndDIP]
+(
+  @DIPPCId int = NULL
+)
+AS
+BEGIN
+    UPDATE DIPPCCard
+       SET EndTime = GETDATE()
+     WHERE DIPPCId = @DIPPCId
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[FinishDIP]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	FinishDIP
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC FinishDIP NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[FinishDIP]
+(
+  @DIPPCId int = NULL
+)
+AS
+BEGIN
+    UPDATE DIPPCCard
+       SET FinishTime = GETDATE()
+         , FinishFlag = 1
+     WHERE DIPPCId = @DIPPCId
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetDIPMaterialCheckSheets]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetDIPMaterialCheckSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetDIPCards NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDIPMaterialCheckSheets]
+(
+  @DIPPCId int = NULL
+, @MaterialCheckId int = NULL
+)
+AS
+BEGIN
+    SELECT MaterialCheckId
+         , DIPPCId
+         , CheckDate
+         , MCCode
+         , DoffNo
+         , ShiftName
+         , UserName
+      FROM DIPMaterialCheckSheet 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND MaterialCheckId = COALESCE(@MaterialCheckId, MaterialCheckId)
+     ORDER BY CheckDate;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveDIPMaterialCheckSheet]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveDIPMaterialCheckSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveDIPMaterialCheckSheet] (
+  @DIPPCId int
+, @CheckDate datetime  
+, @MCCode nvarchar(10)
+, @DoffNo int
+, @ShiftName nvarchar(10)
+, @UserName nvarchar(100)
+, @MaterialCheckId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM DIPMaterialCheckSheet 
+                    WHERE MaterialCheckId = @MaterialCheckId)
+        BEGIN
+            UPDATE DIPMaterialCheckSheet 
+               SET DIPPCId = @DIPPCId
+                 , CheckDate = @CheckDate
+                 , MCCode = @MCCode
+                 , DoffNo = @DoffNo
+                 , ShiftName = @ShiftName
+                 , UserName = @UserName
+             WHERE MaterialCheckId = @MaterialCheckId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO DIPMaterialCheckSheet
+		    (
+                  DIPPCId
+                , CheckDate
+                , MCCode
+                , DoffNo
+                , ShiftName
+                , UserName
+			)
+			VALUES
+			(
+                  @DIPPCId
+                , @CheckDate
+                , @MCCode
+                , @DoffNo
+                , @ShiftName
+                , @UserName
+			);
+
+			SET @MaterialCheckId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetDIPMaterialCheckSheetItems]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetDIPMaterialCheckSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetDIPMaterialCheckSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDIPMaterialCheckSheetItems]
+(
+  @MaterialCheckId int = NULL
+)
+AS
+BEGIN
+    SELECT MaterialCheckId
+         , SPNo
+         , LotNo
+         , CHNo
+         , CheckYarnNo
+         , CheckYanScrap
+         , CheckYarnBall
+         , CheckCover
+         , CheckSensor
+         , CheckDustFilter
+      FROM DIPMaterialCheckSheetItem 
+     WHERE MaterialCheckId = @MaterialCheckId
+     ORDER BY MaterialCheckId, SPNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveDIPMaterialCheckSheetItem]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveDIPMaterialCheckSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveDIPMaterialCheckSheetItem] (
+  @MaterialCheckId int
+, @SPNo int
+, @LotNo nvarchar(30) 
+, @CHNo int
+, @CheckYarnNo bit
+, @CheckYanScrap bit
+, @CheckYarnBall bit
+, @CheckCover bit
+, @CheckSensor bit
+, @CheckDustFilter bit
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM DIPMaterialCheckSheetItem 
+                    WHERE MaterialCheckId = @MaterialCheckId
+                      AND SPNo = @SPNo)
+        BEGIN
+            UPDATE DIPMaterialCheckSheetItem 
+               SET LotNo = @LotNo
+                 , CHNo = @CHNo
+                 , CheckYarnNo = @CheckYarnNo
+                 , CheckYanScrap = @CheckYanScrap
+                 , CheckYarnBall = @CheckYarnBall
+                 , CheckCover = @CheckCover
+                 , CheckSensor = @CheckSensor
+                 , CheckDustFilter = @CheckDustFilter
+             WHERE MaterialCheckId = @MaterialCheckId
+               AND SPNo = @SPNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO DIPMaterialCheckSheetItem
+		    (
+                  MaterialCheckId
+                , SPNo
+                , LotNo
+                , CHNo
+                , CheckYarnNo
+                , CheckYanScrap
+                , CheckYarnBall
+                , CheckCover
+                , CheckSensor
+                , CheckDustFilter
+			)
+			VALUES
+			(
+                  @MaterialCheckId
+                , @SPNo
+                , @LotNo
+                , @CHNo
+                , @CheckYarnNo
+                , @CheckYanScrap
+                , @CheckYarnBall
+                , @CheckCover
+                , @CheckSensor
+                , @CheckDustFilter
+			);
+
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS7CreelCheckSheets]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS7CreelCheckSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS7CreelCheckSheets NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS7CreelCheckSheets]
+(
+  @DIPPCId int = NULL
+, @CreelId int = NULL
+)
+AS
+BEGIN
+    SELECT CreelId
+         , DIPPCId
+         , CheckDate
+         , MCCode
+         , ShiftName
+         , UserName
+      FROM S7CreelCheckSheet 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND CreelId = COALESCE(@CreelId, CreelId)
+     ORDER BY CheckDate;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS7CreelCheckSheet]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS7CreelCheckSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS7CreelCheckSheet] (
+  @DIPPCId int
+, @CheckDate datetime  
+, @MCCode nvarchar(10)
+, @ShiftName nvarchar(10)
+, @UserName nvarchar(100)
+, @CreelId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S7CreelCheckSheet 
+                    WHERE CreelId = @CreelId)
+        BEGIN
+            UPDATE S7CreelCheckSheet 
+               SET DIPPCId = @DIPPCId
+                 , CheckDate = @CheckDate
+                 , MCCode = @MCCode
+                 , ShiftName = @ShiftName
+                 , UserName = @UserName
+             WHERE CreelId = @CreelId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S7CreelCheckSheet
+		    (
+                  DIPPCId
+                , CheckDate
+                , MCCode
+                , ShiftName
+                , UserName
+			)
+			VALUES
+			(
+                  @DIPPCId
+                , @CheckDate
+                , @MCCode
+                , @ShiftName
+                , @UserName
+			);
+
+			SET @CreelId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS7CreelCheckSheetItems]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS7CreelCheckSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS7CreelCheckSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS7CreelCheckSheetItems]
+(
+  @CreelId int = NULL
+)
+AS
+BEGIN
+    SELECT CreelId
+         , SPNo
+         , CheckUnstable
+         , CheckNotReachEnd
+         , CheckNotStraight
+         , CheckHasSound
+      FROM S7CreelCheckSheetItem 
+     WHERE CreelId = @CreelId
+     ORDER BY CreelId, SPNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS7CreelCheckSheetItem]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS7CreelCheckSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS7CreelCheckSheetItem] (
+  @CreelId int
+, @SPNo int
+, @CheckUnstable bit
+, @CheckNotReachEnd bit
+, @CheckNotStraight bit
+, @CheckHasSound bit
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S7CreelCheckSheetItem 
+                    WHERE CreelId = @CreelId
+                      AND SPNo = @SPNo)
+        BEGIN
+            UPDATE S7CreelCheckSheetItem 
+               SET CheckUnstable = @CheckUnstable
+                 , CheckNotReachEnd = @CheckNotReachEnd
+                 , CheckNotStraight = @CheckNotStraight
+                 , CheckHasSound = @CheckHasSound
+             WHERE CreelId = @CreelId
+               AND SPNo = @SPNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S7CreelCheckSheetItem
+		    (
+                  CreelId
+                , SPNo
+                , CheckUnstable
+                , CheckNotReachEnd
+                , CheckNotStraight
+                , CheckHasSound
+			)
+			VALUES
+			(
+                  @CreelId
+                , @SPNo
+                , @CheckUnstable
+                , @CheckNotReachEnd
+                , @CheckNotStraight
+                , @CheckHasSound
+			);
+
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetDIPChemicalReqisitions]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetDIPChemicalReqisitions
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetDIPChemicalReqisitions NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetDIPChemicalReqisitions]
+(
+  @DIPPCId int = NULL
+, @ReqId int = NULL
+)
+AS
+BEGIN
+    SELECT ReqId
+         , DIPPCId
+         , ReqDate
+         , ProductCode
+         , DIPLotNo
+         , SolutionName
+         , TankNo
+         , Quantity
+         , S8LotNo
+         , UserName
+         , Chief
+      FROM DIPChemicalReqisition 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND ReqId = COALESCE(@ReqId, ReqId)
+     ORDER BY ReqDate;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveDIPChemicalReqisition]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveDIPChemicalReqisition
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveDIPChemicalReqisition] (
+  @DIPPCId int
+, @ReqDate datetime  
+, @ProductCode nvarchar(30)
+, @DIPLotNo nvarchar(30)
+, @SolutionName nvarchar(30)
+, @TankNo nvarchar(30)
+, @Quantity decimal(18, 3)
+, @S8LotNo nvarchar(30)
+, @UserName nvarchar(100)
+, @Chief nvarchar(100)
+, @ReqId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM DIPChemicalReqisition 
+                    WHERE ReqId = @ReqId)
+        BEGIN
+            UPDATE DIPChemicalReqisition 
+               SET ReqDate = @ReqDate
+                 , ProductCode = @ProductCode
+                 , DIPLotNo = @DIPLotNo
+                 , SolutionName = @SolutionName
+                 , TankNo = @TankNo
+                 , Quantity = @Quantity
+                 , S8LotNo = @S8LotNo
+                 , UserName = @UserName
+                 , Chief = @Chief
+             WHERE ReqId = @ReqId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO DIPChemicalReqisition
+		    (
+                  DIPPCId
+                , ReqDate
+                , ProductCode
+                , DIPLotNo
+                , SolutionName
+                , TankNo
+                , Quantity
+                , S8LotNo
+                , UserName
+                , Chief
+			)
+			VALUES
+			(
+                  @DIPPCId
+                , @ReqDate
+                , @ProductCode
+                , @DIPLotNo
+                , @SolutionName
+                , @TankNo
+                , @Quantity
+                , @S8LotNo
+                , @UserName
+                , @Chief
+			);
+
+			SET @ReqId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS9CleanCheckSheets]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS9CleanCheckSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS9CleanCheckSheets NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS9CleanCheckSheets]
+(
+  @DIPPCId int = NULL
+, @CleanId int = NULL
+)
+AS
+BEGIN
+    SELECT CleanId
+         , DIPPCId
+         , CheckDate
+         , MCCode
+         , ShiftName
+         , UserName
+      FROM S9CleanCheckSheet 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND CleanId = COALESCE(@CleanId, CleanId)
+     ORDER BY CheckDate;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS9CleanCheckSheet]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS9CleanCheckSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS9CleanCheckSheet] (
+  @DIPPCId int
+, @CheckDate datetime  
+, @MCCode nvarchar(10)
+, @ShiftName nvarchar(10)
+, @UserName nvarchar(100)
+, @CleanId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S9CleanCheckSheet 
+                    WHERE CleanId = @CleanId)
+        BEGIN
+            UPDATE S9CleanCheckSheet 
+               SET DIPPCId = @DIPPCId
+                 , CheckDate = @CheckDate
+                 , MCCode = @MCCode
+                 , ShiftName = @ShiftName
+                 , UserName = @UserName
+             WHERE CleanId = @CleanId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S9CleanCheckSheet
+		    (
+                  DIPPCId
+                , CheckDate
+                , MCCode
+                , ShiftName
+                , UserName
+			)
+			VALUES
+			(
+                  @DIPPCId
+                , @CheckDate
+                , @MCCode
+                , @ShiftName
+                , @UserName
+			);
+
+			SET @CleanId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS9CleanCheckSheetItems]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS9CleanCheckSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS9CleanCheckSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS9CleanCheckSheetItems]
+(
+  @CleanId int = NULL
+)
+AS
+BEGIN
+    SELECT CleanId
+         , SPNo
+         , CheckSplitter
+         , CheckRollerCeramic
+         , CheckSlidebar
+         , CheckRollerCambox
+         , CheckTopGuide
+         , CheckBottomGuide
+         , CheckRollerFrontS9
+      FROM S9CleanCheckSheetItem 
+     WHERE CleanId = @CleanId
+     ORDER BY CleanId, SPNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS9CleanCheckSheetItem]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS9CleanCheckSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS9CleanCheckSheetItem] (
+  @CleanId int
+, @SPNo int
+, @CheckSplitter bit
+, @CheckRollerCeramic bit
+, @CheckSlidebar bit
+, @CheckRollerCambox bit
+, @CheckTopGuide bit
+, @CheckBottomGuide bit
+, @CheckRollerFrontS9 bit
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S9CleanCheckSheetItem 
+                    WHERE CleanId = @CleanId
+                      AND SPNo = @SPNo)
+        BEGIN
+            UPDATE S9CleanCheckSheetItem 
+               SET CheckSplitter = @CheckSplitter
+                 , CheckRollerCeramic = @CheckRollerCeramic
+                 , CheckSlidebar = @CheckSlidebar
+                 , CheckRollerCambox = @CheckRollerCambox
+                 , CheckTopGuide = @CheckTopGuide
+                 , CheckBottomGuide = @CheckBottomGuide
+                 , CheckRollerFrontS9 = @CheckRollerFrontS9
+             WHERE CleanId = @CleanId
+               AND SPNo = @SPNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S9CleanCheckSheetItem
+		    (
+                  CleanId
+                , SPNo
+                , CheckSplitter
+                , CheckRollerCeramic
+                , CheckSlidebar
+                , CheckRollerCambox
+                , CheckTopGuide
+                , CheckBottomGuide
+                , CheckRollerFrontS9
+			)
+			VALUES
+			(
+                  @CleanId
+                , @SPNo
+                , @CheckSplitter
+                , @CheckRollerCeramic
+                , @CheckSlidebar
+                , @CheckRollerCambox
+                , @CheckTopGuide
+                , @CheckBottomGuide
+                , @CheckRollerFrontS9
+			);
+
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS9AppearanceCheckSheets]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS9AppearanceCheckSheets
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS9AppearanceCheckSheets NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS9AppearanceCheckSheets]
+(
+  @DIPPCId int = NULL
+, @AppearId int = NULL
+)
+AS
+BEGIN
+    SELECT AppearId
+         , DIPPCId
+         , CheckDate
+         , MCCode
+         , ShiftName
+         , UserName
+      FROM S9AppearanceCheckSheet 
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
+       AND AppearId = COALESCE(@AppearId, AppearId)
+     ORDER BY CheckDate;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS9AppearanceCheckSheet]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS9AppearanceCheckSheet
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS9AppearanceCheckSheet] (
+  @DIPPCId int
+, @CheckDate datetime  
+, @MCCode nvarchar(10)
+, @ShiftName nvarchar(10)
+, @UserName nvarchar(100)
+, @AppearId int = NULL out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S9AppearanceCheckSheet 
+                    WHERE AppearId = @AppearId)
+        BEGIN
+            UPDATE S9AppearanceCheckSheet 
+               SET DIPPCId = @DIPPCId
+                 , CheckDate = @CheckDate
+                 , MCCode = @MCCode
+                 , ShiftName = @ShiftName
+                 , UserName = @UserName
+             WHERE AppearId = @AppearId
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S9AppearanceCheckSheet
+		    (
+                  DIPPCId
+                , CheckDate
+                , MCCode
+                , ShiftName
+                , UserName
+			)
+			VALUES
+			(
+                  @DIPPCId
+                , @CheckDate
+                , @MCCode
+                , @ShiftName
+                , @UserName
+			);
+
+			SET @AppearId = @@IDENTITY;
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[GetS9AppearanceCheckSheetItems]    Script Date: 10/24/2023 16:28:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetS9AppearanceCheckSheetItems
+-- [== History ==]
+-- <2023-04-26> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- EXEC GetS9AppearanceCheckSheetItems NULL
+-- =============================================
+CREATE PROCEDURE [dbo].[GetS9AppearanceCheckSheetItems]
+(
+  @AppearId int = NULL
+)
+AS
+BEGIN
+    SELECT AppearId
+         , SPNo
+         , CheckGood
+         , CheckBad
+         , Check2Color
+         , CheckKeiba
+         , CheckWeight
+         , CheckFrontTwist
+         , CheckBackTwist
+         , CheckSnarl
+         , CheckTube
+      FROM S9AppearanceCheckSheetItem 
+     WHERE AppearId = @AppearId
+     ORDER BY AppearId, SPNo;
+
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+/****** Object:  StoredProcedure [dbo].[SaveS9AppearanceCheckSheetItem]    Script Date: 10/24/2023 18:04:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	SaveS9AppearanceCheckSheetItem
+-- [== History ==]
+-- <2022-08-20> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+-- 
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveS9AppearanceCheckSheetItem] (
+  @AppearId int
+, @SPNo int
+, @CheckGood bit
+, @CheckBad bit
+, @Check2Color bit
+, @CheckKeiba bit
+, @CheckWeight bit
+, @CheckFrontTwist bit
+, @CheckBackTwist bit
+, @CheckSnarl bit
+, @CheckTube bit
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @LastNo int;
+	BEGIN TRY
+        IF EXISTS (SELECT TOP 1 * FROM S9AppearanceCheckSheetItem 
+                    WHERE AppearId = @AppearId
+                      AND SPNo = @SPNo)
+        BEGIN
+            UPDATE S9AppearanceCheckSheetItem 
+               SET CheckGood = @CheckGood
+                 , CheckBad = @CheckBad
+                 , Check2Color = @Check2Color
+                 , CheckKeiba = @CheckKeiba
+                 , CheckWeight = @CheckWeight
+                 , CheckFrontTwist = @CheckFrontTwist
+                 , CheckBackTwist = @CheckBackTwist
+                 , CheckSnarl = @CheckSnarl
+                 , CheckTube = @CheckTube
+             WHERE AppearId = @AppearId
+               AND SPNo = @SPNo
+        END
+        ELSE
+        BEGIN
+			INSERT INTO S9AppearanceCheckSheetItem
+		    (
+                  AppearId
+                , SPNo
+                , CheckGood
+                , CheckBad
+                , Check2Color
+                , CheckKeiba
+                , CheckWeight
+                , CheckFrontTwist
+                , CheckBackTwist
+                , CheckSnarl
+                , CheckTube
+			)
+			VALUES
+			(
+                  @AppearId
+                , @SPNo
+                , @CheckGood
+                , @CheckBad
+                , @Check2Color
+                , @CheckKeiba
+                , @CheckWeight
+                , @CheckFrontTwist
+                , @CheckBackTwist
+                , @CheckSnarl
+                , @CheckTube
+			);
+
+        END
+
+        -- Update Error Status/Message
+        SET @errNum = 0;
+        SET @errMsg = 'Success';
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2023-10-23  ***********/
+INSERT INTO DIPMC(MCCode, ProcessName, StartCore, EndCore) VALUES(N'S-7-1', N'S-7', 1, 130);
+INSERT INTO DIPMC(MCCode, ProcessName, StartCore, EndCore) VALUES(N'S-7-2', N'S-7', 1, 150);
+INSERT INTO DIPMC(MCCode, ProcessName, StartCore, EndCore) VALUES(N'S-8', N'S-8', 1, 130);
+INSERT INTO DIPMC(MCCode, ProcessName, StartCore, EndCore) VALUES(N'S-9', N'S-9', 1, 130);
+GO
 
