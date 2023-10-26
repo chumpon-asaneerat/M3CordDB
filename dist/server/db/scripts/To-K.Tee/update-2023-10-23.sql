@@ -1023,8 +1023,6 @@ GO
 
 
 /*********** Script Update Date: 2023-10-23  ***********/
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[GetDIPMCs]    Script Date: 10/24/2023 16:18:19 ******/
 SET ANSI_NULLS ON
 GO

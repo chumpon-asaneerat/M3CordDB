@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #171
+- DIP #31
+- update db script 2023-10-23 to production server
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #170
 - DIP #30
 - Generate db script 2023-10-23
