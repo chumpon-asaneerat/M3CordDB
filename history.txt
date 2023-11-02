@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #176
+- DIP #36
+  - fixed sp GetDIPPCCardsByMCCode
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #175
 - DIP #35
   - hot fixed db structure
