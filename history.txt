@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements FirstTwist #177
+- DIP #37
+  - Init data
+  
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements FirstTwist #176
 - DIP #36
   - fixed sp GetDIPPCCardsByMCCode
