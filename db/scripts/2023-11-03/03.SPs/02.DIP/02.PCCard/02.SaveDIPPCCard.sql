@@ -1,4 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[SaveDIPPCCard]    Script Date: 11/6/2023 11:55:09 ******/
+/****** Object:  StoredProcedure [dbo].[SaveDIPPCCard]    Script Date: 11/6/2023 12:41:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -40,6 +40,10 @@ BEGIN
 			     , ProductCode = @ProductCode
                  , DIPLotNo = @DIPLotNo
                  , ItemYarn = @ItemYarn
+				 , MCCode = @MCCode
+				 , DoffNo = @DoffNo
+				 , CreateBy = @CreateBy
+				 , CreateDate = CreateDate
                  , FinishFlag = @FinishFlag
                  , DeleteFlag = @DeleteFlag
              WHERE DIPPCId = @DIPPCId
@@ -52,6 +56,10 @@ BEGIN
                 , ProductCode
                 , DIPLotNo
                 , ItemYarn
+				, MCCode
+				, DoffNo
+				, CreateBy
+				, CreateDate
                 , FinishFlag
                 , DeleteFlag
 			)
@@ -61,6 +69,10 @@ BEGIN
                 , @ProductCode
                 , @DIPLotNo
                 , @ItemYarn
+				, @MCCode
+				, @DoffNo
+				, @CreateBy
+				, @CreateDate
                 , @FinishFlag
                 , @DeleteFlag
 			);
