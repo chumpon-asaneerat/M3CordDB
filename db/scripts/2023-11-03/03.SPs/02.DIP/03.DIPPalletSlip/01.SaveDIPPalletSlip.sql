@@ -42,6 +42,8 @@ DECLARE @LastNo int;
                  , CreateDate = @CreateDate
                  , TwistNo = @TwistNo
                  , [Counter] = @Counter
+                 , ActualQty = @ActualQty
+                 , ActualWeight = @ActualWeight
                  , UserName = @UserName
                  , PalletStatus = @PalletStatus
              WHERE PalletId = @PalletId
@@ -55,6 +57,8 @@ DECLARE @LastNo int;
                 , CreateDate
                 , TwistNo
                 , [Counter]
+                , ActualQty
+                , ActualWeight
                 , UserName
                 , PalletStatus
 			)
@@ -65,6 +69,8 @@ DECLARE @LastNo int;
                 , @CreateDate
                 , @TwistNo
                 , @Counter
+                , @ActualQty
+                , @ActualWeight
                 , @UserName
                 , @PalletStatus
 			);
