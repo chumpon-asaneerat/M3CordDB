@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[DIPPalletSlip]    Script Date: 11/7/2023 2:02:50 ******/
+/****** Object:  Table [dbo].[DIPPalletSlip]    Script Date: 11/7/2023 4:43:39 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,6 +12,8 @@ CREATE TABLE [dbo].[DIPPalletSlip](
 	[CreateDate] [datetime] NULL,
 	[TwistNo] [nvarchar](100) NULL,
 	[Counter] [int] NULL,
+	[ActualQty] [decimal](18, 3) NULL,
+	[ActualWeight] [decimal](18, 3) NULL,
 	[UserName] [nvarchar](100) NULL,
 	[PalletStatus] [int] NULL,
  CONSTRAINT [PK_DIPPalletSlip] PRIMARY KEY CLUSTERED 
