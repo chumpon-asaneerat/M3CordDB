@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #190
+- Add Table CustomerProduct
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #189
 - Update SP GetPCCards
 - Add SP SearchPCCards
