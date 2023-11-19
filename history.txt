@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #189
+- Update SP GetPCCards
+- Add SP SearchPCCards
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #188
 - Init CustomerProduct data #2
 
