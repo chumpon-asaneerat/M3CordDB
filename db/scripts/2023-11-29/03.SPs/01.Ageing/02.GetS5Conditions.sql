@@ -112,7 +112,8 @@ BEGIN
             ApproveDate ,
             ShiftLeader , 
             ProductionManager,
-            [Remark]
+            [Remark],
+            LotOrTraceNo
      FROM S5Condition
      WHERE S5ConditionId = COALESCE(@S5ConditionId, S5ConditionId)
      ORDER BY S5ConditionId;
