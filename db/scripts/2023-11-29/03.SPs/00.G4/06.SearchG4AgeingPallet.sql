@@ -52,10 +52,13 @@ BEGIN
 		 --, Y.Clean
 		 --, Y.Tearing
 		 --, Y.Falldown
-      FROM G4IssueYarn I, G4Yarn Y
+      FROM G4IssueYarn I, G4Yarn Y, Product P
 	 WHERE (UPPER(LTRIM(RTRIM(Y.TraceNo))) = UPPER(LTRIM(RTRIM(COALESCE(@PalletOrTraceNo, Y.TraceNo))))
 	    OR UPPER(LTRIM(RTRIM(Y.PalletNo))) = UPPER(LTRIM(RTRIM(COALESCE(@PalletOrTraceNo, Y.PalletNo)))))
        AND I.PalletNo = Y.PalletNo
+       AND P.ItemYarn = Y.ItemYarn
+       AND P.ItemYarn LIKE '1620-288-707%'
+       AND P.ProductCode LIKE N'1800TW%'
        AND (I.DeleteFlag IS NULL OR I.DeleteFlag = 0)
        AND (I.IsAgeing IS NULL OR I.IsAgeing = 0)
        AND (I.WHReceiveFlag  = 1)
