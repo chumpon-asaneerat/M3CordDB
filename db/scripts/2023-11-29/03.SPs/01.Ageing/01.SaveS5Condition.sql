@@ -101,6 +101,8 @@ ALTER PROCEDURE [dbo].[SaveS5Condition] (
     @UpdateBy nvarchar(100) , 
 	@Remark nvarchar(MAX),
     @LotOrTraceNo nvarchar(30),
+    @ProductCode1 nvarchar(30),
+    @ProductCode2 nvarchar(30),
     @S5ConditionId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
@@ -195,7 +197,9 @@ BEGIN
                     UpdateBy = @UpdateBy ,
                     UpdateDate = GETDATE(),
 					[Remark] = @Remark,
-                    LotOrTraceNo = @LotOrTraceNo
+                    LotOrTraceNo = @LotOrTraceNo,
+                    ProductCode1 = @ProductCode1,
+                    ProductCode2 = @ProductCode2
              WHERE S5ConditionId = @S5ConditionId
         END
         ELSE
@@ -287,7 +291,9 @@ BEGIN
                 UpdateBy ,
                 UpdateDate,
 				[Remark],
-                LotOrTraceNo
+                LotOrTraceNo,
+                ProductCode1,
+                ProductCode2
 			)
 			VALUES
 			(
@@ -376,7 +382,9 @@ BEGIN
                 @UpdateBy ,
                 GETDATE(),
 				@Remark,
-                @LotOrTraceNo
+                @LotOrTraceNo,
+                @ProductCode1,
+                @ProductCode2
 			);
         END
 

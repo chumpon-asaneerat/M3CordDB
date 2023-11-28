@@ -110,7 +110,9 @@ BEGIN
             ShiftLeader , 
             ProductionManager,
             [Remark],
-            LotOrTraceNo
+            LotOrTraceNo,
+            ProductCode1,
+            ProductCode2
      FROM S5Condition
      WHERE /*StartingTimeSettingTime IS NULL 
         OR */

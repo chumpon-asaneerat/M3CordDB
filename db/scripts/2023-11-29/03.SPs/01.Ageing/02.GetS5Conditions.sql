@@ -113,7 +113,9 @@ BEGIN
             ShiftLeader , 
             ProductionManager,
             [Remark],
-            LotOrTraceNo
+            LotOrTraceNo,
+            ProductCode1,
+            ProductCode2
      FROM S5Condition
      WHERE S5ConditionId = COALESCE(@S5ConditionId, S5ConditionId)
      ORDER BY S5ConditionId;
