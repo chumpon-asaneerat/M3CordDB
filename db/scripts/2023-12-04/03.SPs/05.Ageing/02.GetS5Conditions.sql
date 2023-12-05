@@ -115,7 +115,12 @@ BEGIN
             [Remark],
 			ProductCode1,
 			ProductCode2,
-            FromSource
+            FromSource,
+            CustomerName,
+            ProductName1,
+            ProductName2,
+            IssueDate,
+            IssueBy
      FROM S5Condition
      WHERE S5ConditionId = COALESCE(@S5ConditionId, S5ConditionId)
      ORDER BY S5ConditionId;

@@ -114,7 +114,13 @@ BEGIN
             ProductionManager,
             [Remark],
             ProductCode1,
-            ProductCode2
+            ProductCode2,
+            FromSource,
+            CustomerName,
+            ProductName1,
+            ProductName2,
+            IssueDate,
+            IssueBy
      FROM S5Condition
      WHERE FromSource = @FromSource
        AND (

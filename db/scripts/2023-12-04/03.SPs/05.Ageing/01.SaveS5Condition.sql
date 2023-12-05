@@ -103,6 +103,11 @@ ALTER PROCEDURE [dbo].[SaveS5Condition] (
     @ProductCode1 nvarchar(30),
     @ProductCode2 nvarchar(30),
     @FromSource int,
+    @CustomerName nvarchar(100),
+    @ProductName1 nvarchar(100),
+    @ProductName2 nvarchar(100),
+    @IssueDate datetime , 
+    @IssueBy nvarchar(100), 
     @S5ConditionId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
