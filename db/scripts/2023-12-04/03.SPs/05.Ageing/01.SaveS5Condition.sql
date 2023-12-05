@@ -204,7 +204,12 @@ BEGIN
 					[Remark] = @Remark,
                     ProductCode1 = @ProductCode1,
                     ProductCode2 = @ProductCode2,
-                    FromSource = @FromSource
+                    FromSource = @FromSource,
+                    CustomerName = @CustomerName,
+                    ProductName1 = @ProductName1,
+                    ProductName2 = @ProductName2,
+                    IssueBy = @IssueBy,
+                    IssueDate = @IssueDate
              WHERE S5ConditionId = @S5ConditionId
         END
         ELSE
@@ -298,7 +303,12 @@ BEGIN
 				[Remark],
                 ProductCode1,
                 ProductCode2,
-                FromSource
+                FromSource,
+                CustomerName,
+                ProductName1,
+                ProductName2,
+                IssueBy,
+                IssueDate
 			)
 			VALUES
 			(
@@ -389,7 +399,12 @@ BEGIN
 				@Remark,
                 @ProductCode1,
                 @ProductCode2,
-                @FromSource
+                @FromSource,
+                @CustomerName,
+                @ProductName1,
+                @ProductName2,
+                @IssueBy,
+                @IssueDate
 			);
         END
 
