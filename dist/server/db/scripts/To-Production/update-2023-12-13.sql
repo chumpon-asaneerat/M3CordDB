@@ -316,8 +316,6 @@ CREATE PROCEDURE [dbo].[ChGetSolutionLotDetail]
 )
 AS
 BEGIN
-
-
 	select s.* , isnull(c.ChemicalName, s.ChemicalNo) , r.ChemicalType
 	from  [dbo].[SolutionLotDetail] s 
 	left join [dbo].[ChemicalMaster] c on s.ChemicalNo = c.ChemicalNo
@@ -332,3 +330,27 @@ END
 
 GO
 
+/****** Object:  StoredProcedure [dbo].[ChGetSolutionRecipeDetailSpec]    Script Date: 26/12/2566 15:41:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[ChGetSolutionRecipeDetailSpec]
+(
+  @solutionid int
+  ,@recipe nvarchar(5) = NULL
+)
+AS
+BEGIN
+	select s.* , isnull(c.ChemicalName, s.ChemicalNo) AS ChemicalName
+	from  SolutionRecipeDetailSpec s 
+	left join [dbo].[ChemicalMaster] c on s.ChemicalNo = c.ChemicalNo
+	where  s.SolutionID = @solutionid
+	and s.Recipe = @recipe
+	order by s.MixOrder asc;
+	
+END
+
+GO
