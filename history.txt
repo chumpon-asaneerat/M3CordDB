@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #230
+- Update db script to production server
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #229
 - Update SearchWarehouseStockYarns SP
 
