@@ -23,8 +23,6 @@ ALTER PROCEDURE [dbo].[ChGetSolutionLotDetail]
 )
 AS
 BEGIN
-
-
 	select s.* , isnull(c.ChemicalName, s.ChemicalNo) as ChemicalName , r.ChemicalType
 	from  [dbo].[SolutionLotDetail] s 
 	left join [dbo].[ChemicalMaster] c on s.ChemicalNo = c.ChemicalNo
@@ -33,7 +31,7 @@ BEGIN
 	and s.[Recipe] = r.[Recipe]
 	and s.[MixOrder] = r.[MixOrder]
 	and s.[SolutionLot] = COALESCE(@solutionlot, s.[SolutionLot])
-	and s.[SolutionID] = COALESCE(@solutionlot, s.[SolutionID])
+	and s.[SolutionID] = COALESCE(@solutionid, s.[SolutionID])
 	and s.[Recipe] = COALESCE(@recipe , s.[Recipe])
 	order by s.[RecipeOrder] , s.[MixOrder] asc;
 
