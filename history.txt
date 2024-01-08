@@ -1,5 +1,12 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #241
+- DROP TABLE DIPCondition
+- CREATE TABLE DIPCondition
+- Update SP GetDIPConditions.
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #240
 - Update SP SaveDIPCondition.
 
