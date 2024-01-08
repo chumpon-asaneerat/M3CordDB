@@ -5,6 +5,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 ALTER PROCEDURE [dbo].[SaveDIPCondition] (
+    @DIPPCId int,
     @ProductCode nvarchar (30) ,
 	@S7YarnCordStructureSC bit  ,
 	@S7YarnCordStructureSet nvarchar (50) ,
@@ -240,16 +241,18 @@ ALTER PROCEDURE [dbo].[SaveDIPCondition] (
 	@ApproveBy nvarchar(100) ,
 	@ApproveDate datetime ,
 	@ShiftLeader nvarchar(100) ,
-	@ProductionManager nvarchar(100)
+	@ProductionManager nvarchar(100),
+    @DIPConditionId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
 BEGIN
 	BEGIN TRY
-        IF EXISTS (SELECT TOP 1 * FROM DIPCondition WHERE ProductCode = @ProductCode)
+        IF EXISTS (SELECT TOP 1 * FROM DIPCondition WHERE DIPConditionId = @DIPConditionId)
         BEGIN
             UPDATE DIPCondition 
-               SET  S7YarnCordStructureSC = @S7YarnCordStructureSC ,
+             SET DIPPCId = @DIPPCId, 
+                S7YarnCordStructureSC = @S7YarnCordStructureSC ,
 				S7YarnCordStructureSet = @S7YarnCordStructureSet ,
 				S7YarnCordStructureActual = @S7YarnCordStructureActual ,
 				S7YarnCordStructureSet2 = @S7YarnCordStructureSet2 ,
@@ -489,12 +492,13 @@ BEGIN
 				ApproveDate = @ApproveDate ,
 				ShiftLeader = @ShiftLeader ,
 				ProductionManager = @ProductionManager
-             WHERE ProductCode = @ProductCode
+             WHERE DIPConditionId = @DIPConditionId
         END
         ELSE
         BEGIN
 			INSERT INTO DIPCondition
 		    (
+                DIPPCId,
 				ProductCode,
 				S7YarnCordStructureSC,
 				S7YarnCordStructureSet,
@@ -739,6 +743,7 @@ BEGIN
 			)
 			VALUES
 			(
+                @DIPPCId,
                 @ProductCode,
 				@S7YarnCordStructureSC,
 				@S7YarnCordStructureSet,
@@ -980,6 +985,8 @@ BEGIN
 				@ShiftLeader ,
 				@ProductionManager
 			);
+
+            SET @DIPConditionId = @@IDENTITY;
         END
 
         -- Update Error Status/Message
