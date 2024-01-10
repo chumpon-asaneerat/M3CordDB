@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #247
+- Update Changes for PalletSetting #2
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #246
 - Update Changes for PalletSetting
 

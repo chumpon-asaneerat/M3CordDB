@@ -59,8 +59,6 @@ END
 
 GO
 
-USE [M3Cord]
-GO
 /****** Object:  StoredProcedure [dbo].[GetPalletCode]    Script Date: 1/10/2024 12:31:10 ******/
 SET ANSI_NULLS ON
 GO
