@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[DIPTimeTable](
 	[DIPTimeTableId] [int] IDENTITY(1,1) NOT NULL,
 	[DIPPCId] [int] NOT NULL,
 	[ProductCode] [nvarchar](30) NULL,
-	[RowType] [nvarchar](10) NULL,
+	[RowType] int NULL,
 	[PeriodTime] [datetime] NULL,
 	[S7BobbinSC] [bit] NULL,
 	[S7Bobbin] [bit] NULL,
