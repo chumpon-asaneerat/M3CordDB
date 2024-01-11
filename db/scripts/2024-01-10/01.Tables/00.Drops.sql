@@ -4,3 +4,12 @@ GO
 EXEC DROPTABLE 'DIPTimeTable'
 GO
 
+EXEC DROPTABLE 'S8BeforeConditionStd'
+GO
+
+EXEC DROPTABLE 'S8BeforeConditionCF'
+GO
+
+EXEC DROPTABLE 'S8BeforeConditionItem'
+GO
+

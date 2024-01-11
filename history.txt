@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #252
+- S8BeforeCondition redesign #1
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #251
 - Generate 2024-01-09 script (already update on production).
 
