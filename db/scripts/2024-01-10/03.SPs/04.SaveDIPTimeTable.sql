@@ -7,7 +7,7 @@ GO
 ALTER PROCEDURE [dbo].[SaveDIPTimeTable] (
     @DIPPCId int ,
     @ProductCode nvarchar (30) ,
-    @RowType int , -- -1 = STD, 0 = CONF, 1 = DATA
+    @RowType int , -- -2 = STDV-- -1 = STDB, 0 = CONF, 1 = DATA
 	@S7BobbinSC bit  ,
 	@S7Bobbin bit  ,
 	@S8CoolingWaterSystemBath1SC bit  ,

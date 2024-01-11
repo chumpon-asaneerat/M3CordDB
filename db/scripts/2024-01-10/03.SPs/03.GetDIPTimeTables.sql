@@ -14,7 +14,7 @@ BEGIN
     SELECT DIPTimeTableId
            DIPPCId,
            ProductCode,
-           RowType, -- -1 = STD, 0 = CONF, 1 = DATA
+           RowType, -- -2 = STDV-- -1 = STDB, 0 = CONF, 1 = DATA
            PeriodTime,
            S7BobbinSC,
            S7Bobbin,
