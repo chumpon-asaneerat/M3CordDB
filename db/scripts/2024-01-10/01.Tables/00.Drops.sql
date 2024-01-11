@@ -13,3 +13,8 @@ GO
 EXEC DROPTABLE 'S8BeforeConditionItem'
 GO
 
+DROP PROCEDURE GetS8BeforeConditionCF
+GO
+
+DROP PROCEDURE GetS8BeforeConditionItems
+GO
