@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S8BeforeCondition]    Script Date: 1/12/2024 8:02:55 ******/
+/****** Object:  Table [dbo].[S8BeforeCondition]    Script Date: 1/12/2024 9:06:26 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,6 +9,7 @@ CREATE TABLE [dbo].[S8BeforeCondition](
 	[S8BeforeId] [int] IDENTITY(1,1) NOT NULL,
 	[DIPPCId] [int] NOT NULL,
 	[ProductCode] [nvarchar](30) NULL,
+	[RowType] [int] NOT NULL,
 	[LotNo] [nvarchar](50) NULL,
 	[SolutionNameBath1SC] [bit] NULL,
 	[SolutionNameBath1] [nvarchar](50) NULL,
@@ -56,10 +57,8 @@ CREATE TABLE [dbo].[S8BeforeCondition](
 	[SpeedValue] [decimal](18, 3) NULL,
 	[ExhaustFanDryerSC] [bit] NULL,
 	[ExhaustFanDryer] [decimal](18, 3) NULL,
-	[ExhaustFanDryerValue] [decimal](18, 3) NULL,
 	[ExhaustFanHNSC] [bit] NULL,
 	[ExhaustFanHN] [decimal](18, 3) NULL,
-	[ExhaustFanHNValue] [decimal](18, 3) NULL,
 	[CleanBath1SC] [bit] NULL,
 	[CleanBath1] [bit] NULL,
 	[CleanBath2SC] [bit] NULL,
@@ -69,7 +68,9 @@ CREATE TABLE [dbo].[S8BeforeCondition](
 	[CamboxSC] [bit] NULL,
 	[Cambox] [bit] NULL,
 	[CheckBy] [nvarchar](100) NULL,
+	[CheckDate] [datetime] NULL,
 	[VerifyBy] [nvarchar](100) NULL,
+	[VerifyDate] [datetime] NULL,
  CONSTRAINT [PK_S8BeforeCondition] PRIMARY KEY CLUSTERED 
 (
 	[S8BeforeId] ASC
