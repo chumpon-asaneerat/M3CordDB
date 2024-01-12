@@ -56,7 +56,9 @@ BEGIN
            S8TempHNValue,
            S9GlideStatusSC,
            S9GlideStatus,
-           [Remark]
+           [Remark],
+           CheckBy,
+           CheckDate
      FROM DIPTimeTable
      WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
      ORDER BY RowType, PeriodTime;
