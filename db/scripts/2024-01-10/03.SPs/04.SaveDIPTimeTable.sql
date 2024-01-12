@@ -49,6 +49,8 @@ ALTER PROCEDURE [dbo].[SaveDIPTimeTable] (
 	@S9GlideStatusSC bit ,
 	@S9GlideStatus bit ,
     @Remark nvarchar(200) ,
+    @CheckBy nvarchar(100),
+    @CheckDate datetime,
     @DIPTimeTableId  int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
@@ -101,7 +103,9 @@ BEGIN
 					S8TempHNValue = @S8TempHNValue ,
 					S9GlideStatusSC  = @S9GlideStatusSC ,
 					S9GlideStatus  = @S9GlideStatus ,
-                    [Remark] = @Remark
+                    [Remark] = @Remark,
+                    CheckBy = @CheckBy,
+                    CheckDate = @CheckDate
              WHERE DIPTimeTableId = @DIPTimeTableId
         END
         ELSE
@@ -151,7 +155,9 @@ BEGIN
 				S8TempHNValue ,
 				S9GlideStatusSC ,
 				S9GlideStatus ,
-                [Remark]
+                [Remark],
+                CheckBy,
+                CheckDate
 			)
 			VALUES
 			(
@@ -198,7 +204,9 @@ BEGIN
 				@S8TempHNValue ,
 				@S9GlideStatusSC , 
 				@S9GlideStatus , 
-                @Remark
+                @Remark,
+                @CheckBy,
+                @CheckDate
 			);
 
             SET @DIPTimeTableId = @@IDENTITY;

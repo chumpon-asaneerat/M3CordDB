@@ -52,7 +52,9 @@ CREATE TABLE [dbo].[DIPTimeTable](
 	[S9GlideStatusSC] [bit] NULL,
 	[S9GlideStatus] [bit] NULL,
 	[Remark] [nvarchar](200) NULL,
- CONSTRAINT [PK_DIPTimeTable] PRIMARY KEY CLUSTERED 
+ 	[CheckBy] [nvarchar](100) NULL,
+	[CheckDate] [datetime] NULL,
+CONSTRAINT [PK_DIPTimeTable] PRIMARY KEY CLUSTERED 
 (
 	[DIPTimeTableId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
