@@ -1,0 +1,26 @@
+EXEC DROPTABLE 'DIPTimeTableStd'
+GO
+
+EXEC DROPTABLE 'DIPTimeTable'
+GO
+
+EXEC DROPTABLE 'S8BeforeConditionStd'
+GO
+
+EXEC DROPTABLE 'S8BeforeConditionCF'
+GO
+
+EXEC DROPTABLE 'S8BeforeConditionItem'
+GO
+
+DROP PROCEDURE GetS8BeforeConditionCF
+GO
+
+DROP PROCEDURE GetS8BeforeConditionItems
+GO
+
+DROP PROCEDURE SaveS8BeforeConditionCF
+GO
+
+DROP PROCEDURE SaveS8BeforeConditionItem
+GO
