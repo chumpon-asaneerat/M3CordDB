@@ -15,6 +15,7 @@ DECLARE @Today int
 DECLARE @Nextday int
 DECLARE @StartTime datetime
 DECLARE @EndTime datetime
+
     SET @StartTime = NULL;
     SET @EndTime = NULL;
 
