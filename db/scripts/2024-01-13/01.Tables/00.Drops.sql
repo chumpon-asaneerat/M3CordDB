@@ -1,0 +1,6 @@
+EXEC DROPTABLE 'DIPTimeTableStd'
+GO
+
+EXEC DROPTABLE 'DIPTimeTable'
+GO
+
