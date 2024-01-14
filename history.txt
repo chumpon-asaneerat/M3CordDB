@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #273
+- Generate 2024-01-13 script and update to production server.
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #272
 - Add SP GetDIPTimeTableLotLists
 
