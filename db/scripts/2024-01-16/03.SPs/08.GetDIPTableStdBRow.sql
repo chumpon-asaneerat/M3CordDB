@@ -5,7 +5,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATe PROCEDURE [dbo].[GetDIPTableStdVRow]
+ALTER PROCEDURE [dbo].[GetDIPTableStdVRow]
 (
   @DIPPCId int
 )

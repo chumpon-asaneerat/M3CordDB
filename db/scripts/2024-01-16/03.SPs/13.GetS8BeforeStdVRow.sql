@@ -5,7 +5,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATe PROCEDURE [dbo].[GetS8BeforeStdVRow]
+CREATE PROCEDURE [dbo].[GetS8BeforeStdVRow]
 (
   @DIPPCId int
 )

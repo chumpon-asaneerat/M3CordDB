@@ -1,6 +1,9 @@
 EXEC DROPTABLE 'DIPTimeTable'
 GO
 
+EXEC DROPTABLE 'S8BeforeCondition'
+GO
+
 DROP PROCEDURE SaveDIPTimeTableStdCFRow
 GO
 
