@@ -15,7 +15,7 @@ BEGIN
 DECLARE @RowType int = -2
 	BEGIN TRY
         IF NOT EXISTS (SELECT TOP 1 * 
-                         FROM DIPTimeTable 
+                         FROM S8BeforeCondition 
                         WHERE ProductCode = @ProductCode
                           AND DIPPCId = @DIPPCId
                           AND RowType = @RowType

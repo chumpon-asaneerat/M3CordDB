@@ -81,7 +81,7 @@ BEGIN
         ,VerifyDate
     FROM S8BeforeCondition
    WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
-   ORDER BY RowType;
+   ORDER BY DIPPCId, LotNo, RowType;
 
 END
 
