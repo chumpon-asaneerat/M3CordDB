@@ -115,6 +115,7 @@ BEGIN
                     CheckBy = @CheckBy,
                     CheckDate = @CheckDate
              WHERE PeriodTime = @PeriodTime
+               AND DIPPCId =  @DIPPCId
                AND RowType = @RowType
                AND ProductCode = @ProductCode
                AND LotNo = @LotNo

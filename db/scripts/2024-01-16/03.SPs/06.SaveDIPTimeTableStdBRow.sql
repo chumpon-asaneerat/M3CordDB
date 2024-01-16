@@ -13,7 +13,7 @@ ALTER PROCEDURE [dbo].[SaveDIPTimeTableStdBRow] (
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
 BEGIN
-DECLARE @Today datetime = NULL
+--DECLARE @Today datetime = NULL
 DECLARE @RowType int = -1
 	BEGIN TRY
         /*
@@ -25,6 +25,7 @@ DECLARE @RowType int = -1
         IF NOT EXISTS (SELECT TOP 1 * 
                          FROM DIPTimeTable 
                         WHERE ProductCode = @ProductCode
+                          AND DIPPCId = @DIPPCId
                           --AND PeriodTime = @Today
                           AND PeriodTime = @Date
                           AND RowType = @RowType
@@ -59,14 +60,17 @@ DECLARE @RowType int = -1
                 ,[S8StretchN]
                 ,[S8StretchNErr]
                 ,[S8TempDSC]
+                ,[S8TempD]
                 ,[S8TempDErr]
                 ,[S8TempHNSC]
+                ,[S8TempHN]
                 ,[S8TempHNErr]
                 ,[S9GlideStatusSC]
             )
             SELECT DIPPCId = @DIPPCId
                 , RowType = @RowType
-                , PeriodTime = @Today
+                --, PeriodTime = @Today
+                , PeriodTime = @Date
                 , LotNo = @LotNo
                 ,[ProductCode]
                 ,[S7BobbinSC]
@@ -91,8 +95,10 @@ DECLARE @RowType int = -1
                 ,[S8StretchN]
                 ,[S8StretchNErr]
                 ,[S8TempDSC]
+                ,[S8TempD]
                 ,[S8TempDErr]
                 ,[S8TempHNSC]
+                ,[S8TempHN]
                 ,[S8TempHNErr]
                 ,[S9GlideStatusSC]
             FROM DIPTimeTableStd 
