@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #280
+- Update DIPTable and DIPS8Before #5
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #279
 - Re-generate 2024-01-16 script and update to production server.
 
