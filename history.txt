@@ -1,26 +1,31 @@
 ----------------------------------------------------------------------------------------------
 [commited]
-Re-Implements #284
+Re-Implements #290
+- Implements S8ProductionCondition #7
+
+----------------------------------------------------------------------------------------------
+[commited]
+Re-Implements #289
 - Implements S8ProductionCondition #6
 
 ----------------------------------------------------------------------------------------------
 [commited]
-Re-Implements #284
+Re-Implements #288
 - Implements S8ProductionCondition #5
 
 ----------------------------------------------------------------------------------------------
 [commited]
-Re-Implements #284
+Re-Implements #287
 - Implements S8ProductionCondition #4
 
 ----------------------------------------------------------------------------------------------
 [commited]
-Re-Implements #284
+Re-Implements #286
 - Implements S8ProductionCondition #3
 
 ----------------------------------------------------------------------------------------------
 [commited]
-Re-Implements #284
+Re-Implements #285
 - Implements S8ProductionCondition #2
 
 ----------------------------------------------------------------------------------------------
