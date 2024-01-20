@@ -1,11 +1,11 @@
-/****** Object:  Table [dbo].[S8ProductionConditionStd]    Script Date: 1/20/2024 10:20:09 ******/
+/****** Object:  Table [dbo].[S8ProductionConditionItemStd]    Script Date: 1/20/2024 10:20:09 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[S8ProductionConditionStd](
+CREATE TABLE [dbo].[S8ProductionConditionItemStd](
 	[ProductCode] [nvarchar](30) NULL,
 	[StretchDSC] [bit] NULL,
 	[StretchD] [decimal](18, 3) NULL,
