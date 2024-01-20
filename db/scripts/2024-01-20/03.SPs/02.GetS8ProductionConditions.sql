@@ -8,7 +8,7 @@ GO
 CREATE PROCEDURE [dbo].[GetS8ProductionConditions]
 (
   @ProductCode nvarchar(30) = NULL
-  ,@LotNo nvarchar(30) = NULL
+, @LotNo nvarchar(30) = NULL
 )
 AS
 BEGIN
