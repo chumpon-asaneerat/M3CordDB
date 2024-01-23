@@ -46,6 +46,7 @@ DECLARE @RowType int = -1
                 , RowType
                 , DoffingDate
                 , DoffingNo
+                , LotNo
                 , ProductCode
 
 				, StretchDSC  
@@ -83,6 +84,7 @@ DECLARE @RowType int = -1
                 , RowType = @RowType
                 , DoffingDate = @Date
                 , DoffingNo = @DoffingNo
+                , LotNo = @LotNo
                 ,[ProductCode]
 
 				, StretchDSC  
