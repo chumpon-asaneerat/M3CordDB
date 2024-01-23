@@ -20,6 +20,7 @@ BEGIN
 		 , [Counter]
 		 , CounterErr
 		 , CordStructure
+         , ItemYarn
 		 , ProductCode
 		 , LotNo
 		 , Bath1SolutionName
@@ -55,6 +56,9 @@ BEGIN
 		 , TempDZone1
 		 , TempDZone2
 		 , TempDZone3
+		 , TempDZone4
+		 , TempDZone5
+		 , TempDZone6
 		 , TempHNZone1
 		 , TempHNZone2
 		 , TempHNZone3
@@ -64,7 +68,7 @@ BEGIN
 		 , SectionHead
 		 , SectionManager 
       FROM S8ProductionConditionView
-     WHERE DIPPCId = COALESCE(@DIPPCId, @DIPPCId)
+     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
 	   AND LotNo IS NOT NULL
      ORDER BY RecordDate;
 

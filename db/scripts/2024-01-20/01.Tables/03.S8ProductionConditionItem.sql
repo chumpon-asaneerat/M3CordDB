@@ -6,7 +6,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[S8ProductionConditionItem](
-	[S8ConditionId] [int] NULL,
+	[DIPPCId] [int] NULL,
 	[RowType] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[LotNo] [nvarchar](30) NULL,

@@ -16,6 +16,7 @@ AS
 		 , A.[Counter]
 		 , A.CounterErr
 		 , B.CordStructure
+         , B.ItemYarn
 		 , A.ProductCode
 		 , A.LotNo
 		 , A.Bath1SolutionName
@@ -51,6 +52,9 @@ AS
 		 , A.TempDZone1
 		 , A.TempDZone2
 		 , A.TempDZone3
+		 , A.TempDZone4
+		 , A.TempDZone5
+		 , A.TempDZone6
 		 , A.TempHNZone1
 		 , A.TempHNZone2
 		 , A.TempHNZone3

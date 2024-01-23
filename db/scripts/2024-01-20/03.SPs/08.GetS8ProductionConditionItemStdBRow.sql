@@ -1,13 +1,13 @@
-/****** Object:  StoredProcedure [dbo].[GetS8ProductionConditionItems]    Script Date: 1/20/2024 12:29:21 ******/
+/****** Object:  StoredProcedure [dbo].[GetS8ProductionConditionItemStdBRow]    Script Date: 1/11/2024 1:40:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE [dbo].[GetS8ProductionConditionItems]
+CREATE PROCEDURE [dbo].[GetS8ProductionConditionItemStdBRow]
 (
-  @DIPPCId int = NULL
+  @DIPPCId int
 )
 AS
 BEGIN
@@ -86,10 +86,11 @@ BEGIN
 		 , Opertor 
 		 , Leader 
       FROM S8ProductionConditionItem
-     WHERE DIPPCId = COALESCE(@DIPPCId, DIPPCId)
-	   AND LotNo IS NOT NULL
-     ORDER BY DIPPCId, LotNo, DoffingNo;
+     WHERE DIPPCId = @DIPPCId
+       AND RowType = -1
+       AND LotNo IS NOT NULL
+     ORDER BY DIPPCId, RowType, DoffingDate, DoffingNo;
 
-END;
+END
 
 GO

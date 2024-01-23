@@ -46,6 +46,9 @@ CREATE PROCEDURE [dbo].[SaveS8ProductionCondition] (
 , @TempDZone1 decimal (18, 3)
 , @TempDZone2 decimal (18, 3)
 , @TempDZone3 decimal (18, 3)
+, @TempDZone4 decimal (18, 3)
+, @TempDZone5 decimal (18, 3)
+, @TempDZone6 decimal (18, 3)
 , @TempHNZone1 decimal (18, 3)
 , @TempHNZone2 decimal (18, 3)
 , @TempHNZone3 decimal (18, 3)
@@ -106,6 +109,9 @@ BEGIN
 				 , TempDZone1 = @TempDZone1 
 				 , TempDZone2 = @TempDZone2 
 				 , TempDZone3 = @TempDZone3 
+				 , TempDZone4 = @TempDZone4 
+				 , TempDZone5 = @TempDZone5 
+				 , TempDZone6 = @TempDZone6 
 				 , TempHNZone1 = @TempHNZone1 
 				 , TempHNZone2 = @TempHNZone2 
 				 , TempHNZone3 = @TempHNZone3 
@@ -161,6 +167,9 @@ BEGIN
 				, TempDZone1 
 				, TempDZone2 
 				, TempDZone3 
+				, TempDZone4 
+				, TempDZone5 
+				, TempDZone6 
 				, TempHNZone1 
 				, TempHNZone2 
 				, TempHNZone3 
@@ -213,6 +222,9 @@ BEGIN
 				, @TempDZone1 
 				, @TempDZone2 
 				, @TempDZone3 
+				, @TempDZone4 
+				, @TempDZone5 
+				, @TempDZone6 
 				, @TempHNZone1 
 				, @TempHNZone2 
 				, @TempHNZone3 
