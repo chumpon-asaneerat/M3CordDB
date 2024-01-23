@@ -7,6 +7,7 @@ GO
 
 CREATE TABLE [dbo].[S8ProductionConditionItem](
 	[S8ConditionId] [int] NULL,
+	[RowType] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[LotNo] [nvarchar](30) NULL,
 	[DoffingDate] [datetime] NULL,

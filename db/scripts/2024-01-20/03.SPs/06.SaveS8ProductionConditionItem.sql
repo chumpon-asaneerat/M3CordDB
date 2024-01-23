@@ -6,6 +6,7 @@ GO
 
 CREATE PROCEDURE [dbo].[SaveS8ProductionConditionItem] (
   @S8ConditionId int
+, @RowType int  
 , @ProductCode nvarchar (30) 
 , @LotNo nvarchar (30) 
 , @DoffingDate datetime  
@@ -84,11 +85,14 @@ BEGIN
         IF EXISTS (SELECT TOP 1 * 
                      FROM S8ProductionConditionItem 
                     WHERE S8ConditionId = @S8ConditionId 
+                      AND RowType = @RowType
                       AND LotNo = @LotNo 
+                      AND DoffingDate = @DoffingDate
                       AND DoffingNo = @DoffingNo)
         BEGIN
             UPDATE S8ProductionConditionItem 
                SET S8ConditionId = @S8ConditionId
+                 , RowType = @RowType
                  , DoffingDate = @DoffingDate  
 				 , DoffingNo = @DoffingNo 
 
@@ -157,7 +161,9 @@ BEGIN
 				 , Opertor = @Opertor 
 				 , Leader = @Leader   
              WHERE S8ConditionId = @S8ConditionId  
+               AND RowType = @RowType
                AND LotNo = @LotNo 
+               AND DoffingDate = @DoffingDate
                AND DoffingNo = @DoffingNo
         END
         ELSE
@@ -165,6 +171,7 @@ BEGIN
 			INSERT INTO S8ProductionConditionItem
 		    (
                   S8ConditionId
+                , RowType
 				, ProductCode 
 				, LotNo 
 				, DoffingDate 
@@ -240,6 +247,7 @@ BEGIN
 			VALUES
 			(
                   @S8ConditionId
+                , @RowType
                 , @ProductCode 
 				, @LotNo 
 				, @DoffingDate 

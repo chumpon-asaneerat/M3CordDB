@@ -12,6 +12,7 @@ CREATE PROCEDURE [dbo].[GetS8ProductionConditionItems]
 AS
 BEGIN
     SELECT S8ConditionId
+         , RowType
          , ProductCode 
          , LotNo 
 		 , DoffingDate 
