@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #293
+- Implements S8ProductionCondition #10
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #292
 - Implements S8ProductionCondition #9
 

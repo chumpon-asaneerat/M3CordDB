@@ -5,7 +5,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[SaveS8ProductionConditionItem] (
-  @ProductCode nvarchar (30) 
+  @S8ConditionId int
+, @ProductCode nvarchar (30) 
 , @LotNo nvarchar (30) 
 , @DoffingDate datetime  
 , @DoffingNo int  
@@ -82,12 +83,13 @@ BEGIN
 	BEGIN TRY
         IF EXISTS (SELECT TOP 1 * 
                      FROM S8ProductionConditionItem 
-                    WHERE ProductCode = @ProductCode 
+                    WHERE S8ConditionId = @S8ConditionId 
                       AND LotNo = @LotNo 
                       AND DoffingNo = @DoffingNo)
         BEGIN
             UPDATE S8ProductionConditionItem 
-               SET DoffingDate = @DoffingDate  
+               SET S8ConditionId = @S8ConditionId
+                 , DoffingDate = @DoffingDate  
 				 , DoffingNo = @DoffingNo 
 
                  , StretchDSC = @StretchDSC  
@@ -154,7 +156,7 @@ BEGIN
 				 , CheckTimeRecord = @CheckTimeRecord  
 				 , Opertor = @Opertor 
 				 , Leader = @Leader   
-             WHERE ProductCode = @ProductCode  
+             WHERE S8ConditionId = @S8ConditionId  
                AND LotNo = @LotNo 
                AND DoffingNo = @DoffingNo
         END
@@ -162,7 +164,8 @@ BEGIN
         BEGIN
 			INSERT INTO S8ProductionConditionItem
 		    (
-				  ProductCode 
+                  S8ConditionId
+				, ProductCode 
 				, LotNo 
 				, DoffingDate 
 				, DoffingNo
@@ -236,7 +239,8 @@ BEGIN
 			)
 			VALUES
 			(
-                  @ProductCode 
+                  @S8ConditionId
+                , @ProductCode 
 				, @LotNo 
 				, @DoffingDate 
 				, @DoffingNo

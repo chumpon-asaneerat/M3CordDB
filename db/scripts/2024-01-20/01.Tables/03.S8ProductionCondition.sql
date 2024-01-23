@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S8ProductionCondition]    Script Date: 1/20/2024 10:28:53 ******/
+/****** Object:  Table [dbo].[S8ProductionCondition]    Script Date: 1/24/2024 1:29:29 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -6,13 +6,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[S8ProductionCondition](
+	[S8ConditionId] [int] IDENTITY(1,1) NOT NULL,
+	[DIPPCId] [int] NULL,
 	[RecordDate] [datetime] NULL,
 	[ProcessHS] [bit] NULL,
 	[ProcessDIP] [bit] NULL,
-	[Customer] [nvarchar](100) NULL,
 	[Counter] [decimal](18, 3) NULL,
 	[CounterErr] [decimal](18, 3) NULL,
-	[CordStructure] [nvarchar](100) NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[LotNo] [nvarchar](30) NULL,
 	[Bath1SolutionName] [nvarchar](100) NULL,
@@ -55,7 +55,13 @@ CREATE TABLE [dbo].[S8ProductionCondition](
 	[TempHNZone5] [decimal](18, 3) NULL,
 	[TempHNZone6] [decimal](18, 3) NULL,
 	[SectionHead] [nvarchar](100) NULL,
-	[SectionManager] [nvarchar](100) NULL
+	[SectionManager] [nvarchar](100) NULL,
+ CONSTRAINT [PK_S8ProductionCondition] PRIMARY KEY CLUSTERED 
+(
+	[S8ConditionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
+
+

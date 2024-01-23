@@ -7,15 +7,16 @@ GO
 
 CREATE PROCEDURE [dbo].[GetS8ProductionConditions]
 (
-  @ProductCode nvarchar(30) = NULL
-, @LotNo nvarchar(30) = NULL
+  @DIPPCId int = NULL
 )
 AS
 BEGIN
-    SELECT RecordDate
+    SELECT S8ConditionId
+         , DIPPCId
+         , RecordDate
          , ProcessHS 
          , ProcessDIP 
-         , Customer
+         , CustomerName
 		 , [Counter]
 		 , CounterErr
 		 , CordStructure
@@ -62,10 +63,10 @@ BEGIN
 		 , TempHNZone6
 		 , SectionHead
 		 , SectionManager 
-      FROM S8ProductionCondition
-     WHERE ProductCode = COALESCE(@ProductCode, ProductCode)
-	   AND LotNo = COALESCE(@LotNo, LotNo)
-     ORDER BY ProductCode;
+      FROM S8ProductionConditionView
+     WHERE DIPPCId = COALESCE(@DIPPCId, @DIPPCId)
+	   AND LotNo IS NOT NULL
+     ORDER BY RecordDate;
 
 END;
 

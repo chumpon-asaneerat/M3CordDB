@@ -7,12 +7,12 @@ GO
 
 CREATE PROCEDURE [dbo].[GetS8ProductionConditionItems]
 (
-  @ProductCode nvarchar(30) = NULL
-, @LotNo nvarchar(30) = NULL
+  @S8ConditionId int = NULL
 )
 AS
 BEGIN
-    SELECT ProductCode 
+    SELECT S8ConditionId
+         , ProductCode 
          , LotNo 
 		 , DoffingDate 
 		 , DoffingNo 
@@ -85,9 +85,9 @@ BEGIN
 		 , Opertor 
 		 , Leader 
       FROM S8ProductionConditionItem
-     WHERE ProductCode = COALESCE(@ProductCode, ProductCode)
-	   AND LotNo = COALESCE(@LotNo, LotNo)
-     ORDER BY ProductCode ,DoffingNo;
+     WHERE S8ConditionId = COALESCE(@S8ConditionId, S8ConditionId)
+	   AND LotNo IS NOT NULL
+     ORDER BY S8ConditionId, LotNo, DoffingNo;
 
 END;
 

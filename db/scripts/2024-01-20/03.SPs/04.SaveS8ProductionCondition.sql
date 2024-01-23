@@ -5,13 +5,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[SaveS8ProductionCondition] (
-  @RecordDate datetime 
+  @DIPPCId int
+, @RecordDate datetime 
 , @ProcessHS bit 
 , @ProcessDIP bit 
-, @Customer nvarchar (100)
 , @Counter decimal (18, 3)
 , @CounterErr decimal (18, 3)
-, @CordStructure nvarchar (100)
 , @ProductCode nvarchar (30)
 , @LotNo nvarchar (30)
 , @Bath1SolutionName nvarchar (100)
@@ -55,6 +54,7 @@ CREATE PROCEDURE [dbo].[SaveS8ProductionCondition] (
 , @TempHNZone6 decimal (18, 3)
 , @SectionHead nvarchar (100)
 , @SectionManager nvarchar (100) 
+, @S8ConditionId int = NULL out
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
@@ -62,17 +62,15 @@ BEGIN
 	BEGIN TRY
         IF EXISTS (SELECT TOP 1 * 
                      FROM S8ProductionCondition 
-                    WHERE ProductCode = @ProductCode 
-                      AND LotNo = @LotNo)
+                    WHERE S8ConditionId = @S8ConditionId)
         BEGIN
             UPDATE S8ProductionCondition 
-               SET RecordDate = @RecordDate 
+               SET DIPPCId = @DIPPCId
+                 , RecordDate = @RecordDate 
 				 , ProcessHS = @ProcessHS 
 				 , ProcessDIP = @ProcessDIP 
-				 , Customer = @Customer 
 				 , [Counter] = @Counter 
 				 , CounterErr = @CounterErr 
-				 , CordStructure = @CordStructure 
 				 , ProductCode = @ProductCode 
 				 , LotNo = @LotNo 
 				 , Bath1SolutionName = @Bath1SolutionName 
@@ -116,20 +114,18 @@ BEGIN
 				 , TempHNZone6 = @TempHNZone6 
 				 , SectionHead = @SectionHead 
 				 , SectionManager = @SectionManager 
-             WHERE ProductCode = @ProductCode  
-               AND LotNo = @LotNo
+             WHERE S8ConditionId = @S8ConditionId
         END
         ELSE
         BEGIN
 			INSERT INTO S8ProductionCondition
 		    (
-				  RecordDate 
+                  DIPPCId
+				, RecordDate 
 				, ProcessHS 
 				, ProcessDIP 
-				, Customer 
 				, [Counter] 
 				, CounterErr 
-				, CordStructure 
 				, ProductCode 
 				, LotNo 
 				, Bath1SolutionName 
@@ -176,13 +172,12 @@ BEGIN
 			)
 			VALUES
 			(
-                  @RecordDate 
+                  @DIPPCId
+				, @RecordDate 
 				, @ProcessHS 
 				, @ProcessDIP 
-				, @Customer 
 				, @Counter 
 				, @CounterErr 
-				, @CordStructure 
 				, @ProductCode 
 				, @LotNo 
 				, @Bath1SolutionName 
@@ -227,6 +222,8 @@ BEGIN
 				, @SectionHead 
 				, @SectionManager
 			);
+
+            SET @S8ConditionId = @@IDENTITY;
         END
 
         -- Update Error Status/Message
