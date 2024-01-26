@@ -24,3 +24,6 @@ GO
 
 EXEC DROPTABLE 'ProductionRecordStd'
 GO
+
+EXEC DROPTABLE 'CordSamplingDetails'
+GO
