@@ -27,8 +27,8 @@ BEGIN
          , A.ItemYarn
          , A.MCCode 
          , B.AppearId
-		 , MIN(SPNo) AS SPStart
-		 , MAX(SPNo) AS SPEnd
+		 , MIN(C.SPNo) AS SPStart
+		 , MAX(C.SPNo) AS SPEnd
          , Count(C.CheckGood) AS TotalGood
      FROM DIPPCCardView A
          , S9AppearanceCheckSheet B
