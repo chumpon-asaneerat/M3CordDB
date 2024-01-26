@@ -43,6 +43,8 @@ DECLARE @maxSP int
        AND C.AppearId = B.AppearId
        AND C.CheckGood = 1
        AND A.DIPLotNo = @LotNo
+	   AND C.SPNo >= @minSP
+	   AND C.SPNo <= @maxSP
      ORDER BY C.SPNo
 
 END
