@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #306
+- Update SP GetTwist1Opts
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #305
 - Generate 2024-01-25 script and update to production server.
 
