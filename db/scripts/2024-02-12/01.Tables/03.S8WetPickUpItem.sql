@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S8WetPickUpItem]    Script Date: 2/16/2024 14:51:42 ******/
+/****** Object:  Table [dbo].[S8WetPickUpItem]    Script Date: 2/16/2024 15:11:48 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,12 +15,14 @@ CREATE TABLE [dbo].[S8WetPickUpItem](
 	[NipPressure] [nvarchar](50) NULL,
 	[WPU] [decimal](18, 3) NULL,
 	[WPUErr] [decimal](18, 3) NULL,
+	[WPUValue] [decimal](18, 3) NULL,
 	[FirstAmt] [decimal](18, 3) NULL,
 	[UseAmt] [decimal](18, 3) NULL,
 	[RestAmt] [decimal](18, 3) NULL,
 	[ThrowAmt] [decimal](18, 3) NULL,
 	[Operator] [nvarchar](100) NULL,
-	[UpdateDate] [datetime] NULL
+	[UpdateDate] [datetime] NULL,
+	[Remark] [nvarchar](200) NULL
 ) ON [PRIMARY]
 
 GO
