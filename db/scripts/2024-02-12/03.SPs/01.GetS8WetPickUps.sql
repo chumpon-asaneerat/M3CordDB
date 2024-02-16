@@ -5,17 +5,18 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE GetS8WetPickUp
+CREATE PROCEDURE GetS8WetPickUps
 (
-  @DIPPCId int = NULL
+  @ProductCode nvarchar(50) = NULL
+, @LotNo nvarchar(50) = NULL
+, @DoffingDate datetime
 )
 AS
 BEGIN
-    SELECT A.DIPPCId
-         , A.ProductCode
+    SELECT A.ProductCode
          , A.LotNo
          , A.DoffingDate
-         , A.DoffingNo
+         , A.CustomerName
          , A.FirstDip1
          , A.SolutionName
          , A.FirstDip2
@@ -64,11 +65,15 @@ BEGIN
          , A.ExhaustFanSupply1
          , A.ExhaustFanSupply2
          , A.Remark
+         , A.Opertor
+         , A.Leader
       FROM S8WetPickup A
-     WHERE A.DIPPCId = COALESCE(@DIPPCId, A.DIPPCId)
+     WHERE A.LotNo = @LotNo 
+       AND A.ProductCode = @ProductCode
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @DoffingDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)))
 	   AND A.LotNo IS NOT NULL
      ORDER BY A.DoffingDate;
 
-END;
+END
 
 GO

@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[S8x2WetPickup]    Script Date: 2/16/2024 9:46:59 ******/
+/****** Object:  Table [dbo].[S8x2WetPickup]    Script Date: 2/16/2024 10:36:52 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -6,11 +6,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[S8x2WetPickup](
-	[DIPPCId] [int] NULL,
 	[ProductCode] [nvarchar](30) NULL,
 	[LotNo] [nvarchar](30) NULL,
 	[DoffingDate] [datetime] NULL,
-	[DoffingNo] [int] NULL,
+	[CustomerName] [nvarchar](30) NULL,
 	[FirstDip1] [nvarchar](50) NULL,
 	[SolutionName] [nvarchar](50) NULL,
 	[FirstDip2] [nvarchar](50) NULL,
@@ -79,7 +78,9 @@ CREATE TABLE [dbo].[S8x2WetPickup](
 	[MotorSingleTension3x4] [decimal](18, 0) NULL,
 	[MotorSingleTension4x5] [decimal](18, 0) NULL,
 	[MotorSingleTension1x6] [decimal](18, 0) NULL,
-	[Remark] [nvarchar](200) NULL
+	[Remark] [nvarchar](200) NULL,
+	[Operator] [nvarchar](100) NULL,
+	[Leader] [nvarchar](100) NULL
 ) ON [PRIMARY]
 
 GO

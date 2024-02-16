@@ -1,21 +1,22 @@
-/****** Object:  StoredProcedure [dbo].[GetS8WetPickUp]    Script Date: 1/20/2024 12:29:20 ******/
+/****** Object:  StoredProcedure [dbo].[GetS8x2WetPickUps]    Script Date: 1/20/2024 12:29:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE GetS8x2WetPickUp
+CREATE PROCEDURE GetS8x2WetPickUps
 (
-  @DIPPCId int = NULL
+  @ProductCode nvarchar(50) = NULL
+, @LotNo nvarchar(50) = NULL
+, @DoffingDate datetime
 )
 AS
 BEGIN
-    SELECT A.DIPPCId
-         , A.ProductCode
+    SELECT A.ProductCode
          , A.LotNo
          , A.DoffingDate
-         , A.DoffingNo
+         , A.CustomerName
          , A.FirstDip1
          , A.SolutionName
          , A.FirstDip2
@@ -85,8 +86,12 @@ BEGIN
          , A.MotorSingleTension4x5
          , A.MotorSingleTension1x6
          , A.Remark
+         , A.Opertor
+         , A.Leader
       FROM S8x2WetPickup A
-     WHERE A.DIPPCId = COALESCE(@DIPPCId, A.DIPPCId)
+     WHERE A.LotNo = @LotNo 
+       AND A.ProductCode = @ProductCode
+       AND DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @DoffingDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)))
 	   AND A.LotNo IS NOT NULL
      ORDER BY A.DoffingDate;
 
