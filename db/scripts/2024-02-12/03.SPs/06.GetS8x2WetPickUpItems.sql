@@ -10,6 +10,7 @@ CREATE PROCEDURE GetS8x2WetPickUpItems
   @ProductCode nvarchar(50) = NULL
 , @LotNo nvarchar(50) = NULL
 , @DoffingDate datetime
+, @TwistNo int
 )
 AS
 BEGIN
@@ -32,6 +33,7 @@ BEGIN
      WHERE A.LotNo = @LotNo 
        AND A.ProductCode = @ProductCode
        AND DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)) = COALESCE(DATEADD(dd, 0, DATEDIFF(dd, 0, @DoffingDate)), DATEADD(dd, 0, DATEDIFF(dd, 0, A.DoffingDate)))
+       AND A.TwistNo = @TwistNo
 	   AND A.LotNo IS NOT NULL
      ORDER BY A.DoffingDate, A.DoffNo, A.RowType;
 
