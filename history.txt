@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #322
+- S8 Production Condition Update Structure #1
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #321
 - Update SP GetRawMaterialSummaries
 

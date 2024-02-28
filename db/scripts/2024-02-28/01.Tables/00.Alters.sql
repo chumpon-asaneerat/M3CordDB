@@ -9,3 +9,15 @@ GO
 
 ALTER TABLE S1Condition ADD JoinOK bit NULL
 GO
+
+ALTER TABLE S8ProductionCondition ADD SofnerValue nvarchar(100) NULL
+GO
+
+ALTER TABLE S8ProductionCondition ADD DarwNipValue nvarchar(100) NULL
+GO
+
+ALTER TABLE S8x2ProductionCondition ADD SofnerValue nvarchar(100) NULL
+GO
+
+ALTER TABLE S8x2ProductionCondition ADD DarwNipValue nvarchar(100) NULL
+GO
