@@ -77,12 +77,12 @@ ALTER PROCEDURE [dbo].[SaveS8x2ProductionConditionItem] (
 , @PositionCordCutWasteYarn decimal (18, 3) 
 , @PositionCordCutWasteYarnKG decimal (18, 3) 
 
-, @CheckTimeStart datetime  
-, @CheckTimeFinish datetime  
-, @CheckTimeRecord datetime  
+, @CheckTimeStart datetime = NULL  
+, @CheckTimeFinish datetime = NULL   
+, @CheckTimeRecord datetime = NULL  
 
-, @Opertor nvarchar (100) 
-, @Leader nvarchar (100) 
+, @Opertor nvarchar (100) = NULL  
+, @Leader nvarchar (100) = NULL  
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS
