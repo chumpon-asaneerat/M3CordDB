@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #325
+- S8 Production Condition Update Structure #4
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #324
 - S8 Production Condition Update Structure #3
 

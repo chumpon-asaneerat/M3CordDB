@@ -21,3 +21,22 @@ GO
 
 ALTER TABLE S8x2ProductionCondition ADD DarwNipValue nvarchar(100) NULL
 GO
+
+ALTER TABLE S8ProductionConditionItem ADD PositionCordCutCreelKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8ProductionConditionItem ADD PositionCordCutCSKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8ProductionConditionItem ADD PositionCordCutWinderKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8ProductionConditionItem ADD PositionCordCutWasteYarnKG decimal(18, 3) NULL
+GO
+
+
+ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutCreelKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutCSKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutWinderKG decimal(18, 3) NULL
+GO
+ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutWasteYarnKG decimal(18, 3) NULL
+GO
