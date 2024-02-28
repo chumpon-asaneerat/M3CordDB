@@ -85,6 +85,7 @@ BEGIN
 		 
          , CheckTimeStart 
 		 , CheckTimeFinish 
+		 , CheckTimeRecord 
 
 		 , Opertor 
 		 , Leader 
