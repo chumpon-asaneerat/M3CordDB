@@ -40,3 +40,6 @@ ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutWinderKG decimal(18, 
 GO
 ALTER TABLE S8x2ProductionConditionItem ADD PositionCordCutWasteYarnKG decimal(18, 3) NULL
 GO
+
+ALTER TABLE S8x2ProductionConditionItem ADD CheckTimeRecord datetime NULL
+GO
