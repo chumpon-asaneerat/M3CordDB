@@ -43,3 +43,10 @@ GO
 
 ALTER TABLE S8x2ProductionConditionItem ADD CheckTimeRecord datetime NULL
 GO
+
+ALTER TABLE S9AppearanceCheckSheetItem ADD SPUnusable bit NULL DEFAULT 0
+GO
+
+UPDATE S9AppearanceCheckSheetItem SET SPUnusable = 0;
+GO
+

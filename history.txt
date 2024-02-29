@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #329
+- S9 Appearance Check Sheet Structure #1
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #328
 - S8 Production Condition Update Structure #7
 
