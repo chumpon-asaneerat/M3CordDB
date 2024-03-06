@@ -1,5 +1,15 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #330
+- Updaet DIPCondition table and sp
+  - Change Type: 
+    - S7CreelSettingKnotConditionSet
+    - S7CreelSettingKnotConditionSet2
+    - S7CreelSettingKnotConditionActual
+    - S7CreelSettingKnotConditionActual2
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #329
 - S9 Appearance Check Sheet Structure #1
 
