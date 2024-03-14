@@ -1,0 +1,5 @@
+-- EXAMPLE ALTER REMOVE AFTER IMPLEMENTS
+/*
+ALTER TABLE DIPConditionStd ALTER COLUMN S7CreelSettingKnotConditionSet2 nvarchar(50)
+GO
+*/
