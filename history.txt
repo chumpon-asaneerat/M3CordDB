@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #340
+- Alter Table DIPCondition
+- Update SP SaveDIPCondition
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #339
 - Update SP SaveS8WetPickup
 

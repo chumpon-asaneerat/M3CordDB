@@ -21,3 +21,15 @@ GO
 
 ALTER TABLE S8WetPickup ALTER COLUMN AMAmp4 nvarchar(50)
 GO
+
+ALTER TABLE DIPCondition ALTER COLUMN S8DippingNo2NipFrontActual nvarchar(50)
+GO
+
+ALTER TABLE DIPCondition ALTER COLUMN S8DippingNo2NipFrontActual2 nvarchar(50)
+GO
+
+ALTER TABLE DIPCondition ALTER COLUMN S8DippingNo2NipBackActual nvarchar(50)
+GO
+
+ALTER TABLE DIPCondition ALTER COLUMN S8DippingNo2NipBackActual2 nvarchar(50)
+GO
