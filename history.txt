@@ -1,5 +1,11 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #342
+- Alter Table S9AppearanceCheckSheetItem
+- Update SP SaveS9AppearanceCheckSheetItem
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #341
 - Update SP SaveS8WetPickupItem
 - Update SP SaveS8x2WetPickupItem

@@ -33,3 +33,9 @@ GO
 
 ALTER TABLE DIPCondition ALTER COLUMN S8DippingNo2NipBackActual2 nvarchar(50)
 GO
+
+ALTER TABLE S9AppearanceCheckSheetItem ALTER COLUMN CheckWeight nvarchar(50)
+GO
+
+ALTER TABLE S9AppearanceCheckSheetItem ADD [Remark] nvarchar(100)
+GO
