@@ -29,7 +29,7 @@ ALTER PROCEDURE [dbo].[SaveS9AppearanceCheckSheetItem] (
 , @CheckSnarl bit
 , @CheckTube bit
 , @SPUnusable bit
-, @Remark nvarchar(100) 
+, @Remark nvarchar(100) = NULL
 , @errNum as int = 0 out
 , @errMsg as nvarchar(MAX) = N'' out)
 AS

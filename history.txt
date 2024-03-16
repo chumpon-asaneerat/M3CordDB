@@ -1,5 +1,10 @@
 ----------------------------------------------------------------------------------------------
 [commited]
+Re-Implements #343
+- Update SP GetS9AppearanceCheckSheetItems
+
+----------------------------------------------------------------------------------------------
+[commited]
 Re-Implements #342
 - Alter Table S9AppearanceCheckSheetItem
 - Update SP SaveS9AppearanceCheckSheetItem

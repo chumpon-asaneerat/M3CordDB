@@ -39,3 +39,6 @@ GO
 
 ALTER TABLE S9AppearanceCheckSheetItem ADD [Remark] nvarchar(100)
 GO
+
+UPDATE S9AppearanceCheckSheetItem SET CheckWeight = NULL;
+GO
