@@ -51,7 +51,7 @@ DECLARE @LastNo int;
                  , CheckSnarl = @CheckSnarl
                  , CheckTube = @CheckTube
                  , SPUnusable = @SPUnusable
-                 , Remark = @Remark
+                 , [Remark] = @Remark
              WHERE AppearId = @AppearId
                AND SPNo = @SPNo
         END
